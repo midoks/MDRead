@@ -39,6 +39,8 @@
     
     BOOL isPresenting = (toViewController.presentingViewController == fromViewController);
     
+    NSLog(@"dd:%d", isPresenting);
+    
     CGRect fromFrame = [transitionContext initialFrameForViewController:fromViewController];
     CGRect toFrame = [transitionContext finalFrameForViewController:toViewController];
     
@@ -86,7 +88,7 @@
         }
         [transitionContext completeTransition:!wasCancelled];
         
-        [fromView removeFromSuperview];
+        //[fromView removeFromSuperview];
     }];
 }
 

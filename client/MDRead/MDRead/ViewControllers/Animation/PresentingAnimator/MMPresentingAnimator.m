@@ -55,6 +55,8 @@
         NSAssert(NO, @"targetEdge must be one of UIRectEdgeTop, UIRectEdgeBottom, UIRectEdgeLeft, or UIRectEdgeRight.");
     }
     
+    NSLog(@"dd:%d", isPresenting);
+    
     if (isPresenting) {
         fromView.frame = fromFrame;
         toView.frame = CGRectOffset(toFrame, toFrame.size.width * offset.dx * -1,
