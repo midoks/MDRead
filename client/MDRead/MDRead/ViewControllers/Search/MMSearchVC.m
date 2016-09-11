@@ -18,7 +18,9 @@
 #import "MMBooksTableViewCell.h"
 #import "MMBooksRollTableViewCell.h"
 
-@interface MMSearchVC () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+#import "MMPresentingAnimator.h"
+
+@interface MMSearchVC () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate,UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *tableData;
@@ -113,13 +115,21 @@
     [_recommend initRecommendData:^{
     }];
     
+    self.transitioningDelegate = self;
+    
     [_recommend itemClick:^{
         
         MMBookInstroVC *s = [[MMBookInstroVC alloc] init];
         UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:s];
+        bookInstroView.transitioningDelegate = self;
         [self presentViewController:bookInstroView animated:YES completion:^{
             
         }];
+        
+//        MMBookInstroVC *bookInstro = [[MMBookInstroVC alloc] init];
+//        bookInstro.hidesBottomBarWhenPushed = YES;
+//        
+//        [self.navigationController pushViewController:s animated:YES];
     }];
 }
 
@@ -146,6 +156,7 @@
 {
     _searchResult = [[MMSearchNavVC alloc] init];
     UINavigationController *ss = [[UINavigationController alloc] initWithRootViewController:_searchResult];
+    
     [self presentViewController:ss animated:NO completion:nil];
 }
 
@@ -232,6 +243,12 @@
         }
     }
 
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
+    MMPresentingAnimator *a = [[MMPresentingAnimator alloc] init];
+    a.targetEdge = UIRectEdgeRight;
+    return a;
 }
 
 

@@ -14,9 +14,12 @@
 #import "MMCommon.h"
 #import "MJRefresh.h"
 
+#import "MMPresentingAnimator.h"
+#import "MMDismissingAnimator.h"
+
 static NSString *collectViewIdentifier = @"collectViewIdentifier";
 
-@interface MMBookshelfViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
+@interface MMBookshelfViewController () <UICollectionViewDataSource,UICollectionViewDelegate, UINavigationControllerDelegate,UIViewControllerTransitioningDelegate>
 
 @property(nonatomic, strong) UITableView *tableView;
 
@@ -35,6 +38,8 @@ static NSString *collectViewIdentifier = @"collectViewIdentifier";
     } else {
         [self initEmptyDataView];
     }
+    
+    //self.navigationController.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -137,17 +142,36 @@ static NSString *collectViewIdentifier = @"collectViewIdentifier";
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%@", indexPath);
-    
+    //NSLog(@"%@", indexPath);
+    [self presentClick];
+}
+
+- (void)presentClick
+{
     MMBookInstroVC *bookInstro = [[MMBookInstroVC alloc] init];
     bookInstro.hidesBottomBarWhenPushed = YES;
     
-    UINavigationController *ss = [[UINavigationController alloc] initWithRootViewController:bookInstro];
+    //[self.navigationController pushViewController:bookInstro animated:YES];
     
-    ss.modalPresentationStyle = UIModalPresentationCustom;
+    UINavigationController *ss = [[UINavigationController alloc] initWithRootViewController:bookInstro];
+    ss.transitioningDelegate = self; // 必须second同样设置delegate才有动画
     [self presentViewController:ss animated:YES completion:^{
-        
     }];
+}
+
+
+// present动画
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
+    MMPresentingAnimator *a = [[MMPresentingAnimator alloc] init];
+    a.targetEdge = UIRectEdgeRight;
+    return a;
+}
+
+-(id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    MMDismissingAnimator *a = [[MMDismissingAnimator alloc] init];
+    a.targetEdge = UIRectEdgeLeft;
+    return a;
 }
 
 @end

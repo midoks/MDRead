@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		821B3A6C1D8538E7000ABCE7 /* MMDismissingAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 821B3A681D8538E7000ABCE7 /* MMDismissingAnimator.m */; };
+		821B3A6D1D8538E7000ABCE7 /* MMPresentingAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 821B3A6B1D8538E7000ABCE7 /* MMPresentingAnimator.m */; };
 		8222883B1D755B5200D0CB6E /* MMBookInstroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8222883A1D755B5200D0CB6E /* MMBookInstroCell.m */; };
 		8227233B1D16DA73005340E6 /* MMBookshelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8227233A1D16DA73005340E6 /* MMBookshelfViewController.m */; };
 		82306C471CC1D99E00888A10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82306C461CC1D99E00888A10 /* LaunchScreen.storyboard */; };
@@ -75,6 +77,10 @@
 
 /* Begin PBXFileReference section */
 		7A6234CF389655EF41ADD247 /* Pods-MDRead.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDRead.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MDRead/Pods-MDRead.debug.xcconfig"; sourceTree = "<group>"; };
+		821B3A671D8538E7000ABCE7 /* MMDismissingAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDismissingAnimator.h; sourceTree = "<group>"; };
+		821B3A681D8538E7000ABCE7 /* MMDismissingAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDismissingAnimator.m; sourceTree = "<group>"; };
+		821B3A6A1D8538E7000ABCE7 /* MMPresentingAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPresentingAnimator.h; sourceTree = "<group>"; };
+		821B3A6B1D8538E7000ABCE7 /* MMPresentingAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPresentingAnimator.m; sourceTree = "<group>"; };
 		822288391D755B5200D0CB6E /* MMBookInstroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookInstroCell.h; sourceTree = "<group>"; };
 		8222883A1D755B5200D0CB6E /* MMBookInstroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBookInstroCell.m; sourceTree = "<group>"; };
 		822723391D16DA73005340E6 /* MMBookshelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookshelfViewController.h; sourceTree = "<group>"; };
@@ -197,6 +203,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		821B3A661D8538E7000ABCE7 /* DismissingAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				821B3A671D8538E7000ABCE7 /* MMDismissingAnimator.h */,
+				821B3A681D8538E7000ABCE7 /* MMDismissingAnimator.m */,
+			);
+			path = DismissingAnimator;
+			sourceTree = "<group>";
+		};
+		821B3A691D8538E7000ABCE7 /* PresentingAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				821B3A6A1D8538E7000ABCE7 /* MMPresentingAnimator.h */,
+				821B3A6B1D8538E7000ABCE7 /* MMPresentingAnimator.m */,
+			);
+			path = PresentingAnimator;
+			sourceTree = "<group>";
+		};
 		822723331D167AD7005340E6 /* Guides */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +303,8 @@
 		82C197851D676F9B00917F66 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				821B3A661D8538E7000ABCE7 /* DismissingAnimator */,
+				821B3A691D8538E7000ABCE7 /* PresentingAnimator */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -685,6 +711,7 @@
 				82C197A31D6D9B8300917F66 /* MMBookInstroBottom.m in Sources */,
 				82C197841D674ADE00917F66 /* MMGuidesVC.m in Sources */,
 				82C1977B1D60B9CA00917F66 /* MMSearchNavVC.m in Sources */,
+				821B3A6D1D8538E7000ABCE7 /* MMPresentingAnimator.m in Sources */,
 				82CB2D051D5C457D008DE5FC /* RootVC.m in Sources */,
 				82C454851CB80F0600B83065 /* AppDelegate.m in Sources */,
 				827B026E1CCBE8FC00E2269B /* MMUILabel+textSize.m in Sources */,
@@ -694,6 +721,7 @@
 				82D47EC11D5C4E2000958099 /* MMSuggestVC.m in Sources */,
 				82C197A21D6D9B8300917F66 /* MMBookAuthorCell.m in Sources */,
 				82D72BF31D21199D006E0176 /* MMBooksSrcollView.m in Sources */,
+				821B3A6C1D8538E7000ABCE7 /* MMDismissingAnimator.m in Sources */,
 				82C1977E1D67410B00917F66 /* MMBookMarkVC.m in Sources */,
 				82DAC73D1CF9E76200E17706 /* MMNovelApi.m in Sources */,
 				82D72BDF1D1E4D8E006E0176 /* MMBooksTableViewCell.m in Sources */,

@@ -20,7 +20,7 @@
 #import "MMCommon.h"
 
 
-@interface MMBookInstroVC () <UITableViewDataSource, UITableViewDelegate>
+@interface MMBookInstroVC () <UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -29,14 +29,13 @@
 
 @property (nonatomic, strong) MMBookAuthorCell *authorList;
 
-
-
 @end
 
 @implementation MMBookInstroVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     
     [self initTableView];
     [self initHeadView];
@@ -47,6 +46,12 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.navigationController.delegate = self;
 }
 
 -(void)initTableView
@@ -72,7 +77,6 @@
 
 -(void)initFooterView
 {
-    
     //UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, MDDeviceH - 50, MDDeviceW, 50)];
     MMBookInstroBottom *footer = [[MMBookInstroBottom alloc] initWithFrame:CGRectMake(0, MDDeviceH - 50, MDDeviceW, 50)];
     footer.backgroundColor = [UIColor whiteColor];
@@ -116,8 +120,14 @@
 
 -(void)cancelButtonClick
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-    }];
+//    MMPresentingAnimator *transitionDelegate = self.transitioningDelegate;
+//    transitionDelegate.targetEdge = UIRectEdgeLeft;
+//    //self.transitioningDelegate = self;
+//    //self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+//    [self dismissViewControllerAnimated:YES completion:^{
+//    }];
+    
+    [self presentClick];
 }
 
 #pragma mark - UITableViewDataSource && UITableViewDelegate -
@@ -231,5 +241,14 @@
         }
     }
 }
+
+- (void)presentClick
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+
 
 @end
