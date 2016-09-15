@@ -13,6 +13,9 @@
 		8227233B1D16DA73005340E6 /* MMBookshelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8227233A1D16DA73005340E6 /* MMBookshelfViewController.m */; };
 		82306C471CC1D99E00888A10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82306C461CC1D99E00888A10 /* LaunchScreen.storyboard */; };
 		827B026E1CCBE8FC00E2269B /* MMUILabel+textSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 827B026D1CCBE8FC00E2269B /* MMUILabel+textSize.m */; };
+		828ABCD21D89331D00C9F575 /* libnetwork.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 828ABCD11D89331D00C9F575 /* libnetwork.tbd */; };
+		828ABCD41D8936A500C9F575 /* libSystem.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 828ABCD31D8936A500C9F575 /* libSystem.tbd */; };
+		828ABCD81D893B8100C9F575 /* MMBookInstroTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 828ABCD71D893B8100C9F575 /* MMBookInstroTextCell.m */; };
 		828D0DD61CC3642800F4BCCA /* libmtasdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 828D0DD11CC3642800F4BCCA /* libmtasdk.a */; };
 		828D0DD71CC3642800F4BCCA /* ReleaseNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 828D0DD51CC3642800F4BCCA /* ReleaseNotes.txt */; };
 		828D0DD91CC3659B00F4BCCA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 828D0DD81CC3659B00F4BCCA /* libsqlite3.tbd */; };
@@ -55,7 +58,6 @@
 		82F216801D1A987600238B41 /* 1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 82F2167C1D1A987600238B41 /* 1.txt */; };
 		82F216811D1A987600238B41 /* 2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 82F2167D1D1A987600238B41 /* 2.txt */; };
 		82F216821D1A987600238B41 /* 3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 82F2167E1D1A987600238B41 /* 3.txt */; };
-		E97C26E6817DF8CA28E83945 /* libPods-MDRead.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC3EA568A919238B6888404 /* libPods-MDRead.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,10 @@
 		82306C461CC1D99E00888A10 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		827B026C1CCBE8FC00E2269B /* MMUILabel+textSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMUILabel+textSize.h"; sourceTree = "<group>"; };
 		827B026D1CCBE8FC00E2269B /* MMUILabel+textSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMUILabel+textSize.m"; sourceTree = "<group>"; };
+		828ABCD11D89331D00C9F575 /* libnetwork.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libnetwork.tbd; path = usr/lib/libnetwork.tbd; sourceTree = SDKROOT; };
+		828ABCD31D8936A500C9F575 /* libSystem.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libSystem.tbd; path = usr/lib/libSystem.tbd; sourceTree = SDKROOT; };
+		828ABCD61D893B8100C9F575 /* MMBookInstroTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookInstroTextCell.h; sourceTree = "<group>"; };
+		828ABCD71D893B8100C9F575 /* MMBookInstroTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBookInstroTextCell.m; sourceTree = "<group>"; };
 		828D0DD11CC3642800F4BCCA /* libmtasdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmtasdk.a; sourceTree = "<group>"; };
 		828D0DD21CC3642800F4BCCA /* MTA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTA.h; sourceTree = "<group>"; };
 		828D0DD31CC3642800F4BCCA /* MTAConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAConfig.h; sourceTree = "<group>"; };
@@ -172,6 +178,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				828ABCD41D8936A500C9F575 /* libSystem.tbd in Frameworks */,
+				828ABCD21D89331D00C9F575 /* libnetwork.tbd in Frameworks */,
 				828D0DEA1CC36B0F00F4BCCA /* Foundation.framework in Frameworks */,
 				828D0DE81CC36B0300F4BCCA /* CoreTelephony.framework in Frameworks */,
 				828D0DE61CC36AF300F4BCCA /* SystemConfiguration.framework in Frameworks */,
@@ -182,7 +190,6 @@
 				828D0DDB1CC365AC00F4BCCA /* libz.tbd in Frameworks */,
 				828D0DD91CC3659B00F4BCCA /* libsqlite3.tbd in Frameworks */,
 				828D0DD61CC3642800F4BCCA /* libmtasdk.a in Frameworks */,
-				E97C26E6817DF8CA28E83945 /* libPods-MDRead.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +278,8 @@
 		828D0DDC1CC36A8E00F4BCCA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				828ABCD31D8936A500C9F575 /* libSystem.tbd */,
+				828ABCD11D89331D00C9F575 /* libnetwork.tbd */,
 				828D0DE91CC36B0F00F4BCCA /* Foundation.framework */,
 				828D0DE71CC36B0300F4BCCA /* CoreTelephony.framework */,
 				828D0DE51CC36AF300F4BCCA /* SystemConfiguration.framework */,
@@ -329,6 +338,8 @@
 				82C1979C1D6D9B8300917F66 /* MMBookInstroHead.m */,
 				822288391D755B5200D0CB6E /* MMBookInstroCell.h */,
 				8222883A1D755B5200D0CB6E /* MMBookInstroCell.m */,
+				828ABCD61D893B8100C9F575 /* MMBookInstroTextCell.h */,
+				828ABCD71D893B8100C9F575 /* MMBookInstroTextCell.m */,
 			);
 			path = Instro;
 			sourceTree = "<group>";
@@ -588,12 +599,18 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MM;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = midoks;
 				TargetAttributes = {
 					82C4547C1CB80F0600B83065 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 3BAUN3CGWR;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Siri = {
+								enabled = 0;
+							};
+						};
 					};
 					82C454951CB80F0600B83065 = {
 						CreatedOnToolsVersion = 7.2;
@@ -734,6 +751,7 @@
 				82C197781D60B95000917F66 /* MMSearchVC.m in Sources */,
 				82C197A51D6D9B8300917F66 /* MMBookInstroVC.m in Sources */,
 				828D0E771CC3E3C700F4BCCA /* NSString+textSize.m in Sources */,
+				828ABCD81D893B8100C9F575 /* MMBookInstroTextCell.m in Sources */,
 				82C197A41D6D9B8300917F66 /* MMBookInstroHead.m in Sources */,
 				82C197751D5E2F7B00917F66 /* MMAboutVC.m in Sources */,
 				82C454821CB80F0600B83065 /* main.m in Sources */,
@@ -786,8 +804,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -829,8 +849,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -859,6 +881,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3BAUN3CGWR;
 				INFOPLIST_FILE = MDRead/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -877,6 +901,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3BAUN3CGWR;
 				INFOPLIST_FILE = MDRead/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

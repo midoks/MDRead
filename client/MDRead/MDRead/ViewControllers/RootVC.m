@@ -30,7 +30,7 @@
     
     self.delegate = self;
     
-    NSLog(@"%@", NSHomeDirectory());
+    //NSLog(@"%@", NSHomeDirectory());
     
     [self setTabBars];
 }
