@@ -1,0 +1,28 @@
+{
+	"name": "pbtxt",
+	"web_site":"http://www.pbtxt.com/",
+	"test_addr":"http://www.pbtxt.com/34193/",
+
+	"soso": {
+		"url": "http://zhannei.baidu.com/cse/search?q={keyword}&s=13386898804301110817",
+		"regx": "~cpos=\\\"title\\\" href=\\\"(.*)\\\" title=\\\"(.*)\\\" class=\\\"result-game-item-title-link\\\" target=\\\"_blank\\\"~i"
+	},
+
+	"instro": {
+		"book_name": "~meta property=\\\"og:title\\\" content=\\\"(.*)\\\"~",
+		"book_author": "~meta name=\\\"og:novel:author\\\" content=\\\"(.*)\\\"~",
+		"book_image": "~meta property=\\\"og:image\\\" content=\\\"(.*)\\\"~",
+		"book_type": "~meta name=\\\"og:novel:category\\\" content=\\\"(.*)\\\"~",
+		"book_desc": "~meta property=\\\"og:description\\\" content=\\\"(.*)\\\"~iUs",
+		"book_status": "~meta name=\\\"og:novel:status\\\" content=\\\"(.*)\\\"~"
+	},
+
+	"chapter": {
+		"book_chapter": "~<td class=\\\"L\\\"><a href=\\\"(.*)\\\">(.*)</a></td>~iU",
+		"type": "0"
+	},
+	
+	"content": {
+		"content":"~<dd id=\\\"contents\\\">(.*)</dd>~iUs"
+	}
+}

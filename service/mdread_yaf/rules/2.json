@@ -1,0 +1,28 @@
+{
+	"name": "23wx",
+	"web_site":"http://www.23wx.com/",
+	"test_addr":"http://www.23wx.com/html/0/328/",
+
+	"soso": {
+		"url": "http://so.biquge.la/cse/search?q={keyword}&s=15772447660171623812",
+		"regx": "~cpos=\\\"title\\\" href=\\\"(.*)\\\" title=\\\"(.*)\\\" class=\\\"result-game-item-title-link\\\" target=\\\"_blank\\\"~i"
+	},
+
+	"instro": {
+		"book_name": "~meta property=\\\"og:title\\\" content=\\\"(.*)\\\"~",
+		"book_author": "~meta name=\\\"og:novel:author\\\" content=\\\"(.*)\\\"~",
+		"book_image": "~meta property=\\\"og:image\\\" content=\\\"(.*)\\\"~",
+		"book_type": "~meta name=\\\"og:novel:category\\\" content=\\\"(.*)\\\"~",
+		"book_desc": "~meta property=\\\"og:description\\\" content=\\\"(.*)\\\"~iUs",
+		"book_status": "~meta name=\\\"og:novel:status\\\" content=\\\"(.*)\\\"~"
+	},
+
+	"chapter": {
+		"book_chapter": "~<td class=\\\"L\\\"><a href=\\\"(.*)\\\">(.*)</a></td>~iU",
+		"type": "0"
+	},
+	
+	"content": {
+		"content":"~<dd id=\\\"contents\\\">(.*)</dd>~iUs"
+	}
+}

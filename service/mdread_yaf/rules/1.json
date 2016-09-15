@@ -1,0 +1,28 @@
+{
+	"name": "biquge",
+	"web_site":"http://www.biquge.la/",
+	"test_addr":"http://www.biquge.la/book/12166/",
+
+	"soso": {
+		"url": "http://so.biquge.la/cse/search?q={keyword}&s=7138806708853866527",
+		"regx": "~cpos=\\\"title\\\" href=\\\"(.*)\\\" title=\\\"(.*)\\\" class=\\\"result-game-item-title-link\\\" target=\\\"_blank\\\"~i"
+	},
+
+	"instro": {
+		"book_name": "~meta property=\\\"og:novel:book_name\\\" content=\\\"(.*)\\\"~",
+		"book_author": "~meta property=\\\"og:novel:author\\\" content=\\\"(.*)\\\"~",
+		"book_image": "~div id=\\\"fmimg\\\"><img alt=\\\".*\\\" src=\\\"(.*)\\\" width=\\\"120\\\" height=\\\"150\\\" /><span class=\\\"b\\\"></span></div~is",
+		"book_type": "~meta property=\\\"og:novel:category\\\" content=\\\"(.*)\\\"~",
+		"book_desc": "~meta property=\\\"og:description\\\" content=\\\"(.*)\\\"~iUs",
+		"book_status": "~meta property=\\\"og:novel:status\\\" content=\\\"(.*)\\\"~"
+	},
+
+	"chapter": {
+		"book_chapter": "~<dd><a href=\\\"(.*)\\\">(.*)</a></dd>~iU",
+		"type": "0"
+	},
+	
+	"content": {
+		"content":"~readx\\\\(\\\\)\\\\;</script>(.*)</div>\\\\s*<script>read3~is"
+	}
+}
