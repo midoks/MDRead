@@ -7,6 +7,7 @@
 //
 
 #import "MMBookInstroTextCell.h"
+#import "NSString+textSize.h"
 
 @implementation MMBookInstroTextCell
 
@@ -36,9 +37,13 @@
 
 -(NSInteger)getDescSize
 {
+    NSLog(@"%@", _desc);
     
     
-    return 44;
+    CGSize p = [_desc textSize:[UIFont systemFontOfSize:16] size:CGSizeMake(100, 200)];
+    
+    NSLog(@"%@", NSStringFromCGSize(p));
+    return p.height;
 }
 
 

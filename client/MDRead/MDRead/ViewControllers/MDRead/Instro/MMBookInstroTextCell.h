@@ -12,5 +12,7 @@
 
 
 @property(nonatomic, strong) NSString *desc;
+-(void)setDesc:(NSString *)desc;
+-(NSInteger)getDescSize;
 
 @end

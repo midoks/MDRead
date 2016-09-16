@@ -79,7 +79,6 @@
 
 -(void)initFooterView
 {
-    //UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, MDDeviceH - 50, MDDeviceW, 50)];
     MMBookInstroBottom *footer = [[MMBookInstroBottom alloc] initWithFrame:CGRectMake(0, MDDeviceH - 50, MDDeviceW, 50)];
     footer.backgroundColor = [UIColor whiteColor];
     
@@ -122,6 +121,8 @@
 {
     _bookDesc = [[MMBookInstroTextCell alloc] init];
     _bookDesc.textLabel.text = @"一场穿越时空的爱恋，一场惊心动魄的爱情剧。原本是繁华都市的女生，却因一脚踏空而穿越了时空的隧道。她带着对清史的洞悉进入风云诡变的宫廷。她知道自己不该卷入这场九王夺嫡的争斗中，可心不由己，因为这里有她所爱的，也有爱着她的……\n《步步惊心》情节跌宕起伏、扣人心弦，步步惊心是一本情节与文笔俱佳的都市言情,各位书友要是觉得步步惊心全文阅读还不错的话请不要忘记向您QQ群和微博里的朋友推荐哦！";
+    
+    [_bookDesc setDesc: @"一场穿越时空的爱恋，一场惊心动魄的爱情剧。原本是繁华都市的女生，却因一脚踏空而穿越了时空的隧道。她带着对清史的洞悉进入风云诡变的宫廷。她知道自己不该卷入这场九王夺嫡的争斗中，可心不由己，因为这里有她所爱的，也有爱着她的……\n《步步惊心》情节跌宕起伏、扣人心弦，步步惊心是一本情节与文笔俱佳的都市言情,各位书友要是觉得步步惊心全文阅读还不错的话请不要忘记向您QQ群和微博里的朋友推荐哦！"];
     
 }
 
@@ -166,6 +167,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
+        if (indexPath.row == 0){
+            return [_bookDesc getDescSize];
+        }
     } else if (indexPath.section == 1){
         if (indexPath.row == 0){
             return [_rand randHeight];
