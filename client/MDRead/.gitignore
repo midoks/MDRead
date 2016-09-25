@@ -1,0 +1,5 @@
+# P
+Podfile.lock
+.DS_Store
+Pods/*
+MDRead.xcworkspace
