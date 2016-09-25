@@ -43,21 +43,15 @@
     [self.view addGestureRecognizer:_tapGesture];
     
     self.view.backgroundColor = [UIColor whiteColor];
-
-    
-
 }
 
 -(void)handleShowView:(UITapGestureRecognizer *)tap
 {
-
-    //NSLog(@"%@", tap);
     if (self.navigationController.navigationBarHidden){
         [self showNavBtn];
     } else {
         [self hiddenNavBtn];
     }
-
 }
 
 
