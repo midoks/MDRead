@@ -50,7 +50,7 @@
     
     _search = [[UISearchBar alloc] initWithFrame:CGRectMake(CGRectGetMinX(mainViewBounds),
                                                             CGRectGetMinY(mainViewBounds) + 22,
-                                                            mainViewBounds.size.width-40, 40)];
+                                                            mainViewBounds.size.width-50, 40)];
     
     _search.placeholder = @"书名、作者名、关键字";
     _search.delegate = self;

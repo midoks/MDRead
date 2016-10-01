@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMBooklookVC : UIViewController
+@interface MMBooklookVC : UIViewController<UIPageViewControllerDataSource>
 
 @end

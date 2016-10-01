@@ -26,10 +26,8 @@
 
 -(void)initView
 {
-
-    
     UIView *back = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MDDeviceW, 150)];
-    //back.backgroundColor = [UIColor blueColor];
+    back.backgroundColor = [UIColor blueColor];
     [self addSubview:back];
 }
 

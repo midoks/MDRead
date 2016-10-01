@@ -12,6 +12,7 @@
 		8222883B1D755B5200D0CB6E /* MMBookInstroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8222883A1D755B5200D0CB6E /* MMBookInstroCell.m */; };
 		8227233B1D16DA73005340E6 /* MMBookshelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8227233A1D16DA73005340E6 /* MMBookshelfViewController.m */; };
 		82306C471CC1D99E00888A10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82306C461CC1D99E00888A10 /* LaunchScreen.storyboard */; };
+		824E04D71D9E48080083B839 /* MMSimPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 824E04D61D9E48080083B839 /* MMSimPageVC.m */; };
 		827B026E1CCBE8FC00E2269B /* MMUILabel+textSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 827B026D1CCBE8FC00E2269B /* MMUILabel+textSize.m */; };
 		828ABCD21D89331D00C9F575 /* libnetwork.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 828ABCD11D89331D00C9F575 /* libnetwork.tbd */; };
 		828ABCD41D8936A500C9F575 /* libSystem.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 828ABCD31D8936A500C9F575 /* libSystem.tbd */; };
@@ -55,6 +56,7 @@
 		82D72BF31D21199D006E0176 /* MMBooksSrcollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D72BF21D21199D006E0176 /* MMBooksSrcollView.m */; };
 		82DAC73D1CF9E76200E17706 /* MMNovelApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DAC73C1CF9E76200E17706 /* MMNovelApi.m */; };
 		82DAC75C1CFD879200E17706 /* MMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DAC75B1CFD879200E17706 /* MMCommon.m */; };
+		82E217581D980540007C4EB7 /* MMLookView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E217571D980540007C4EB7 /* MMLookView.m */; };
 		82F216801D1A987600238B41 /* 1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 82F2167C1D1A987600238B41 /* 1.txt */; };
 		82F216811D1A987600238B41 /* 2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 82F2167D1D1A987600238B41 /* 2.txt */; };
 		82F216821D1A987600238B41 /* 3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 82F2167E1D1A987600238B41 /* 3.txt */; };
@@ -89,6 +91,8 @@
 		822723391D16DA73005340E6 /* MMBookshelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookshelfViewController.h; sourceTree = "<group>"; };
 		8227233A1D16DA73005340E6 /* MMBookshelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBookshelfViewController.m; sourceTree = "<group>"; };
 		82306C461CC1D99E00888A10 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		824E04D51D9E48080083B839 /* MMSimPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSimPageVC.h; sourceTree = "<group>"; };
+		824E04D61D9E48080083B839 /* MMSimPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSimPageVC.m; sourceTree = "<group>"; };
 		827B026C1CCBE8FC00E2269B /* MMUILabel+textSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMUILabel+textSize.h"; sourceTree = "<group>"; };
 		827B026D1CCBE8FC00E2269B /* MMUILabel+textSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMUILabel+textSize.m"; sourceTree = "<group>"; };
 		828ABCD11D89331D00C9F575 /* libnetwork.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libnetwork.tbd; path = usr/lib/libnetwork.tbd; sourceTree = SDKROOT; };
@@ -167,6 +171,8 @@
 		82DAC73C1CF9E76200E17706 /* MMNovelApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMNovelApi.m; sourceTree = "<group>"; };
 		82DAC75A1CFD879200E17706 /* MMCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCommon.h; sourceTree = "<group>"; };
 		82DAC75B1CFD879200E17706 /* MMCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCommon.m; sourceTree = "<group>"; };
+		82E217561D980540007C4EB7 /* MMLookView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLookView.h; sourceTree = "<group>"; };
+		82E217571D980540007C4EB7 /* MMLookView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLookView.m; sourceTree = "<group>"; };
 		82F2167C1D1A987600238B41 /* 1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 1.txt; sourceTree = "<group>"; };
 		82F2167D1D1A987600238B41 /* 2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 2.txt; sourceTree = "<group>"; };
 		82F2167E1D1A987600238B41 /* 3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 3.txt; sourceTree = "<group>"; };
@@ -265,6 +271,15 @@
 			path = Bookshelf;
 			sourceTree = "<group>";
 		};
+		824E04D11D9E46580083B839 /* SimulationPage */ = {
+			isa = PBXGroup;
+			children = (
+				824E04D51D9E48080083B839 /* MMSimPageVC.h */,
+				824E04D61D9E48080083B839 /* MMSimPageVC.m */,
+			);
+			path = SimulationPage;
+			sourceTree = "<group>";
+		};
 		828D0DD01CC3642800F4BCCA /* mta-ios-stats-sdk */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,8 +364,12 @@
 		82C1979F1D6D9B8300917F66 /* Look */ = {
 			isa = PBXGroup;
 			children = (
+				824E04D11D9E46580083B839 /* SimulationPage */,
+				82E2175A1D9810B9007C4EB7 /* LeftRightSliding */,
 				82C197A71D6DE4EE00917F66 /* MMBooklookVC.h */,
 				82C197A81D6DE4EE00917F66 /* MMBooklookVC.m */,
+				82E217561D980540007C4EB7 /* MMLookView.h */,
+				82E217571D980540007C4EB7 /* MMLookView.m */,
 			);
 			path = Look;
 			sourceTree = "<group>";
@@ -507,6 +526,13 @@
 				82C1979F1D6D9B8300917F66 /* Look */,
 			);
 			path = MDRead;
+			sourceTree = "<group>";
+		};
+		82E2175A1D9810B9007C4EB7 /* LeftRightSliding */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LeftRightSliding;
 			sourceTree = "<group>";
 		};
 		82F2167B1D1A987600238B41 /* text */ = {
@@ -744,6 +770,7 @@
 				82C1977E1D67410B00917F66 /* MMBookMarkVC.m in Sources */,
 				82DAC73D1CF9E76200E17706 /* MMNovelApi.m in Sources */,
 				82D72BDF1D1E4D8E006E0176 /* MMBooksTableViewCell.m in Sources */,
+				82E217581D980540007C4EB7 /* MMLookView.m in Sources */,
 				8227233B1D16DA73005340E6 /* MMBookshelfViewController.m in Sources */,
 				82D72BE21D1E5F03006E0176 /* MMBookshelfCollectionViewCell.m in Sources */,
 				8222883B1D755B5200D0CB6E /* MMBookInstroCell.m in Sources */,
@@ -751,6 +778,7 @@
 				82C366541D533592003FC77F /* MMSystemInfo.m in Sources */,
 				82DAC75C1CFD879200E17706 /* MMCommon.m in Sources */,
 				82C197781D60B95000917F66 /* MMSearchVC.m in Sources */,
+				824E04D71D9E48080083B839 /* MMSimPageVC.m in Sources */,
 				82C197A51D6D9B8300917F66 /* MMBookInstroVC.m in Sources */,
 				828D0E771CC3E3C700F4BCCA /* NSString+textSize.m in Sources */,
 				828ABCD81D893B8100C9F575 /* MMBookInstroTextCell.m in Sources */,
