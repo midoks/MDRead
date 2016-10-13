@@ -29,6 +29,7 @@
 		828D0DE81CC36B0300F4BCCA /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828D0DE71CC36B0300F4BCCA /* CoreTelephony.framework */; };
 		828D0DEA1CC36B0F00F4BCCA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828D0DE91CC36B0F00F4BCCA /* Foundation.framework */; };
 		828D0E771CC3E3C700F4BCCA /* NSString+textSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 828D0E761CC3E3C700F4BCCA /* NSString+textSize.m */; };
+		82921E831DAE1C8E006C9765 /* MMBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82921E821DAE1C8E006C9765 /* MMBottomView.m */; };
 		82C197751D5E2F7B00917F66 /* MMAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C197741D5E2F7B00917F66 /* MMAboutVC.m */; };
 		82C197781D60B95000917F66 /* MMSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C197771D60B95000917F66 /* MMSearchVC.m */; };
 		82C1977B1D60B9CA00917F66 /* MMSearchNavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C1977A1D60B9CA00917F66 /* MMSearchNavVC.m */; };
@@ -115,6 +116,9 @@
 		828D0DE91CC36B0F00F4BCCA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		828D0E751CC3E3C700F4BCCA /* NSString+textSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+textSize.h"; sourceTree = "<group>"; };
 		828D0E761CC3E3C700F4BCCA /* NSString+textSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+textSize.m"; sourceTree = "<group>"; };
+		82921E811DAE1C8E006C9765 /* MMBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBottomView.h; sourceTree = "<group>"; };
+		82921E821DAE1C8E006C9765 /* MMBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBottomView.m; sourceTree = "<group>"; };
+		82921E841DAE2330006C9765 /* MDRead-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MDRead-Prefix.pch"; sourceTree = "<group>"; };
 		82C197731D5E2F7B00917F66 /* MMAboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAboutVC.h; sourceTree = "<group>"; };
 		82C197741D5E2F7B00917F66 /* MMAboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAboutVC.m; sourceTree = "<group>"; };
 		82C197761D60B95000917F66 /* MMSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSearchVC.h; sourceTree = "<group>"; };
@@ -370,6 +374,8 @@
 				82C197A81D6DE4EE00917F66 /* MMBooklookVC.m */,
 				82E217561D980540007C4EB7 /* MMLookView.h */,
 				82E217571D980540007C4EB7 /* MMLookView.m */,
+				82921E811DAE1C8E006C9765 /* MMBottomView.h */,
+				82921E821DAE1C8E006C9765 /* MMBottomView.m */,
 			);
 			path = Look;
 			sourceTree = "<group>";
@@ -417,6 +423,7 @@
 				82C454911CB80F0600B83065 /* Info.plist */,
 				82C454801CB80F0600B83065 /* Supporting Files */,
 				82306C461CC1D99E00888A10 /* LaunchScreen.storyboard */,
+				82921E841DAE2330006C9765 /* MDRead-Prefix.pch */,
 			);
 			path = MDRead;
 			sourceTree = "<group>";
@@ -758,6 +765,7 @@
 				82C1977B1D60B9CA00917F66 /* MMSearchNavVC.m in Sources */,
 				821B3A6D1D8538E7000ABCE7 /* MMPresentingAnimator.m in Sources */,
 				82CB2D051D5C457D008DE5FC /* RootVC.m in Sources */,
+				82921E831DAE1C8E006C9765 /* MMBottomView.m in Sources */,
 				82C454851CB80F0600B83065 /* AppDelegate.m in Sources */,
 				827B026E1CCBE8FC00E2269B /* MMUILabel+textSize.m in Sources */,
 				82D72BF01D210C73006E0176 /* MMBooksRollTableViewCell.m in Sources */,
@@ -847,8 +855,11 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/MDRead/MDRead-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -891,7 +902,10 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/MDRead/MDRead-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

@@ -9,6 +9,7 @@
 #import "MMBooklookVC.h"
 #import "MMLookView.h"
 #import "MMSimPageVC.h"
+#import "MMBottomView.h"
 
 @interface MMBooklookVC ()
 
@@ -19,6 +20,7 @@
 @property (nonatomic, strong) NSMutableArray* pageContent;
 @property (nonatomic, strong) MMSimPageVC* pageVC;
 @property (nonatomic, strong) UIPageViewController *pagesVC;
+@property (nonatomic, strong) MMBottomView *mmbView;
 
 
 @end
@@ -48,6 +50,10 @@
     [self hiddenNavBtn];
     
     [self initLookView];
+    
+    _mmbView = [[MMBottomView alloc] initWithFrame:CGRectMake(0, MD_H, MD_W, 100)];
+    [self.view addSubview:_mmbView];
+
 }
 
 -(void)handleShowView:(UITapGestureRecognizer *)tap
@@ -77,6 +83,12 @@
 {
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.isHidden = NO;
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.mmbView setFrame:CGRectMake(0, MD_H, MD_W, 100)];
+    } completion:^(BOOL finished) {
+        //[self.mmbView removeFromSuperview];
+    }];
 }
 
 -(void)showNavBtn
@@ -84,12 +96,16 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.isHidden = YES;
     self.navigationController.navigationBar.tintColor = [UIColor blueColor];
+    
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.mmbView setFrame:CGRectMake(0, MD_H - 100, MD_W, 100)];
+    }];
+    
 }
 
 -(void)initLookView
 {
-    MMLookView *lookView = [[MMLookView alloc] initWithFrame:self.view.frame];
-    [self.view addSubview:lookView];
     
     [self createContentPages];
     NSDictionary *options =
@@ -106,7 +122,7 @@
     
     _pagesVC.dataSource = self;
     [[_pagesVC view] setFrame:[[self view] bounds]];
-//
+    
     MMSimPageVC *initialViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
     
@@ -174,7 +190,8 @@
     
     index++;
     if (index == [self.pageContent count]) {
-        return nil;
+//        return nil;
+        index = 0;
     }
     return [self viewControllerAtIndex:index];
 }

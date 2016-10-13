@@ -1,0 +1,19 @@
+//
+//  PrefixHeader.pch
+//  MDRead
+//
+//  Created by midoks on 2016/10/12.
+//  Copyright © 2016年 midoks. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+
+#define MD_W self.view.frame.size.width
+#define MD_H self.view.frame.size.height
+
+#define MD_FW self.frame.size.width
+#define MD_FH self.frame.size.height
+
+#endif /* PrefixHeader_pch */
