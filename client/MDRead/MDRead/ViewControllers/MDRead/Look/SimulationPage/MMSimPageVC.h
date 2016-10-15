@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMBookBaseLookVC.h"
 
-@interface MMSimPageVC: UIViewController
+@interface MMSimPageVC: MMBookBaseLookVC <UIPageViewControllerDataSource>
 
 @property (nonatomic,strong)NSString *dataObject;
 

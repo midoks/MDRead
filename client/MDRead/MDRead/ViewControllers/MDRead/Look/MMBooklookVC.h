@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMBookBaseLookVC.h"
 
-@interface MMBooklookVC : UIViewController<UIPageViewControllerDataSource>
+@interface MMBooklookVC : MMBookBaseLookVC <UIPageViewControllerDataSource>
 
 @end

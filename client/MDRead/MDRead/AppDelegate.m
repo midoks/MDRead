@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MMGuidesVC.h"
 
 #import "MTA.h"
 #import "MTAConfig.h"
@@ -26,9 +27,14 @@
     //设置window属性(在AppDelegate中定义window属性),初始化windows的大小和位置
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    _window.rootViewController = [[RootVC alloc] init];
+    
+    if([MMGuidesVC isFristOpen]){
+        _window.rootViewController = [[MMGuidesVC alloc] init];
+    } else {
+        _window.rootViewController = [[RootVC alloc] init];
+    }
+    
     [_window makeKeyAndVisible];
-
     
     [self appStat];
     return YES;

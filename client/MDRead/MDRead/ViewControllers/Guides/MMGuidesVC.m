@@ -21,4 +21,28 @@
 
 }
 
+
+#pragma mark static method
++ (BOOL)isFristOpen
+{
+    //[self setAppOk];
+    NSString *v = [[NSUserDefaults standardUserDefaults] objectForKey:@"isFristOpenApp"];
+    MDLog(@"%@:%c", v, [v boolValue]);
+    if(![v isEqual:@"isFristOpenApp"]){
+        return YES;
+    }
+    return NO;
+}
+
++ (void)setAppOk
+{
+    [[NSUserDefaults standardUserDefaults] setObject:@"isFristOpenApp" forKey:@"isFristOpenApp"];
+}
+
++ (void)setAppFail
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"isFristOpenApp"];
+    
+}
+
 @end
