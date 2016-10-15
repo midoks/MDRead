@@ -68,7 +68,7 @@ static NSString *collectViewIdentifier = @"MMBooksSrcollView_collectViewIdentifi
     _collectView.delegate = self;
     _collectView.dataSource = self;
     
-    CGFloat imageW = (MDDeviceW-40)/4.0;
+    CGFloat imageW = (MD_DW-40)/4.0;
     CGFloat imageH = (imageW/4)*5 + 30;
     
     flowLayout.itemSize = CGSizeMake(imageW, imageH);

@@ -37,6 +37,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self setTitle:@"详情页"];
 
     [self initTableView];
     [self initHeadView];
@@ -58,7 +60,7 @@
 
 -(void)initTableView
 {
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MDDeviceW, MDDeviceH - 50) style:UITableViewStyleGrouped];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MD_DW, MD_DH - 50) style:UITableViewStyleGrouped];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -79,7 +81,7 @@
 
 -(void)initFooterView
 {
-    MMBookInstroBottom *footer = [[MMBookInstroBottom alloc] initWithFrame:CGRectMake(0, MDDeviceH - 50, MDDeviceW, 50)];
+    MMBookInstroBottom *footer = [[MMBookInstroBottom alloc] initWithFrame:CGRectMake(0, MD_DH - 50, MD_DW, 50)];
     footer.backgroundColor = [UIColor whiteColor];
     
     [footer buttonClick:^(MMInstroItem state) {
@@ -135,7 +137,8 @@
 #pragma mark - UITableViewDataSource && UITableViewDelegate -
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (section == 0)
+    {
         return 0;
     }
     return 3;
@@ -148,16 +151,16 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSInteger c = 2;
-    c += 1;
-    return c;
+    return 4;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 3;
-    } else if (section == 1){
+        return 0;
+    } else if (section == 1) {
+        return 2;
+    } else if (section == 2) {
         return 2;
     }
     return 1;
@@ -166,14 +169,14 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        if (indexPath.row == 0){
+        if (indexPath.row == 1) {
             return [_bookDesc getDescSize];
         }
-    } else if (indexPath.section == 1){
+    } else if (indexPath.section == 2){
         if (indexPath.row == 0){
             return [_rand randHeight];
         }
-    } else if(indexPath.section == 2){
+    } else if(indexPath.section == 3){
         if (indexPath.row == 0){
             return [_authorList authorHeight];
         }
@@ -184,11 +187,11 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        
-        if (indexPath.row == 0){
-            return _bookDesc;
-        } else if(indexPath.row == 1){
+    if (indexPath.section == 1) {
+//        if (indexPath.row == 0){
+//            return _bookDesc;
+//        } else
+        if(indexPath.row == 0){
             MMBookInstroCell *cell = [MMBookInstroCell cellWithTableView:_tableView];
             cell.icon.image = [UIImage imageNamed:@"md_chapter_new"];
             cell.title.text = @"最新";
@@ -196,7 +199,7 @@
             cell.status.text = @"连载中";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             return cell;
-        } else if (indexPath.row == 2){
+        } else if (indexPath.row == 1){
             MMBookInstroCell *cell = [MMBookInstroCell cellWithTableView:_tableView];
             cell.icon.image = [UIImage imageNamed:@"md_dir_list"];
             cell.title.text = @"目录";
@@ -206,7 +209,7 @@
             return cell;
         }
         
-    } else if (indexPath.section == 1){
+    } else if (indexPath.section == 2){
         if (indexPath.row == 0) {
             return _rand;
         } else if(indexPath.row == 1){
@@ -215,13 +218,13 @@
             c.textLabel.font = [UIFont systemFontOfSize:12];
             c.textLabel.textAlignment = NSTextAlignmentCenter;
             
-            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MDDeviceW, 0.5)];
+            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MD_DW, 0.5)];
             line.layer.opacity = 0.3;
             line.backgroundColor = [UIColor grayColor];
             [c.contentView addSubview:line];
             return c;
         }
-    } else if (indexPath.section == 2){
+    } else if (indexPath.section == 3){
         if (indexPath.row == 0) {
             return _authorList;
         }
@@ -237,18 +240,18 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
     
-    if(indexPath.section == 1){
-        if (indexPath.row == 1) {
-            if (!_randStatus) {
-                [MMCommon showMessage:@"正在请求中!"];
-                return;
-            }
-            self.randStatus = NO;
-            [_rand initRandData:^{
-                self.randStatus = YES;
-            }];
-        }
-    }
+//    if(indexPath.section == 1){
+//        if (indexPath.row == 1) {
+//            if (!_randStatus) {
+//                [MMCommon showMessage:@"正在请求中!"];
+//                return;
+//            }
+//            self.randStatus = NO;
+//            [_rand initRandData:^{
+//                self.randStatus = YES;
+//            }];
+//        }
+//    }
 }
 
 @end

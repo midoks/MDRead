@@ -27,12 +27,25 @@
 
 @implementation MMBooklookVC
 
+- (void)viewWillAppear:(BOOL)animated
+{
 
-- (void)viewDidLoad {
+    MMSimPageVC *dataViewController = [[MMSimPageVC alloc] init];
+    [self presentViewController:dataViewController animated:false completion:^{
+        
+    }];
+}
+
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    //[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:8.0/255.0 green:57.0/255.0 blue:134.0/255.0 alpha:1]];
+    //[[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
     
-    [self initData];
-    [self loadViewInit];
+//    [self initData];
+//    [self loadViewInit];
+    
 }
 
 - (void)didReceiveMemoryWarning {

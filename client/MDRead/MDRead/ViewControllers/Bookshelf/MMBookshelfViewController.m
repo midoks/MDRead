@@ -95,7 +95,10 @@ static NSString *collectViewIdentifier = @"collectViewIdentifier";
     _collectView.delegate = self;
     _collectView.dataSource = self;
     
-    flowLayout.itemSize = CGSizeMake((MDDeviceW - 20)/3, 180);
+    flowLayout.itemSize = CGSizeMake((MD_DW - 20)/3, 180);
+    
+    NSLog(@"%@---!!!!", NSStringFromCGSize(CGSizeMake((MD_DW - 20)/3, 180)));
+    
     flowLayout.minimumLineSpacing = 3;//定义每个UICollectionView 纵向的间距
     flowLayout.minimumInteritemSpacing = 0;//定义每个UICollectionView 的边距距
     flowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 0, 5);//上左下右

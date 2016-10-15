@@ -11,24 +11,27 @@
 
 @implementation MMBookInstroHead
 
-
 -(id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.frame = CGRectMake(0, 0, MDDeviceW, 200);
-        self.backgroundColor = [UIColor whiteColor];
-        
+        self.frame = CGRectMake(0, 0, MD_DW, 150);
         [self initView];
     }
     return self;
 }
 
-
 -(void)initView
 {
-    UIView *back = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MDDeviceW, 150)];
-    back.backgroundColor = [UIColor blueColor];
-    [self addSubview:back];
+    //部分总要数据
+    UIView *booInfo = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MD_DW, 150)];
+    booInfo.backgroundColor = [UIColor whiteColor];
+    [self addSubview:booInfo];
+    
+    UIImageView *bookImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 100, 125)];
+    bookImage.image = [UIImage imageNamed:@"books_test"];
+    
+    [booInfo addSubview:bookImage];
+    
 }
 
 

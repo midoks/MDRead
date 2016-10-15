@@ -48,6 +48,7 @@
 		82C4549B1CB80F0600B83065 /* MDReadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C4549A1CB80F0600B83065 /* MDReadTests.m */; };
 		82C454A61CB80F0600B83065 /* MDReadUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C454A51CB80F0600B83065 /* MDReadUITests.m */; };
 		82CB2D051D5C457D008DE5FC /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CB2D041D5C457D008DE5FC /* RootVC.m */; };
+		82CF29941DB07E69006762A3 /* MMBookBaseLookVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CF29931DB07E69006762A3 /* MMBookBaseLookVC.m */; };
 		82D47EBB1D5C462900958099 /* MMSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D47EBA1D5C462900958099 /* MMSettingsVC.m */; };
 		82D47EBE1D5C476100958099 /* MMReadSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D47EBD1D5C476100958099 /* MMReadSettingVC.m */; };
 		82D47EC11D5C4E2000958099 /* MMSuggestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D47EC01D5C4E2000958099 /* MMSuggestVC.m */; };
@@ -157,6 +158,8 @@
 		82C454A71CB80F0600B83065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82CB2D031D5C457D008DE5FC /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
 		82CB2D041D5C457D008DE5FC /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
+		82CF29921DB07E69006762A3 /* MMBookBaseLookVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookBaseLookVC.h; sourceTree = "<group>"; };
+		82CF29931DB07E69006762A3 /* MMBookBaseLookVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBookBaseLookVC.m; sourceTree = "<group>"; };
 		82D47EB91D5C462900958099 /* MMSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSettingsVC.h; sourceTree = "<group>"; };
 		82D47EBA1D5C462900958099 /* MMSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSettingsVC.m; sourceTree = "<group>"; };
 		82D47EBC1D5C476100958099 /* MMReadSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMReadSettingVC.h; sourceTree = "<group>"; };
@@ -372,6 +375,8 @@
 				82E2175A1D9810B9007C4EB7 /* LeftRightSliding */,
 				82C197A71D6DE4EE00917F66 /* MMBooklookVC.h */,
 				82C197A81D6DE4EE00917F66 /* MMBooklookVC.m */,
+				82CF29921DB07E69006762A3 /* MMBookBaseLookVC.h */,
+				82CF29931DB07E69006762A3 /* MMBookBaseLookVC.m */,
 				82E217561D980540007C4EB7 /* MMLookView.h */,
 				82E217571D980540007C4EB7 /* MMLookView.m */,
 				82921E811DAE1C8E006C9765 /* MMBottomView.h */,
@@ -781,6 +786,7 @@
 				82E217581D980540007C4EB7 /* MMLookView.m in Sources */,
 				8227233B1D16DA73005340E6 /* MMBookshelfViewController.m in Sources */,
 				82D72BE21D1E5F03006E0176 /* MMBookshelfCollectionViewCell.m in Sources */,
+				82CF29941DB07E69006762A3 /* MMBookBaseLookVC.m in Sources */,
 				8222883B1D755B5200D0CB6E /* MMBookInstroCell.m in Sources */,
 				82C197881D68137B00917F66 /* MMBookCell.m in Sources */,
 				82C366541D533592003FC77F /* MMSystemInfo.m in Sources */,

@@ -73,13 +73,13 @@
     
     NSInteger rollH = [self rollHeight] - 25 - 20;
     
-    _roll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 25, MDDeviceW, rollH)];
+    _roll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 25, MD_DW, rollH)];
     
     _roll.pagingEnabled = YES;
     _roll.scrollEnabled = YES;
     _roll.showsHorizontalScrollIndicator = NO;
     _roll.delegate = self;
-    _roll.contentSize = CGSizeMake(MDDeviceW * 3, rollH);
+    _roll.contentSize = CGSizeMake(MD_DW * 3, rollH);
     //_roll.backgroundColor = [UIColor blueColor];
     
     [self addSubview:_roll];
@@ -88,14 +88,14 @@
     
     for (NSInteger i = 0; i<3; i++) {
         
-        MMBooksSrcollView *rollView = [[MMBooksSrcollView alloc] initWithFrame:CGRectMake(MDDeviceW * i, 0, MDDeviceW, rollH)];
+        MMBooksSrcollView *rollView = [[MMBooksSrcollView alloc] initWithFrame:CGRectMake(MD_DW * i, 0, MD_DW, rollH)];
         rollView.tag = i;
         
         [_listPage addObject:rollView];
         [_roll addSubview:rollView];
     }
     
-    [_roll scrollRectToVisible:CGRectMake(MDDeviceW, 0, MDDeviceW, rollH) animated:NO];
+    [_roll scrollRectToVisible:CGRectMake(MD_DW, 0, MD_DW, rollH) animated:NO];
 }
 
 -(void)initPageIndicator
@@ -199,7 +199,7 @@
 
 -(NSInteger)rollHeight
 {
-    CGFloat imageW = (MDDeviceW-40)/4.0;
+    CGFloat imageW = (MD_DW-40)/4.0;
     CGFloat imageH = (imageW/4)*5 + 30;
     return 25 + imageH + 20 + 20 + 10;
 }
@@ -222,7 +222,7 @@
     
     NSInteger rollH = [self rollHeight] - 25 - 20;
     //永远指向第1页
-    [_roll scrollRectToVisible:CGRectMake(MDDeviceW, 0, MDDeviceW, rollH) animated:NO];
+    [_roll scrollRectToVisible:CGRectMake(MD_DW, 0, MD_DW, rollH) animated:NO];
 }
 
 

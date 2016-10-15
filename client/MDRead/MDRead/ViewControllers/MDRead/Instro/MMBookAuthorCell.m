@@ -60,7 +60,7 @@
     _sectionTitle.font = [UIFont systemFontOfSize:14];
     [self addSubview:_sectionTitle];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 44, MDDeviceW, 0.5)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 44, MD_DW, 0.5)];
     line.layer.opacity = 0.3;
     line.backgroundColor = [UIColor grayColor];
     [self addSubview:line];
@@ -68,7 +68,7 @@
 
 -(void)initTableVIewList
 {
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 25, MDDeviceW, 44*2) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 25, MD_DW, 44*2) style:UITableViewStylePlain];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -127,7 +127,7 @@
     cell.textLabel.text = [NSString stringWithFormat:@"《%@》", [dict objectForKey:@"book_name"]];
     
     if (indexPath.row > 0){
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(10, 0, MDDeviceW - 10, 0.5)];
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(10, 0, MD_DW - 10, 0.5)];
         line.layer.opacity = 0.3;
         line.backgroundColor = [UIColor grayColor];
         [cell.contentView addSubview:line];

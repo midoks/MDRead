@@ -80,13 +80,13 @@ static NSString *collectViewIdentifier = @"collectViewIdentifier";
 {
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
     
-    _collectView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, 25, MDDeviceW - 20, 0) collectionViewLayout:_flowLayout];
+    _collectView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, 25, MD_DW - 20, 0) collectionViewLayout:_flowLayout];
     
     _collectView.delegate = self;
     _collectView.dataSource = self;
     
     //w:h = 4:5
-    CGFloat imageW = (MDDeviceW-40)/4.0;
+    CGFloat imageW = (MD_DW-40)/4.0;
     CGFloat imageH = (imageW/4)*5 + 30;
     
     
@@ -122,7 +122,7 @@ static NSString *collectViewIdentifier = @"collectViewIdentifier";
 
 -(NSInteger)recommendHeight
 {
-    CGFloat imageW = (MDDeviceW-40)/4.0;
+    CGFloat imageW = (MD_DW-40)/4.0;
     CGFloat imageH = (imageW/4)*5 + 30;
     
     return 25 + imageH*2 + 10 + 5;
@@ -143,7 +143,7 @@ static NSString *collectViewIdentifier = @"collectViewIdentifier";
 
 -(NSInteger)randHeight
 {
-    CGFloat imageW = (MDDeviceW-40)/4.0;
+    CGFloat imageW = (MD_DW-40)/4.0;
     CGFloat imageH = (imageW/4)*5 + 30;
     return 25 + imageH + 5 + 5;
 }

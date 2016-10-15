@@ -16,4 +16,15 @@
 #define MD_FW self.frame.size.width
 #define MD_FH self.frame.size.height
 
+// 日志输出
+#ifdef DEBUG
+#define MDLog(...) NSLog(__VA_ARGS__)
+#else
+#define MDLog(...)
+#endif
+
+#pragma mark 通用宏
+#define MD_DW ([UIScreen mainScreen].bounds.size.width)
+#define MD_DH ([UIScreen mainScreen].bounds.size.height)
+
 #endif /* PrefixHeader_pch */

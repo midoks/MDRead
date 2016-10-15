@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    MDLog(@"ddd");
+    
     // Do any additional setup after loading the view from its nib.
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(10, 100, 200, 200)];
     view.backgroundColor=[UIColor redColor];

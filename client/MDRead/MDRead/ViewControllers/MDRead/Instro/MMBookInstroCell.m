@@ -45,7 +45,7 @@
 -(void)initView
 {
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MDDeviceW, 0.5)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MD_DW, 0.5)];
     line.layer.opacity = 0.3;
     line.backgroundColor = [UIColor grayColor];
     [self.contentView addSubview:line];

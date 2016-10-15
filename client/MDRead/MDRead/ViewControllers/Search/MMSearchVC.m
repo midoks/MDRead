@@ -214,7 +214,7 @@
             c.textLabel.font = [UIFont systemFontOfSize:12];
             c.textLabel.textAlignment = NSTextAlignmentCenter;
             
-            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MDDeviceW, 0.5)];
+            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MD_DW, 0.5)];
             line.layer.opacity = 0.3;
             line.backgroundColor = [UIColor grayColor];
             [c.contentView addSubview:line];
