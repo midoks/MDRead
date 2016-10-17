@@ -19,29 +19,17 @@
 
 @implementation MMBooklookVC
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    
-//    self.view.backgroundColor = [UIColor whiteColor];
-//
-//    MMSimPagesVC *dataViewController = [[MMSimPagesVC alloc] init];
-//    
-//    UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:dataViewController];
-//   
-//    [self presentViewController:bookInstroView animated:false completion:^{
-//        
-//    }];
-}
-
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    
+    
     //[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:8.0/255.0 green:57.0/255.0 blue:134.0/255.0 alpha:1]];
     //[[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self initLookView];
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,17 +41,13 @@
 {
     
     [self createContentPages];
-    NSDictionary *options = [NSDictionary dictionaryWithObject: [NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin]
+    NSDictionary *options = [NSDictionary dictionaryWithObject: [NSNumber numberWithInteger:UIPageViewControllerSpineLocationNone]
                                                         forKey: UIPageViewControllerOptionSpineLocationKey];
     
-    _pagesVC = [[UIPageViewController alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+    _pagesVC = [[UIPageViewController alloc] initWithTransitionStyle: UIPageViewControllerTransitionStylePageCurl
                                                navigationOrientation: UIPageViewControllerNavigationOrientationHorizontal
                                                              options: options];
-    
-//    _pagesVC = [[UIPageViewController alloc]
-//                initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
-//                navigationOrientation:UIPageViewControllerNavigationOrientationVertical
-//                options: options];
+
     
     _pagesVC.dataSource = self;
     [[_pagesVC view] setFrame:[[self view] bounds]];
@@ -73,7 +57,7 @@
     
     [_pagesVC setViewControllers:viewControllers
                        direction:UIPageViewControllerNavigationDirectionForward
-                        animated:NO
+                        animated:YES
                       completion:nil];
     
     [self addChildViewController:_pagesVC];

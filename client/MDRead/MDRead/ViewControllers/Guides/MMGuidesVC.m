@@ -7,6 +7,7 @@
 //
 
 #import "MMGuidesVC.h"
+#import "RootVC.h"
 
 @implementation MMGuidesVC
 
@@ -18,17 +19,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake((MD_W - 100)/2, (MD_H - 100)/2, 100, 100)];
+    [b setTitle:@"Welcome" forState:UIControlStateNormal];
+    [b setBackgroundColor:[UIColor whiteColor]];
+    [b setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [b addTarget:self action:@selector(setAppOks) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:b];
 
+}
+
+-(void)setAppOks
+{
+    [MMGuidesVC setAppOk];
+    UIWindow *w = [[UIApplication sharedApplication] keyWindow];
+    w.rootViewController = [[RootVC alloc] init];
 }
 
 
 #pragma mark static method
-+ (BOOL)isFristOpen
++ (BOOL)isFristOpened
 {
-    //[self setAppOk];
-    NSString *v = [[NSUserDefaults standardUserDefaults] objectForKey:@"isFristOpenApp"];
-    MDLog(@"%@:%c", v, [v boolValue]);
-    if(![v isEqual:@"isFristOpenApp"]){
+    NSString *v = [[NSUserDefaults standardUserDefaults] objectForKey:@"isFristOpenedApp"];
+    if( v!=nil && [v isEqual:@"isFristOpenedApp"]){
         return YES;
     }
     return NO;
@@ -36,12 +49,12 @@
 
 + (void)setAppOk
 {
-    [[NSUserDefaults standardUserDefaults] setObject:@"isFristOpenApp" forKey:@"isFristOpenApp"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"isFristOpenedApp" forKey:@"isFristOpenedApp"];
 }
 
 + (void)setAppFail
 {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"isFristOpenApp"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"isFristOpenedApp"];
     
 }
 

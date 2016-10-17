@@ -28,7 +28,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    if([MMGuidesVC isFristOpen]){
+    if(![MMGuidesVC isFristOpened]){
         _window.rootViewController = [[MMGuidesVC alloc] init];
     } else {
         _window.rootViewController = [[RootVC alloc] init];

@@ -12,7 +12,6 @@
 		8222883B1D755B5200D0CB6E /* MMBookInstroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8222883A1D755B5200D0CB6E /* MMBookInstroCell.m */; };
 		8227233B1D16DA73005340E6 /* MMBookshelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8227233A1D16DA73005340E6 /* MMBookshelfViewController.m */; };
 		82306C471CC1D99E00888A10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82306C461CC1D99E00888A10 /* LaunchScreen.storyboard */; };
-		824E04D71D9E48080083B839 /* MMSimPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 824E04D61D9E48080083B839 /* MMSimPageVC.m */; };
 		827B026E1CCBE8FC00E2269B /* MMUILabel+textSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 827B026D1CCBE8FC00E2269B /* MMUILabel+textSize.m */; };
 		828ABCD21D89331D00C9F575 /* libnetwork.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 828ABCD11D89331D00C9F575 /* libnetwork.tbd */; };
 		828ABCD41D8936A500C9F575 /* libSystem.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 828ABCD31D8936A500C9F575 /* libSystem.tbd */; };
@@ -94,8 +93,6 @@
 		822723391D16DA73005340E6 /* MMBookshelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookshelfViewController.h; sourceTree = "<group>"; };
 		8227233A1D16DA73005340E6 /* MMBookshelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBookshelfViewController.m; sourceTree = "<group>"; };
 		82306C461CC1D99E00888A10 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		824E04D51D9E48080083B839 /* MMSimPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSimPageVC.h; sourceTree = "<group>"; };
-		824E04D61D9E48080083B839 /* MMSimPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSimPageVC.m; sourceTree = "<group>"; };
 		827B026C1CCBE8FC00E2269B /* MMUILabel+textSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMUILabel+textSize.h"; sourceTree = "<group>"; };
 		827B026D1CCBE8FC00E2269B /* MMUILabel+textSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMUILabel+textSize.m"; sourceTree = "<group>"; };
 		828ABCD11D89331D00C9F575 /* libnetwork.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libnetwork.tbd; path = usr/lib/libnetwork.tbd; sourceTree = SDKROOT; };
@@ -284,8 +281,6 @@
 		824E04D11D9E46580083B839 /* SimulationPage */ = {
 			isa = PBXGroup;
 			children = (
-				824E04D51D9E48080083B839 /* MMSimPageVC.h */,
-				824E04D61D9E48080083B839 /* MMSimPageVC.m */,
 				829C1FC41DB220360056754D /* MMSimPagesVC.h */,
 				829C1FC51DB220360056754D /* MMSimPagesVC.m */,
 			);
@@ -790,7 +785,6 @@
 				82C366541D533592003FC77F /* MMSystemInfo.m in Sources */,
 				82DAC75C1CFD879200E17706 /* MMCommon.m in Sources */,
 				82C197781D60B95000917F66 /* MMSearchVC.m in Sources */,
-				824E04D71D9E48080083B839 /* MMSimPageVC.m in Sources */,
 				82C197A51D6D9B8300917F66 /* MMBookInstroVC.m in Sources */,
 				828D0E771CC3E3C700F4BCCA /* NSString+textSize.m in Sources */,
 				828ABCD81D893B8100C9F575 /* MMBookInstroTextCell.m in Sources */,

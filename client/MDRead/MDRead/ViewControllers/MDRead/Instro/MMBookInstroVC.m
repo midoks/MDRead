@@ -92,9 +92,8 @@
 //            NSLog(@"开始阅读");
             
             MMBooklookVC *vc = [[MMBooklookVC alloc] init];
-            
             UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:vc];
-            [self presentViewController:bookInstroView animated:true completion:^{
+            [self presentViewController:bookInstroView animated:YES completion:^{
             }];
         }
     }];

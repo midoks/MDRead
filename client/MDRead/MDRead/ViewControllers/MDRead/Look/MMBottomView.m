@@ -30,6 +30,10 @@
     t.text = @"page:";
     t.backgroundColor = [UIColor yellowColor];
     [self addSubview:t];
+    
+//    AVSpeechSynthesizer *synthesize = [[AVSpeechSynthesizer alloc]init];
+//    AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc]initWithString:@"不可以"];
+//    [synthesize speakUtterance:utterance];
 }
 
 

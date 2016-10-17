@@ -10,7 +10,7 @@
 
 @interface MMGuidesVC : UIViewController
 
-+ (BOOL)isFristOpen;
++ (BOOL)isFristOpened;
 + (void)setAppOk;
 + (void)setAppFail;
 

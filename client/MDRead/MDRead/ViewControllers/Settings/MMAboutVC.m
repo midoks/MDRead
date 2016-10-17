@@ -7,6 +7,7 @@
 //
 
 #import "MMAboutVC.h"
+#import "MMGuidesVC.h"
 
 @interface MMAboutVC() <UITableViewDataSource, UITableViewDelegate>
 
@@ -73,6 +74,20 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
+    
+    if (indexPath.row == 1) {
+        
+        [self goWelcome];
+        
+    }
+}
+
+-(void)goWelcome
+{
+    [MMGuidesVC setAppFail];
+    
+    UIWindow *w = [[UIApplication sharedApplication] keyWindow];
+    w.rootViewController = [[MMGuidesVC alloc] init];
 }
 
 @end

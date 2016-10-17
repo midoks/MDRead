@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMBookBaseLookVC : UIViewController
+@interface MMBookBaseLookVC : UIViewController <UIGestureRecognizerDelegate>
 
 @end
