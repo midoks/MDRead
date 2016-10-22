@@ -29,8 +29,28 @@
     
     UIImageView *bookImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 100, 125)];
     bookImage.image = [UIImage imageNamed:@"books_test"];
-    
     [booInfo addSubview:bookImage];
+    
+    
+    UILabel *bookTitle = [[UILabel alloc] initWithFrame:CGRectMake(130, 10, MD_DW - 120, 20)];
+    bookTitle.text = @"不朽烦人";
+    [self addSubview:bookTitle];
+    
+    
+    UILabel *bookAuthor = [[UILabel alloc] initWithFrame:CGRectMake(130, 40, MD_DW - 120, 20)];
+    bookAuthor.text = @"妄语";
+    [bookAuthor setFont:[UIFont systemFontOfSize:14]];
+    [self addSubview:bookAuthor];
+    
+    UILabel *bookType = [[UILabel alloc] initWithFrame:CGRectMake(130, 70, MD_DW - 120, 20)];
+    bookType.text = @"仙侠";
+    [bookType setFont:[UIFont systemFontOfSize:14]];
+    [self addSubview:bookType];
+
+    UILabel *bookStatus = [[UILabel alloc] initWithFrame:CGRectMake(130, 100, MD_DW - 120, 20)];
+    bookStatus.text = @"242万字";
+    [bookStatus setFont:[UIFont systemFontOfSize:14]];
+    [self addSubview:bookStatus];
     
 }
 

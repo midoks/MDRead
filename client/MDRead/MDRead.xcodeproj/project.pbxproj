@@ -29,7 +29,8 @@
 		828D0DEA1CC36B0F00F4BCCA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828D0DE91CC36B0F00F4BCCA /* Foundation.framework */; };
 		828D0E771CC3E3C700F4BCCA /* NSString+textSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 828D0E761CC3E3C700F4BCCA /* NSString+textSize.m */; };
 		82921E831DAE1C8E006C9765 /* MMBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82921E821DAE1C8E006C9765 /* MMBottomView.m */; };
-		829C1FC61DB220360056754D /* MMSimPagesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 829C1FC51DB220360056754D /* MMSimPagesVC.m */; };
+		82BF79EB1DB9DA8800E53808 /* MMConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BF79EA1DB9DA8800E53808 /* MMConfig.m */; };
+		82BF79EF1DBB139F00E53808 /* MMSimPagesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BF79EE1DBB139F00E53808 /* MMSimPagesVC.m */; };
 		82C197751D5E2F7B00917F66 /* MMAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C197741D5E2F7B00917F66 /* MMAboutVC.m */; };
 		82C197781D60B95000917F66 /* MMSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C197771D60B95000917F66 /* MMSearchVC.m */; };
 		82C1977B1D60B9CA00917F66 /* MMSearchNavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C1977A1D60B9CA00917F66 /* MMSearchNavVC.m */; };
@@ -118,8 +119,10 @@
 		82921E811DAE1C8E006C9765 /* MMBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBottomView.h; sourceTree = "<group>"; };
 		82921E821DAE1C8E006C9765 /* MMBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBottomView.m; sourceTree = "<group>"; };
 		82921E841DAE2330006C9765 /* MDRead-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MDRead-Prefix.pch"; sourceTree = "<group>"; };
-		829C1FC41DB220360056754D /* MMSimPagesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSimPagesVC.h; sourceTree = "<group>"; };
-		829C1FC51DB220360056754D /* MMSimPagesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSimPagesVC.m; sourceTree = "<group>"; };
+		82BF79E91DB9DA8800E53808 /* MMConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMConfig.h; sourceTree = "<group>"; };
+		82BF79EA1DB9DA8800E53808 /* MMConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMConfig.m; sourceTree = "<group>"; };
+		82BF79ED1DBB139F00E53808 /* MMSimPagesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSimPagesVC.h; sourceTree = "<group>"; };
+		82BF79EE1DBB139F00E53808 /* MMSimPagesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSimPagesVC.m; sourceTree = "<group>"; };
 		82C197731D5E2F7B00917F66 /* MMAboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAboutVC.h; sourceTree = "<group>"; };
 		82C197741D5E2F7B00917F66 /* MMAboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAboutVC.m; sourceTree = "<group>"; };
 		82C197761D60B95000917F66 /* MMSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSearchVC.h; sourceTree = "<group>"; };
@@ -278,15 +281,6 @@
 			path = Bookshelf;
 			sourceTree = "<group>";
 		};
-		824E04D11D9E46580083B839 /* SimulationPage */ = {
-			isa = PBXGroup;
-			children = (
-				829C1FC41DB220360056754D /* MMSimPagesVC.h */,
-				829C1FC51DB220360056754D /* MMSimPagesVC.m */,
-			);
-			path = SimulationPage;
-			sourceTree = "<group>";
-		};
 		828D0DD01CC3642800F4BCCA /* mta-ios-stats-sdk */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +327,15 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		82BF79EC1DBB139F00E53808 /* ModelPage */ = {
+			isa = PBXGroup;
+			children = (
+				82BF79ED1DBB139F00E53808 /* MMSimPagesVC.h */,
+				82BF79EE1DBB139F00E53808 /* MMSimPagesVC.m */,
+			);
+			path = ModelPage;
+			sourceTree = "<group>";
+		};
 		82C197851D676F9B00917F66 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,7 +374,7 @@
 		82C1979F1D6D9B8300917F66 /* Look */ = {
 			isa = PBXGroup;
 			children = (
-				824E04D11D9E46580083B839 /* SimulationPage */,
+				82BF79EC1DBB139F00E53808 /* ModelPage */,
 				82C197A71D6DE4EE00917F66 /* MMBooklookVC.h */,
 				82C197A81D6DE4EE00917F66 /* MMBooklookVC.m */,
 				82CF29921DB07E69006762A3 /* MMBookBaseLookVC.h */,
@@ -423,6 +426,8 @@
 				82C454B41CB80F9000B83065 /* Tools */,
 				82C454831CB80F0600B83065 /* AppDelegate.h */,
 				82C454841CB80F0600B83065 /* AppDelegate.m */,
+				82BF79E91DB9DA8800E53808 /* MMConfig.h */,
+				82BF79EA1DB9DA8800E53808 /* MMConfig.m */,
 				82C4548C1CB80F0600B83065 /* Assets.xcassets */,
 				82C454911CB80F0600B83065 /* Info.plist */,
 				82C454801CB80F0600B83065 /* Supporting Files */,
@@ -762,7 +767,7 @@
 				82C1977B1D60B9CA00917F66 /* MMSearchNavVC.m in Sources */,
 				821B3A6D1D8538E7000ABCE7 /* MMPresentingAnimator.m in Sources */,
 				82CB2D051D5C457D008DE5FC /* RootVC.m in Sources */,
-				829C1FC61DB220360056754D /* MMSimPagesVC.m in Sources */,
+				82BF79EF1DBB139F00E53808 /* MMSimPagesVC.m in Sources */,
 				82921E831DAE1C8E006C9765 /* MMBottomView.m in Sources */,
 				82C454851CB80F0600B83065 /* AppDelegate.m in Sources */,
 				827B026E1CCBE8FC00E2269B /* MMUILabel+textSize.m in Sources */,
@@ -778,6 +783,7 @@
 				82D72BDF1D1E4D8E006E0176 /* MMBooksTableViewCell.m in Sources */,
 				82E217581D980540007C4EB7 /* MMLookView.m in Sources */,
 				8227233B1D16DA73005340E6 /* MMBookshelfViewController.m in Sources */,
+				82BF79EB1DB9DA8800E53808 /* MMConfig.m in Sources */,
 				82D72BE21D1E5F03006E0176 /* MMBookshelfCollectionViewCell.m in Sources */,
 				82CF29941DB07E69006762A3 /* MMBookBaseLookVC.m in Sources */,
 				8222883B1D755B5200D0CB6E /* MMBookInstroCell.m in Sources */,

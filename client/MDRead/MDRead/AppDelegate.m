@@ -13,6 +13,8 @@
 #import "MTAConfig.h"
 #import "RootVC.h"
 
+#import "MMConfig.h"
+
 
 @interface AppDelegate ()
 
@@ -23,6 +25,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+    [MMConfig initConf];
     
     //设置window属性(在AppDelegate中定义window属性),初始化windows的大小和位置
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

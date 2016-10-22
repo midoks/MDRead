@@ -23,6 +23,9 @@
     [self initPageTitle];
     [self initPageContent];
     [self initPageBottom];
+    
+    //self.view.backgroundColor = [UIColor colorWithRed:42/255 green:42/255 blue:42/255 alpha:1];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,15 +53,17 @@
     _content = [_content stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"];
 
     _content = [_content substringFromIndex:8];
-    
-    NSLog(@"content:\n%@", _content);
+//    
+//    NSLog(@"content:\n%@", _content);
     
     UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(20, 40, MD_W - 40, MD_H - 70)];
     label.text = self.dataObject;
     label.font = [UIFont fontWithName:@"Helvetica" size:19.f];
     label.numberOfLines = 0;
     label.text = _content;
-    label.layer.opacity = 0.8;
+    label.layer.opacity = 1;
+    
+    //label.textColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1];
     [self.view addSubview:label];
     
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
@@ -105,7 +110,6 @@
     [bRight setFont:[UIFont systemFontOfSize:10.0]];
     bRight.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:bRight];
-    
 }
 
 @end

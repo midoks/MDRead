@@ -6,6 +6,8 @@
 //  Copyright © 2016年 midoks. All rights reserved.
 //
 
+#define DEBUG 1
+
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 

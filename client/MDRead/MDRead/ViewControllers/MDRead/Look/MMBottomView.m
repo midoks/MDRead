@@ -26,14 +26,17 @@
 
 - (void)initCommon
 {
-    UILabel *t = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, MD_FW, MD_FH)];
-    t.text = @"page:";
-    t.backgroundColor = [UIColor yellowColor];
-    [self addSubview:t];
+    NSInteger pjVIew_h = 44;
+    NSInteger pgView_h = MD_FH - pjVIew_h;
     
-//    AVSpeechSynthesizer *synthesize = [[AVSpeechSynthesizer alloc]init];
-//    AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc]initWithString:@"不可以"];
-//    [synthesize speakUtterance:utterance];
+    UIView *progressView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MD_FW, pgView_h)];
+    progressView.backgroundColor = [UIColor yellowColor];
+    [self addSubview:progressView];
+    
+    UIView *projectView = [[UIView alloc] initWithFrame:CGRectMake(0, pgView_h, MD_FW, pjVIew_h)];
+    projectView.backgroundColor = [UIColor blueColor];
+    [self addSubview:projectView];
+    
 }
 
 
