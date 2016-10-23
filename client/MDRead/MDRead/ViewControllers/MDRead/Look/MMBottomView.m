@@ -7,6 +7,11 @@
 //
 
 #import "MMBottomView.h"
+#import "MMButton.h"
+
+@interface MMBottomView()
+
+@end
 
 @implementation MMBottomView
 
@@ -26,16 +31,30 @@
 
 - (void)initCommon
 {
-    NSInteger pjVIew_h = 44;
-    NSInteger pgView_h = MD_FH - pjVIew_h;
+}
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
     
-    UIView *progressView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MD_FW, pgView_h)];
-    progressView.backgroundColor = [UIColor yellowColor];
-    [self addSubview:progressView];
+    NSInteger count = _item.count;
+    NSInteger viewW = MD_FW/count;
     
-    UIView *projectView = [[UIView alloc] initWithFrame:CGRectMake(0, pgView_h, MD_FW, pjVIew_h)];
-    projectView.backgroundColor = [UIColor blueColor];
-    [self addSubview:projectView];
+    for (NSInteger item = 0; item < count; item++) {
+        //test
+//      UIButton *icon = [[MMButton alloc] initWithFrame:CGRectMake(item * viewW, 0, viewW, MD_FH)];
+//      [icon setImage:[UIImage imageNamed:@"md_r_dirlist"] forState:UIControlStateNormal];
+//      [icon setTitle:@"目录" forState:UIControlStateNormal];
+        
+        MMButton *icon = _item[item];
+        
+        icon.frame = CGRectMake(item * viewW, 0, viewW, MD_FH);
+        [icon setTintColor:[UIColor whiteColor]];
+        icon.titleLabel.textAlignment = NSTextAlignmentCenter;
+        icon.titleLabel.font = [UIFont systemFontOfSize:12.0];
+        
+        [self addSubview:icon];
+    }
     
 }
 

@@ -10,6 +10,7 @@
 
 @interface MMBottomView : UIView
 
+@property (nonatomic, strong) NSMutableArray *item;
 
 - (id)initWithFrame:(CGRect)frame;
 

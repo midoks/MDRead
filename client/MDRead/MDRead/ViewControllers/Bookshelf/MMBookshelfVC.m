@@ -6,7 +6,7 @@
 //  Copyright © 2016年 midoks. All rights reserved.
 //
 
-#import "MMBookshelfViewController.h"
+#import "MMBookshelfVC.h"
 #import "MMBookshelfCollectionViewCell.h"
 
 #import "MMBookInstroVC.h"
@@ -19,7 +19,7 @@
 
 static NSString *collectViewIdentifier = @"collectViewIdentifier";
 
-@interface MMBookshelfViewController () <UICollectionViewDataSource,UICollectionViewDelegate, UINavigationControllerDelegate,UIViewControllerTransitioningDelegate>
+@interface MMBookshelfVC () <UICollectionViewDataSource,UICollectionViewDelegate, UINavigationControllerDelegate,UIViewControllerTransitioningDelegate>
 
 @property(nonatomic, strong) UITableView *tableView;
 
@@ -27,7 +27,7 @@ static NSString *collectViewIdentifier = @"collectViewIdentifier";
 
 @end
 
-@implementation MMBookshelfViewController
+@implementation MMBookshelfVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMBookshelfViewController : UIViewController
+@interface MMBookshelfVC : UIViewController
 
 @end
