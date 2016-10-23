@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     self.isHidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -47,6 +47,7 @@
 {
     [super viewWillDisappear:animated];
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,7 +55,7 @@
 }
 
 -(void)initView {
-
+    //导航设置
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
     
