@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[UIApplication sharedApplication] setStatusBarHidden:TRUE];
+    
     UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake((MD_W - 100)/2, (MD_H - 100)/2, 100, 100)];
     [b setTitle:@"Welcome" forState:UIControlStateNormal];
     [b setBackgroundColor:[UIColor whiteColor]];
@@ -49,13 +51,13 @@
 
 + (void)setAppOk
 {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [[NSUserDefaults standardUserDefaults] setObject:@"isFristOpenedApp" forKey:@"isFristOpenedApp"];
 }
 
 + (void)setAppFail
 {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"isFristOpenedApp"];
-    
 }
 
 @end
