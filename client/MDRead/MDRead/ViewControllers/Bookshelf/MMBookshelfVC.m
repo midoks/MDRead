@@ -32,8 +32,9 @@ static NSString *collectViewIdentifier = @"collectViewIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:@"我的书架"];
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
-    if(true){
+    if(false){
         [self initBookShelf];
     } else {
         [self initEmptyDataView];
@@ -83,7 +84,7 @@ static NSString *collectViewIdentifier = @"collectViewIdentifier";
 
 -(void)sosoBtnClick
 {
-    self.tabBarController.selectedIndex = 1;
+    [self.tabBarController setSelectedIndex:1];
 }
 
 -(void)initBookShelf

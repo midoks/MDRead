@@ -28,16 +28,10 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-    self.isHidden = YES;
-    self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self initView];
     [self hiddenNavBtn];
@@ -55,6 +49,12 @@
 }
 
 -(void)initView {
+    
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [[UIApplication sharedApplication] setStatusBarHidden:TRUE];
+    
+    self.isHidden = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     //导航设置
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
@@ -114,7 +114,6 @@
     
     _mmbView.item = [[NSMutableArray alloc] initWithObjects:bList, bProg, bAa, bShow, bListen, nil];
     
-    
     //快捷(夜-白)选项
     _moonDayView = [[UIView alloc] initWithFrame:CGRectMake(MD_W, MD_H - 120, 48, 48)];
     _moonDayView.backgroundColor = [UIColor colorWithRed:85/255 green:85/255 blue:85/255 alpha:0.85];
@@ -143,8 +142,11 @@
 }
 
 #pragma mark - 状态栏设置
+//View controller-based status bar appearance 设置为NO后, 此方法不起效
+//[[UIApplication sharedApplication] setStatusBarHidden:YES]; 开始起效
 - (BOOL)prefersStatusBarHidden
 {
+    NSLog(@"%d", self.isHidden);
     return self.isHidden;
 }
 
@@ -155,6 +157,7 @@
 -(void)showNavBtn
 {
     self.isHidden = NO;
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     [UIView animateWithDuration:0.2 animations:^{
@@ -167,6 +170,7 @@
 -(void)hiddenNavBtn
 {
     self.isHidden = YES;
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     [UIView animateWithDuration:0.2 animations:^{
