@@ -29,10 +29,17 @@
 
 -(void)initHeadLine
 {
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 0.5)];
-    line.layer.opacity = 0.3;
-    line.backgroundColor = [UIColor grayColor];
-    [self addSubview:line];
+    //上面一笔
+    UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(0, -0.5, self.frame.size.width, 0.5)];
+    topLine.layer.opacity = 0.4;
+    topLine.backgroundColor = [UIColor grayColor];
+    [self addSubview:topLine];
+    
+    //中间一笔
+    UIView *centerLine = [[UIView alloc] initWithFrame:CGRectMake(self.frame.size.width/2 - 0.5, self.frame.size.height/4, 1, self.frame.size.height/2)];
+    centerLine.layer.opacity = 0.4;
+    centerLine.backgroundColor = [UIColor grayColor];
+    [self addSubview:centerLine];
 }
 
 -(void)initClickButton
@@ -42,27 +49,24 @@
     
     UIButton *addBook = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, w, self.frame.size.height)];
     addBook.tag = 0;
-    addBook.backgroundColor = [UIColor colorWithRed:102 green:205 blue:170 alpha:0.6];//[UIColor blueColor];
-    [addBook setTitle:@"加书架" forState:UIControlStateNormal];
-    [addBook setTintColor:[UIColor blueColor]];
+    [addBook setTitle:@"阅读" forState:UIControlStateNormal];
+//    [addBook setTintColor:[UIColor blueColor]];
+    //addBook.tintColor = [UIColor colorWithRed:30/255 green:138/255 blue:230/255 alpha:1];
     addBook.titleLabel.font = [UIFont systemFontOfSize:16];
-    [addBook setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    addBook.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    
+    [addBook setTitleColor:[UIColor colorWithRed:55/255 green:138/255 blue:230/255 alpha:1] forState:UIControlStateNormal];
+    //[addBook setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [addBook addTarget:self action:@selector(btnItemClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:addBook];
     
     
-    //    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(w, 7.5, 0.5, 35)];
-    //    line.layer.opacity = 0.3;
-    //    line.backgroundColor = [UIColor grayColor];
-    //    [self addSubview:line];
-    
-    
     UIButton *readBook = [[UIButton alloc] initWithFrame:CGRectMake(w, 0, w, self.frame.size.height)];
     readBook.tag = 1;
-    [readBook setTitle:@"开始阅读" forState:UIControlStateNormal];
+    [readBook setTitle:@"加入书架" forState:UIControlStateNormal];
     readBook.titleLabel.font = [UIFont systemFontOfSize:16];
+    readBook.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     [readBook setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    readBook.backgroundColor = [UIColor colorWithRed:144.0 green:238.0 blue:144.0 alpha:1.0];//[UIColor colorWithRed:102 green:205 blue:170 alpha:0];
     [readBook addTarget:self action:@selector(btnItemClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:readBook];
@@ -77,9 +81,9 @@
 {
     if(_btnClick){
         if (s.tag == 0) {
-            _btnClick(MMInstroItemAdd);
-        } else if ( s.tag == 1 ){
             _btnClick(MMInstroItemRead);
+        } else if ( s.tag == 1 ){
+            _btnClick(MMInstroItemAdd);
         } else {
             _btnClick(MMInstroItemUnKnow);
         }
@@ -89,8 +93,6 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    
-    
 }
 
 

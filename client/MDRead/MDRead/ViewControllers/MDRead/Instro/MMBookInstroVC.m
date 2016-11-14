@@ -60,7 +60,7 @@
 
 -(void)initTableView
 {
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MD_DW, MD_DH - 50) style:UITableViewStyleGrouped];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MD_DW, MD_DH - 54) style:UITableViewStyleGrouped];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -81,9 +81,7 @@
 
 -(void)initFooterView
 {
-    MMBookInstroBottom *footer = [[MMBookInstroBottom alloc] initWithFrame:CGRectMake(0, MD_DH - 50, MD_DW, 50)];
-    footer.backgroundColor = [UIColor whiteColor];
-    
+    MMBookInstroBottom *footer = [[MMBookInstroBottom alloc] initWithFrame:CGRectMake(0, MD_DH - 54, MD_DW, 54)];
     [footer buttonClick:^(MMInstroItem state) {
         
         if (state == MMInstroItemAdd) {
