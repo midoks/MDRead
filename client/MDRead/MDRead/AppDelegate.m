@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import <UserNotifications/UserNotifications.h>
+
+
 #import "MMGuidesVC.h"
 
 #import "MTA.h"
@@ -16,7 +19,7 @@
 #import "MMConfig.h"
 
 
-@interface AppDelegate ()
+@interface AppDelegate () <UNUserNotificationCenterDelegate>
 
 @end
 
@@ -24,8 +27,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
+
+    [self setNotify];
     
     [MMConfig initConf];
     
@@ -51,8 +54,9 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -104,7 +108,18 @@
     [MTA reportQQ:@"627293072"];
     
     //[MTA reportAccount:@"5059175" type:1 ext:@"test"];
- 
+}
+
+#pragma mark - 获取请求权限 -
+-(void)setNotify {
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate = self;
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        if (granted) {
+            UIApplication *application = [UIApplication sharedApplication];
+            [application registerForRemoteNotifications];
+        }
+    }];
 }
 
 @end

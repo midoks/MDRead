@@ -30,6 +30,7 @@
 		828D0E771CC3E3C700F4BCCA /* NSString+textSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 828D0E761CC3E3C700F4BCCA /* NSString+textSize.m */; };
 		829052A41DBC7F190008DC0B /* MMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 829052A31DBC7F190008DC0B /* MMButton.m */; };
 		82921E831DAE1C8E006C9765 /* MMBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82921E821DAE1C8E006C9765 /* MMBottomView.m */; };
+		82A24A2A1DE98FAA00DA6666 /* MMBookListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A24A291DE98FAA00DA6666 /* MMBookListVC.m */; };
 		82BF79EB1DB9DA8800E53808 /* MMConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BF79EA1DB9DA8800E53808 /* MMConfig.m */; };
 		82BF79EF1DBB139F00E53808 /* MMSimPagesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BF79EE1DBB139F00E53808 /* MMSimPagesVC.m */; };
 		82C197751D5E2F7B00917F66 /* MMAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C197741D5E2F7B00917F66 /* MMAboutVC.m */; };
@@ -123,6 +124,8 @@
 		82921E811DAE1C8E006C9765 /* MMBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBottomView.h; sourceTree = "<group>"; };
 		82921E821DAE1C8E006C9765 /* MMBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBottomView.m; sourceTree = "<group>"; };
 		82921E841DAE2330006C9765 /* MDRead-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MDRead-Prefix.pch"; sourceTree = "<group>"; };
+		82A24A281DE98FAA00DA6666 /* MMBookListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookListVC.h; sourceTree = "<group>"; };
+		82A24A291DE98FAA00DA6666 /* MMBookListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBookListVC.m; sourceTree = "<group>"; };
 		82BF79E91DB9DA8800E53808 /* MMConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMConfig.h; sourceTree = "<group>"; };
 		82BF79EA1DB9DA8800E53808 /* MMConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMConfig.m; sourceTree = "<group>"; };
 		82BF79ED1DBB139F00E53808 /* MMSimPagesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSimPagesVC.h; sourceTree = "<group>"; };
@@ -365,6 +368,8 @@
 		82C197951D6D9B8300917F66 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				82A24A281DE98FAA00DA6666 /* MMBookListVC.h */,
+				82A24A291DE98FAA00DA6666 /* MMBookListVC.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -669,10 +674,12 @@
 					};
 					82C454951CB80F0600B83065 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 3BAUN3CGWR;
 						TestTargetID = 82C4547C1CB80F0600B83065;
 					};
 					82C454A01CB80F0600B83065 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 3BAUN3CGWR;
 						TestTargetID = 82C4547C1CB80F0600B83065;
 					};
 				};
@@ -804,6 +811,7 @@
 				8227233B1D16DA73005340E6 /* MMBookshelfVC.m in Sources */,
 				82BF79EB1DB9DA8800E53808 /* MMConfig.m in Sources */,
 				829052A41DBC7F190008DC0B /* MMButton.m in Sources */,
+				82A24A2A1DE98FAA00DA6666 /* MMBookListVC.m in Sources */,
 				82D72BE21D1E5F03006E0176 /* MMBookshelfCollectionViewCell.m in Sources */,
 				82CF29941DB07E69006762A3 /* MMBookBaseLookVC.m in Sources */,
 				8222883B1D755B5200D0CB6E /* MMBookInstroCell.m in Sources */,
@@ -872,9 +880,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 3BAUN3CGWR;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -894,7 +904,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -920,9 +930,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 3BAUN3CGWR;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -936,7 +948,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -968,8 +980,8 @@
 			baseConfigurationReference = B2B7BAF83C077E7492B305EC /* Pods-MDRead.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 3BAUN3CGWR;
 				INFOPLIST_FILE = MDRead/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

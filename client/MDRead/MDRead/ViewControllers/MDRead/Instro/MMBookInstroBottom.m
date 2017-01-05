@@ -21,6 +21,8 @@
 -(id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        
+        self.backgroundColor = [UIColor whiteColor];
         [self initClickButton];
         [self initHeadLine];
     }
@@ -50,13 +52,13 @@
     UIButton *addBook = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, w, self.frame.size.height)];
     addBook.tag = 0;
     [addBook setTitle:@"阅读" forState:UIControlStateNormal];
-//    [addBook setTintColor:[UIColor blueColor]];
-    //addBook.tintColor = [UIColor colorWithRed:30/255 green:138/255 blue:230/255 alpha:1];
+    //[addBook setTintColor:[UIColor blueColor]];
+//    addBook.tintColor = [UIColor colorWithRed:30/255 green:138/255 blue:230/255 alpha:1];
     addBook.titleLabel.font = [UIFont systemFontOfSize:16];
     addBook.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     
-    [addBook setTitleColor:[UIColor colorWithRed:55/255 green:138/255 blue:230/255 alpha:1] forState:UIControlStateNormal];
-    //[addBook setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+//    [addBook setTitleColor:[UIColor colorWithRed:55/255 green:138/255 blue:230/255 alpha:1] forState:UIControlStateNormal];
+    [addBook setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [addBook addTarget:self action:@selector(btnItemClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:addBook];
     

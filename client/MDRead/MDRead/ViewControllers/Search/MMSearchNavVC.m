@@ -90,7 +90,7 @@
 {
     //NSLog(@"%@", searchBar.text);
     [[MMNovelApi shareInstance] Search:searchBar.text success:^(id _Nonnull responseObject) {
-        //NSLog(@"%@", responseObject);
+        NSLog(@"%@", responseObject);
    
         _tableData = responseObject;
         [_tableView reloadData];
