@@ -7,6 +7,7 @@
 //
 
 #import "MMSearchNavVC.h"
+#import "MMSearchCell.h"
 #import "MMNovelApi.h"
 #import "MMCommon.h"
 
@@ -40,6 +41,8 @@
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.showsVerticalScrollIndicator = NO;
+    _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     [self.view addSubview:_tableView];
 }
@@ -113,11 +116,29 @@
     return [_tableData count];
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    cell.textLabel.text = [[_tableData objectAtIndex:indexPath.row] objectForKey:@"book_name"];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    MMSearchCell *cell = [[MMSearchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MMSearchNavVC"];
+    
+    [cell setSTitle:[[_tableData objectAtIndex:indexPath.row] objectForKey:@"book_name"]];
+    [cell setSDesc:[[_tableData objectAtIndex:indexPath.row] objectForKey:@"book_desc"]];
+    
+    
+    NSString *image = [[_tableData objectAtIndex:indexPath.row] objectForKey:@"book_image"];
+    //NSLog(@"%@", image);
+    
+    [cell setSImage:image];
+    
+    //cell.textLabel.text = [[_tableData objectAtIndex:indexPath.row] objectForKey:@"book_name"];
+    
+//    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+//    cell.textLabel.text = [[_tableData objectAtIndex:indexPath.row] objectForKey:@"book_name"];
+//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 

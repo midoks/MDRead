@@ -16,6 +16,7 @@
 		828ABCD21D89331D00C9F575 /* libnetwork.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 828ABCD11D89331D00C9F575 /* libnetwork.tbd */; };
 		828ABCD41D8936A500C9F575 /* libSystem.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 828ABCD31D8936A500C9F575 /* libSystem.tbd */; };
 		828ABCD81D893B8100C9F575 /* MMBookInstroTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 828ABCD71D893B8100C9F575 /* MMBookInstroTextCell.m */; };
+		828B0A2E1E1F65E70016B6BB /* MMSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 828B0A2D1E1F65E70016B6BB /* MMSearchCell.m */; };
 		828D0DD61CC3642800F4BCCA /* libmtasdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 828D0DD11CC3642800F4BCCA /* libmtasdk.a */; };
 		828D0DD71CC3642800F4BCCA /* ReleaseNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 828D0DD51CC3642800F4BCCA /* ReleaseNotes.txt */; };
 		828D0DD91CC3659B00F4BCCA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 828D0DD81CC3659B00F4BCCA /* libsqlite3.tbd */; };
@@ -103,6 +104,8 @@
 		828ABCD31D8936A500C9F575 /* libSystem.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libSystem.tbd; path = usr/lib/libSystem.tbd; sourceTree = SDKROOT; };
 		828ABCD61D893B8100C9F575 /* MMBookInstroTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookInstroTextCell.h; sourceTree = "<group>"; };
 		828ABCD71D893B8100C9F575 /* MMBookInstroTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBookInstroTextCell.m; sourceTree = "<group>"; };
+		828B0A2C1E1F65E70016B6BB /* MMSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSearchCell.h; sourceTree = "<group>"; };
+		828B0A2D1E1F65E70016B6BB /* MMSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSearchCell.m; sourceTree = "<group>"; };
 		828D0DD11CC3642800F4BCCA /* libmtasdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmtasdk.a; sourceTree = "<group>"; };
 		828D0DD21CC3642800F4BCCA /* MTA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTA.h; sourceTree = "<group>"; };
 		828D0DD31CC3642800F4BCCA /* MTAConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAConfig.h; sourceTree = "<group>"; };
@@ -538,6 +541,8 @@
 				82C197771D60B95000917F66 /* MMSearchVC.m */,
 				82C197791D60B9CA00917F66 /* MMSearchNavVC.h */,
 				82C1977A1D60B9CA00917F66 /* MMSearchNavVC.m */,
+				828B0A2C1E1F65E70016B6BB /* MMSearchCell.h */,
+				828B0A2D1E1F65E70016B6BB /* MMSearchCell.m */,
 				82D72BDD1D1E4D8E006E0176 /* MMBooksTableViewCell.h */,
 				82D72BDE1D1E4D8E006E0176 /* MMBooksTableViewCell.m */,
 				82D72BEE1D210C73006E0176 /* MMBooksRollTableViewCell.h */,
@@ -804,6 +809,7 @@
 				82C197A21D6D9B8300917F66 /* MMBookAuthorCell.m in Sources */,
 				82D72BF31D21199D006E0176 /* MMBooksSrcollView.m in Sources */,
 				821B3A6C1D8538E7000ABCE7 /* MMDismissingAnimator.m in Sources */,
+				828B0A2E1E1F65E70016B6BB /* MMSearchCell.m in Sources */,
 				82C1977E1D67410B00917F66 /* MMBookMarkVC.m in Sources */,
 				82DAC73D1CF9E76200E17706 /* MMNovelApi.m in Sources */,
 				82D72BDF1D1E4D8E006E0176 /* MMBooksTableViewCell.m in Sources */,
