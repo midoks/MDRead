@@ -40,7 +40,6 @@
 		82C1977E1D67410B00917F66 /* MMBookMarkVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C1977D1D67410B00917F66 /* MMBookMarkVC.m */; };
 		82C197841D674ADE00917F66 /* MMGuidesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C197831D674ADE00917F66 /* MMGuidesVC.m */; };
 		82C197881D68137B00917F66 /* MMBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C197871D68137B00917F66 /* MMBookCell.m */; };
-		82C197A21D6D9B8300917F66 /* MMBookAuthorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C197981D6D9B8300917F66 /* MMBookAuthorCell.m */; };
 		82C197A31D6D9B8300917F66 /* MMBookInstroBottom.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C1979A1D6D9B8300917F66 /* MMBookInstroBottom.m */; };
 		82C197A41D6D9B8300917F66 /* MMBookInstroHead.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C1979C1D6D9B8300917F66 /* MMBookInstroHead.m */; };
 		82C197A51D6D9B8300917F66 /* MMBookInstroVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C1979E1D6D9B8300917F66 /* MMBookInstroVC.m */; };
@@ -145,8 +144,6 @@
 		82C197831D674ADE00917F66 /* MMGuidesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMGuidesVC.m; sourceTree = "<group>"; };
 		82C197861D68137B00917F66 /* MMBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookCell.h; sourceTree = "<group>"; };
 		82C197871D68137B00917F66 /* MMBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBookCell.m; sourceTree = "<group>"; };
-		82C197971D6D9B8300917F66 /* MMBookAuthorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookAuthorCell.h; sourceTree = "<group>"; };
-		82C197981D6D9B8300917F66 /* MMBookAuthorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBookAuthorCell.m; sourceTree = "<group>"; };
 		82C197991D6D9B8300917F66 /* MMBookInstroBottom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookInstroBottom.h; sourceTree = "<group>"; };
 		82C1979A1D6D9B8300917F66 /* MMBookInstroBottom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBookInstroBottom.m; sourceTree = "<group>"; };
 		82C1979B1D6D9B8300917F66 /* MMBookInstroHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookInstroHead.h; sourceTree = "<group>"; };
@@ -382,8 +379,6 @@
 			children = (
 				82C1979D1D6D9B8300917F66 /* MMBookInstroVC.h */,
 				82C1979E1D6D9B8300917F66 /* MMBookInstroVC.m */,
-				82C197971D6D9B8300917F66 /* MMBookAuthorCell.h */,
-				82C197981D6D9B8300917F66 /* MMBookAuthorCell.m */,
 				82C197991D6D9B8300917F66 /* MMBookInstroBottom.h */,
 				82C1979A1D6D9B8300917F66 /* MMBookInstroBottom.m */,
 				82C1979B1D6D9B8300917F66 /* MMBookInstroHead.h */,
@@ -806,7 +801,6 @@
 				82D47EBB1D5C462900958099 /* MMSettingsVC.m in Sources */,
 				82C197A91D6DE4EE00917F66 /* MMBooklookVC.m in Sources */,
 				82D47EC11D5C4E2000958099 /* MMSuggestVC.m in Sources */,
-				82C197A21D6D9B8300917F66 /* MMBookAuthorCell.m in Sources */,
 				82D72BF31D21199D006E0176 /* MMBooksSrcollView.m in Sources */,
 				821B3A6C1D8538E7000ABCE7 /* MMDismissingAnimator.m in Sources */,
 				828B0A2E1E1F65E70016B6BB /* MMSearchCell.m in Sources */,

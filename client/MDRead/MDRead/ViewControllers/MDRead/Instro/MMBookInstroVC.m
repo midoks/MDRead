@@ -11,7 +11,6 @@
 #import "MMBookInstroCell.h"
 
 #import "MMBooksTableViewCell.h"
-#import "MMBookAuthorCell.h"
 #import "MMBookInstroHead.h"
 #import "MMBookInstroBottom.h"
 #import "MMBookInstroTextCell.h"
@@ -28,7 +27,7 @@
 @property (nonatomic, strong) MMBooksTableViewCell *rand;
 @property (nonatomic, assign) Boolean randStatus;
 
-@property (nonatomic, strong) MMBookAuthorCell *authorList;
+
 @property (nonatomic, strong) MMBookInstroTextCell *bookDesc;
 
 @end
@@ -37,14 +36,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self setTitle:@"详情页"];
 
     [self initTableView];
     [self initHeadView];
     [self initFooterView];
     [self initRand];
-    [self initAuthorList];
+    
     [self initBookDesc];
 }
 
@@ -109,12 +106,6 @@
     }];
 }
 
--(void)initAuthorList
-{
-    _authorList = [MMBookAuthorCell cellWithTableView:_tableView];
-    _authorList.sectionTitle.text = @"作者的其它作品";
-}
-
 
 -(void)initBookDesc
 {
@@ -148,7 +139,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -157,27 +148,23 @@
         return 0;
     } else if (section == 1) {
         return 2;
-    } else if (section == 2) {
-        return 2;
     }
     return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        if (indexPath.row == 1) {
-            return [_bookDesc getDescSize];
-        }
-    } else if (indexPath.section == 2){
+    if (indexPath.section == 1) {
+        
         if (indexPath.row == 0){
             return [_rand randHeight];
         }
-    } else if(indexPath.section == 3){
-        if (indexPath.row == 0){
-            return [_authorList authorHeight];
+    } else if (indexPath.section == 2){
+        if (indexPath.row == 1) {
+            return [_bookDesc getDescSize];
         }
     }
+    
     return 44;
 }
 
@@ -185,28 +172,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-//        if (indexPath.row == 0){
-//            return _bookDesc;
-//        } else
-        if(indexPath.row == 0){
-            MMBookInstroCell *cell = [MMBookInstroCell cellWithTableView:_tableView];
-            cell.icon.image = [UIImage imageNamed:@"md_chapter_new"];
-            cell.title.text = @"最新";
-            cell.desc.text = @"第2560章 大结局!";
-            cell.status.text = @"连载中";
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            return cell;
-        } else if (indexPath.row == 1){
-            MMBookInstroCell *cell = [MMBookInstroCell cellWithTableView:_tableView];
-            cell.icon.image = [UIImage imageNamed:@"md_dir_list"];
-            cell.title.text = @"目录";
-            cell.desc.text = @"共1005章";
-            cell.enableStatus = FALSE;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            return cell;
-        }
+
         
-    } else if (indexPath.section == 2){
         if (indexPath.row == 0) {
             return _rand;
         } else if(indexPath.row == 1){
@@ -221,11 +188,27 @@
             [c.contentView addSubview:line];
             return c;
         }
-    } else if (indexPath.section == 3){
-        if (indexPath.row == 0) {
-            return _authorList;
-        }
+        
     }
+//    else if (indexPath.section == 2){
+//        if(indexPath.row == 0){
+//            MMBookInstroCell *cell = [MMBookInstroCell cellWithTableView:_tableView];
+//            cell.icon.image = [UIImage imageNamed:@"md_chapter_new"];
+//            cell.title.text = @"最新";
+//            cell.desc.text = @"第2560章 大结局!";
+//            cell.status.text = @"连载中";
+//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//            return cell;
+//        } else if (indexPath.row == 1){
+//            MMBookInstroCell *cell = [MMBookInstroCell cellWithTableView:_tableView];
+//            cell.icon.image = [UIImage imageNamed:@"md_dir_list"];
+//            cell.title.text = @"目录";
+//            cell.desc.text = @"共1005章";
+//            cell.enableStatus = FALSE;
+//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//            return cell;
+//        }
+//    }
     
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     cell.textLabel.text = @"test";
@@ -236,19 +219,6 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
-    
-//    if(indexPath.section == 1){
-//        if (indexPath.row == 1) {
-//            if (!_randStatus) {
-//                [MMCommon showMessage:@"正在请求中!"];
-//                return;
-//            }
-//            self.randStatus = NO;
-//            [_rand initRandData:^{
-//                self.randStatus = YES;
-//            }];
-//        }
-//    }
 }
 
 @end

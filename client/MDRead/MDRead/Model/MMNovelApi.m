@@ -123,7 +123,7 @@
             
         }
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        failure(-1, [NSString stringWithFormat:@"%@:%@", search, @"获取数据失败!"]);
+        failure(-1, [NSString stringWithFormat:@"%@:%@", search, @"Search:获取数据失败!"]);
     }];
 }
 
@@ -188,7 +188,7 @@
         }
         success(responseObject);
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        failure(-1, [NSString stringWithFormat:@"%@:%@", book_list, @"获取数据失败!"]);
+        failure(-1, [NSString stringWithFormat:@"%@:%@", book_list, @"BookList:获取数据失败!"]);
     }];
 }
 
@@ -245,7 +245,7 @@
         }
         success(responseObject);
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        failure(-1, [NSString stringWithFormat:@"%@:%@", book_content, @"获取数据失败!"]);
+        failure(-1, [NSString stringWithFormat:@"%@:%@", book_content, @"BookContent:获取数据失败!"]);
     }];
 }
 
@@ -472,7 +472,7 @@
         
         success();
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        failure(-1, @"入口获取数据失败!");
+        failure(-1, @"test:入口获取数据失败!");
     }];
 }
 
