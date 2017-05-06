@@ -72,7 +72,7 @@
         [MMCommon showMessage:@"验证通过"];
         
     } failure:^(int ret_code, NSString *ret_msg) {
-        NSLog(@"%d:%@", ret_code, ret_msg);
+        MDLog(@"-- check api %d:%@ -- ", ret_code, ret_msg);
         [MMCommon showMessage:ret_msg];
     }];
 }

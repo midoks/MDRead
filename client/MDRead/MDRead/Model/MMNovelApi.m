@@ -201,6 +201,7 @@
     [self BookContent:chapter_id source_id:source_id success:success failure:failure validate:FALSE];
 }
 
+#pragma mark - 章节内容 validate -
 -(void)BookContent:(NSString *)chapter_id
       source_id:(NSString *)source_id
            success:(void (^)(id responseObject))success
@@ -213,6 +214,8 @@
     }
     
     NSString *book_content = [_callbackUrls objectForKey:@"book_content"];
+    
+    
     
     if (!book_content) {
         failure(-1, [NSString stringWithFormat:@"book_content未设置"]);
@@ -245,10 +248,10 @@
         }
         success(responseObject);
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
+        NSLog(@"%@", error);
         failure(-1, [NSString stringWithFormat:@"%@:%@", book_content, @"BookContent:获取数据失败!"]);
     }];
 }
-
 
 #pragma mark - 章节源 -
 -(void)BookSource:(NSString *)book_id
@@ -464,8 +467,10 @@
         //验证数据内容信息
         NSString *chapter_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_content"] objectForKey:@"chapter_id"];
         NSString *bconent_source_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_content"] objectForKey:@"source_id"];
+        
+        
         [self BookContent:chapter_id source_id:bconent_source_id success:^(id responseObject) {
-            //NSLog(@"%@", responseObject);
+            MDLog(@"-- %@ --", responseObject);
         } failure:^(int ret_code, NSString *ret_msg) {
             failure(ret_code, ret_msg);
         } validate:TRUE];

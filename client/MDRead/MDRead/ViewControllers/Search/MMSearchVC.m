@@ -113,14 +113,17 @@
     _recommend.selectionStyle = UITableViewCellSelectionStyleNone;
     _recommend.sectionTitle.text = @"推荐";
     [_recommend initRecommendData:^{
+        MDLog(@"-- initRecommend ok ----");
     }];
     
     self.transitioningDelegate = self;
     
     [_recommend itemClick:^{
         
-        MMBookInstroVC *s = [[MMBookInstroVC alloc] init];
-        UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:s];
+        MDLog(@"-- itemClick ok ----");
+        
+        MMBookInstroVC *bookInstro = [[MMBookInstroVC alloc] init];
+        UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:bookInstro];
         bookInstroView.transitioningDelegate = self;
         [self presentViewController:bookInstroView animated:YES completion:^{
             
@@ -128,8 +131,9 @@
         
 //        MMBookInstroVC *bookInstro = [[MMBookInstroVC alloc] init];
 //        bookInstro.hidesBottomBarWhenPushed = YES;
-//        
 //        [self.navigationController pushViewController:s animated:YES];
+        
+        
     }];
 }
 
@@ -148,6 +152,7 @@
     _randStatus = NO;
     [_rand initRandData:^{
         self.randStatus = YES;
+        MDLog(@"-- initRand ok ----");
     }];
 }
 

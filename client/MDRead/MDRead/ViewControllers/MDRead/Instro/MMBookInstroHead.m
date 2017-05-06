@@ -14,7 +14,7 @@
 -(id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.frame = CGRectMake(0, 0, MD_DW, 400);
+        self.frame = CGRectMake(0, 0, MD_DW, 380);
         self.backgroundColor = [UIColor whiteColor];
         [self initView];
     }
@@ -26,7 +26,6 @@
     return view.frame.origin.y + view.frame.size.height;
 }
 
-
 -(void)initView
 {
     
@@ -34,7 +33,6 @@
     bookImage.image = [UIImage imageNamed:@"books_test"];
     [self addSubview:bookImage];
     
-    //NSLog(@"%@",  NSStringFromCGPoint(self.center) );
     
     bookImage.center = CGPointMake(self.center.x, 0);
     bookImage.frame = CGRectMake(bookImage.frame.origin.x, 20, bookImage.frame.size.width, bookImage.frame.size.height);
@@ -50,7 +48,7 @@
     //作者
     UILabel *bookAuthor = [[UILabel alloc] initWithFrame:CGRectMake(0, [self viewPosY:bookTitle] + 5, MD_DW, 20)];
     bookAuthor.text = @"东野圭吾";
-    [bookAuthor setFont:[UIFont systemFontOfSize:16]];
+    [bookAuthor setFont:[UIFont systemFontOfSize:14]];
     bookAuthor.textColor = [UIColor blueColor];
     bookAuthor.textAlignment = NSTextAlignmentCenter;
     [self addSubview:bookAuthor];
@@ -64,19 +62,45 @@
     bookDesc.textAlignment = NSTextAlignmentLeft;
     [self addSubview:bookDesc];
     
-    //目录信息
+    //其他信息
+    CGFloat bookBottomWith = MD_DW / 3;
     
-//
-//    UILabel *bookType = [[UILabel alloc] initWithFrame:CGRectMake(130, 70, MD_DW - 120, 20)];
-//    bookType.text = @"仙侠";
-//    [bookType setFont:[UIFont systemFontOfSize:14]];
-//    [self addSubview:bookType];
+    UIView *bookOther = [[UIView alloc] initWithFrame:CGRectMake(0, [self viewPosY:bookDesc], MD_DW, 50)];
+    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, bookBottomWith, 50)];
+    
+    //阅读状态
+    [leftButton setTitle:@"在读" forState:UIControlStateNormal];
+    [leftButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    leftButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    [leftButton setImage:[UIImage imageNamed:@"md_button_status"] forState:UIControlStateNormal];
+    [leftButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
+    [bookOther addSubview:leftButton];
     
     
+    //目录
+    UIButton *centerButon = [[UIButton alloc] initWithFrame:CGRectMake(bookBottomWith, 0, bookBottomWith, 50)];
+    [centerButon setTitle:@"目录" forState:UIControlStateNormal];
+    [centerButon setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    centerButon.titleLabel.font = [UIFont systemFontOfSize:14];
+    [centerButon setImage:[UIImage imageNamed:@"md_button_status"] forState:UIControlStateNormal];
+    [centerButon setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
+    [bookOther addSubview:centerButon];
+    
+    //书籍信息
+    UIButton *rightButon = [[UIButton alloc] initWithFrame:CGRectMake(bookBottomWith*2, 0, bookBottomWith, 50)];
+    [rightButon setTitle:@"信息" forState:UIControlStateNormal];
+    [rightButon setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    rightButon.titleLabel.font = [UIFont systemFontOfSize:14];
+    [rightButon setImage:[UIImage imageNamed:@"md_button_status"] forState:UIControlStateNormal];
+    [rightButon setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
+    [bookOther addSubview:rightButon];
+
+    [self addSubview:bookOther];
 }
 
 
 -(void)layoutSubviews{
+    
     [super layoutSubviews];
     
     
