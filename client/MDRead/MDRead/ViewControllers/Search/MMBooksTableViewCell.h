@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^mdItemClick)();
+typedef void (^mdItemClick)(NSDictionary *item);
 
 @interface MMBooksTableViewCell : UITableViewCell
 

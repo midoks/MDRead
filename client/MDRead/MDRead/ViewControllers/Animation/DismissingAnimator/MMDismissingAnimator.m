@@ -39,7 +39,7 @@
     
     BOOL isPresenting = (toViewController.presentingViewController == fromViewController);
     
-    NSLog(@"dd:%d", isPresenting);
+    MDLog(@"-- isPresenting:%d --", isPresenting);
     
     CGRect fromFrame = [transitionContext initialFrameForViewController:fromViewController];
     CGRect toFrame = [transitionContext finalFrameForViewController:toViewController];

@@ -468,10 +468,11 @@
         NSString *chapter_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_content"] objectForKey:@"chapter_id"];
         NSString *bconent_source_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_content"] objectForKey:@"source_id"];
         
-        
+        //内容验证
         [self BookContent:chapter_id source_id:bconent_source_id success:^(id responseObject) {
-            MDLog(@"-- %@ --", responseObject);
+            MDLog(@"-- BookContent Vail OK --");
         } failure:^(int ret_code, NSString *ret_msg) {
+            MDLog(@"-- BookContent %@ Fail --", responseObject);
             failure(ret_code, ret_msg);
         } validate:TRUE];
         

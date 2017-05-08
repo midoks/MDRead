@@ -55,7 +55,7 @@
         NSAssert(NO, @"targetEdge must be one of UIRectEdgeTop, UIRectEdgeBottom, UIRectEdgeLeft, or UIRectEdgeRight.");
     }
     
-    NSLog(@"dd:%d", isPresenting);
+    MDLog(@"-- isPresenting:%d --", isPresenting);
     
     if (isPresenting) {
         fromView.frame = fromFrame;

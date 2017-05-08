@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMBookInstroHead : UIView
+@interface MMBookInstroHead : UIView{
+    
+}
+
+@property (nonatomic,strong) UIImageView *bImage;
+@property (nonatomic, strong) UILabel *bTitle;
+@property (nonatomic, strong) UILabel *bAuthor;
+@property (nonatomic, strong) UILabel *bDesc;
 
 @end

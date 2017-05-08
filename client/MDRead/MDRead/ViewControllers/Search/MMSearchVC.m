@@ -19,6 +19,7 @@
 #import "MMBooksRollTableViewCell.h"
 
 #import "MMPresentingAnimator.h"
+#import "UIImageView+WebCache.h"
 
 @interface MMSearchVC () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate,UIViewControllerTransitioningDelegate>
 
@@ -114,27 +115,37 @@
     _recommend.sectionTitle.text = @"推荐";
     [_recommend initRecommendData:^{
         MDLog(@"-- initRecommend ok ----");
+        
+        [_recommend itemClick:^(NSDictionary *item) {
+            MDLog(@"-- itemClick ok ----");
+            
+            MMBookInstroVC *bookInstro = [[MMBookInstroVC alloc] init];
+            
+            MDLog(@"-- image:%@ -- ", [item objectForKey:@"image"]);
+            MDLog(@"-- id:%@ -- ", [item objectForKey:@"id"]);
+            MDLog(@"-- name:%@ -- ", [item objectForKey:@"name"]);
+            MDLog(@"-- desc:%@ -- ", [item objectForKey:@"desc"]);
+            MDLog(@"-- author:%@ -- ", [item objectForKey:@"author"]);
+            
+            
+            UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:bookInstro];
+            bookInstroView.transitioningDelegate = self;
+            
+            
+            [self presentViewController:bookInstroView animated:YES completion:^{
+                [bookInstro.head.bImage sd_setImageWithURL:[NSURL URLWithString:[item objectForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"books_test"]];
+                bookInstro.head.bTitle.text = [item objectForKey:@"name"];
+                bookInstro.head.bDesc.text = [item objectForKey:@"desc"];
+                bookInstro.head.bAuthor.text = [item objectForKey:@"author"];
+                
+            }];
+        }];
+        
     }];
     
     self.transitioningDelegate = self;
     
-    [_recommend itemClick:^{
-        
-        MDLog(@"-- itemClick ok ----");
-        
-        MMBookInstroVC *bookInstro = [[MMBookInstroVC alloc] init];
-        UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:bookInstro];
-        bookInstroView.transitioningDelegate = self;
-        [self presentViewController:bookInstroView animated:YES completion:^{
-            
-        }];
-        
-//        MMBookInstroVC *bookInstro = [[MMBookInstroVC alloc] init];
-//        bookInstro.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:s animated:YES];
-        
-        
-    }];
+    
 }
 
 -(void)initRank
@@ -153,6 +164,32 @@
     [_rand initRandData:^{
         self.randStatus = YES;
         MDLog(@"-- initRand ok ----");
+        
+        [_rand itemClick:^(NSDictionary *item) {
+            MDLog(@"-- rand itemClick ok ----");
+            
+            MMBookInstroVC *bookInstro = [[MMBookInstroVC alloc] init];
+            
+            MDLog(@"-- image:%@ -- ", [item objectForKey:@"image"]);
+            MDLog(@"-- id:%@ -- ", [item objectForKey:@"id"]);
+            MDLog(@"-- name:%@ -- ", [item objectForKey:@"name"]);
+            MDLog(@"-- desc:%@ -- ", [item objectForKey:@"desc"]);
+            MDLog(@"-- author:%@ -- ", [item objectForKey:@"author"]);
+            
+            
+            UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:bookInstro];
+            bookInstroView.transitioningDelegate = self;
+            
+            
+            [self presentViewController:bookInstroView animated:YES completion:^{
+                [bookInstro.head.bImage sd_setImageWithURL:[NSURL URLWithString:[item objectForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"books_test"]];
+                bookInstro.head.bTitle.text = [item objectForKey:@"name"];
+                bookInstro.head.bDesc.text = [item objectForKey:@"desc"];
+                bookInstro.head.bAuthor.text = [item objectForKey:@"author"];
+                
+            }];
+        }];
+        
     }];
 }
 
@@ -240,14 +277,14 @@
                 [MMCommon showMessage:@"正在请求中!"];
                 return;
             }
-            //NSLog(@"ddd:%hhd",_randStatus);
+            
             self.randStatus = NO;
             [_rand initRandData:^{
                 self.randStatus = YES;
             }];
         }
     }
-
+    
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{

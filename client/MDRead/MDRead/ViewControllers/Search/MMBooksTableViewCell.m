@@ -109,7 +109,7 @@ static NSString *collectViewIdentifier = @"collectViewIdentifier";
 {
     _numRows = 2;
     [[MMNovelApi shareInstance] recommend:^(id responseObject) {
-        
+        //MDLog(@"%@", responseObject);
         _dataList = responseObject;
         [self reloadData];
         success();
@@ -171,22 +171,23 @@ static NSString *collectViewIdentifier = @"collectViewIdentifier";
     NSDictionary *tmp = [_dataList objectAtIndex:(indexPath.section * 4 + indexPath.row)];
     
     if (tmp) {
-        [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:[tmp objectForKey:@"book_image"]]
+        [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:[tmp objectForKey:@"image"]]
                               placeholderImage:[UIImage imageNamed:@"books_test"]];
-        cell.bookName.text = [tmp objectForKey:@"book_name"];
+        cell.bookName.text = [tmp objectForKey:@"name"];
     } else {
         cell.bookImageView.image = [UIImage imageNamed:@"books_test"];
         cell.bookName.text = @"--加载中--";
     }
-    //[cell sizeToFit];
+    
     return cell;
 }
 
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDictionary *tmp = [_dataList objectAtIndex:(indexPath.section * 4 + indexPath.row)];
     if (_itemClickBlock){
-        _itemClickBlock();
+        _itemClickBlock(tmp);
     }
 }
 

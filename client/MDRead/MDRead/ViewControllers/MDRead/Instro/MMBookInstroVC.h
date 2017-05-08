@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMBookInstroVC : UIViewController
+#import "MMBookInstroTextCell.h"
+#import "MMBookInstroHead.h"
+
+
+@interface MMBookInstroVC : UIViewController {
+
+    
+}
+
+@property (nonatomic, strong) MMBookInstroTextCell *bookDesc;
+@property (nonatomic, strong) MMBookInstroHead *head;
+
 
 @end
