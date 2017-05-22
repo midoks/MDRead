@@ -89,8 +89,8 @@
         
         if(validate){
             
-            MDLog(@"%@", responseObject);
-        
+            //MDLog(@"%@", responseObject);
+            
             if ([[responseObject objectForKey:@"ret_code"] intValue] < 0 ){
                 failure(-1, [NSString stringWithFormat:@"%@:%@", search, [responseObject objectForKey:@"ret_msg"]]);
                 return;
@@ -101,12 +101,11 @@
                 return;
             }
             
-            
             NSArray *check = [[NSArray alloc] initWithObjects:@"bid",@"sid", @"image", @"name",@"author",@"desc",nil];
             
             NSString *tmpKeyName    = @"";
             NSString *tmpK          = @"";
-        
+            
             for (int i=0; i<[check count]; i++) {
                 tmpK = [check objectAtIndex:i];
                 tmpKeyName = [[[responseObject objectForKey:@"data"] objectAtIndex:0] objectForKey:tmpK];
@@ -117,8 +116,7 @@
             }
         } else{
             
-            MDLog(@"%@", [responseObject class]);
-            
+            //MDLog(@"%@", [responseObject class]);
             if([responseObject isKindOfClass:[NSArray class]]){
                 success(responseObject);
                 return;
@@ -126,12 +124,62 @@
             
             if ([[responseObject objectForKey:@"ret_code"] intValue] < 0) {
                 failure([[responseObject objectForKey:@"ret_code"] intValue], [responseObject objectForKey:@"ret_msg"]);
+                return;
             }
-            
         }
+        success(responseObject);
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
         failure(-1, [NSString stringWithFormat:@"%@:%@", search, @"Search:获取数据失败!"]);
     }];
+}
+
+#pragma mark - 书籍信息 -
+-(void)BookInfo:(NSString *)book_id
+      source_id:(NSString *)source_id
+        success:(void (^)(id responseObject))success
+        failure:(void (^)(int ret_code, NSString *ret_msg))failure
+{
+    [self BookInfo:book_id source_id:source_id success:success failure:failure validate:FALSE];
+}
+
+-(void)BookInfo:(NSString *)book_id
+      source_id:(NSString *)source_id
+        success:(void (^)(id responseObject))success
+        failure:(void (^)(int ret_code, NSString *ret_msg))failure
+       validate:(BOOL)validate
+{
+    [self setArgs:@"bid" value:book_id];
+    [self setArgs:@"sid" value:source_id];
+    
+    NSString *book_info_url = [_callbackUrls objectForKey:@"book_info"];
+    
+    //MDLog(@"%@", book_info_url);
+    
+    if (!book_info_url) {
+        failure(-1, [NSString stringWithFormat:@"book_list未设置!"]);
+        return;
+    }
+    
+    NSString *encoded = [book_info_url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    [_manager POST:encoded parameters:_args progress:^(NSProgress * uploadProgress) {
+    } success:^(NSURLSessionDataTask * task, id  responseObject) {
+        //MDLog(@"%@", responseObject);
+        
+        if (validate){
+            if ([[responseObject objectForKey:@"data"] count] < 1){
+                failure(-1, [NSString stringWithFormat:@"%@:%@", book_info_url, @"书籍INFO没有数据!"]);
+                return;
+            }
+        }
+        
+        success(responseObject);
+        
+    } failure:^(NSURLSessionDataTask * task, NSError * error) {
+        MDLog(@"%@", error);
+        failure(-1, [NSString stringWithFormat:@"%@:%@", book_info_url, @"BookContent:获取数据失败!"]);
+    }];
+    
 }
 
 #pragma mark - 章节列表 -
@@ -140,7 +188,7 @@
         success:(void (^)(id responseObject))success
         failure:(void (^)(int ret_code, NSString *ret_msg))failure
 {
-    [self BookList:book_id source_id:source_id success:success failure:failure validate:TRUE];
+    [self BookList:book_id source_id:source_id success:success failure:failure validate:FALSE];
 }
 
 
@@ -150,29 +198,27 @@
         failure:(void (^)(int ret_code, NSString *ret_msg))failure
        validate:(BOOL)validate
 {
+    
     [self setArgs:@"bid" value:book_id];
-    if (![source_id isEqualToString:@""]) {
-        [self setArgs:@"sid" value:source_id];
-    }
+    [self setArgs:@"sid" value:source_id];
     
-    NSString *book_list = [_callbackUrls objectForKey:@"book_list"];
+    NSString *book_list_url = [_callbackUrls objectForKey:@"book_list"];
     
-    if (!book_list) {
-        failure(-1, [NSString stringWithFormat:@"book_list未设置"]);
+    if (!book_list_url) {
+        failure(-1, [NSString stringWithFormat:@"book_list未设置!"]);
         return;
     }
     
-    NSString *encoded = [book_list stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *encoded = [book_list_url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [_manager POST:encoded parameters:_args progress:^(NSProgress * uploadProgress) {
     } success:^(NSURLSessionDataTask * task, id  responseObject) {
-
+        
         if(validate){
             
             if ([responseObject count] < 1) {
-                failure(-1, [NSString stringWithFormat:@"%@:%@", book_list, @"书籍章节没有数据!"]);
+                failure(-1, [NSString stringWithFormat:@"%@:%@", book_list_url, @"书籍章节没有数据!"]);
                 return;
             }
-            
             
             NSMutableArray *check = [[NSMutableArray alloc] initWithObjects:@"bid",@"sid",@"cid",@"name", nil];
             
@@ -187,14 +233,14 @@
                 tmpK = [check objectAtIndex:i];
                 tmpKeyName = [[responseObject objectAtIndex:0] objectForKey:tmpK];
                 if (tmpKeyName == NULL) {
-                    failure(-1,[NSString stringWithFormat:@"%@:%@,字段缺失!", book_list, tmpK]);
+                    failure(-1,[NSString stringWithFormat:@"%@:%@,字段缺失!", book_list_url, tmpK]);
                     return;
                 }
             }
         }
         success(responseObject);
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        failure(-1, [NSString stringWithFormat:@"%@:%@", book_list, @"BookList:获取数据失败!"]);
+        failure(-1, [NSString stringWithFormat:@"%@:%@", book_list_url, @"BookList:获取数据失败!"]);
     }];
 }
 
@@ -209,7 +255,7 @@
 
 #pragma mark - 章节内容 validate -
 -(void)BookContent:(NSString *)chapter_id
-      source_id:(NSString *)source_id
+         source_id:(NSString *)source_id
            success:(void (^)(id responseObject))success
            failure:(void (^)(int ret_code, NSString *ret_msg))failure
           validate:(BOOL)validate
@@ -221,7 +267,7 @@
     
     NSString *book_content = [_callbackUrls objectForKey:@"book_content"];
     
-
+    
     if (!book_content) {
         failure(-1, [NSString stringWithFormat:@"book_content未设置"]);
         return;
@@ -253,7 +299,7 @@
         }
         success(responseObject);
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        NSLog(@"%@", error);
+        MDLog(@"%@", error);
         failure(-1, [NSString stringWithFormat:@"%@:%@", book_content, @"BookContent:获取数据失败!"]);
     }];
 }
@@ -263,7 +309,7 @@
           success:(void (^)(id responseObject))success
           failure:(void (^)())failure
 {
-
+    
 }
 
 -(void)recommend:(void (^)(id responseObject))success
@@ -297,7 +343,7 @@
 
 #pragma mark - 随机 -
 -(void)rand:(void (^)(id responseObject))success
-         failure:(void (^)(int ret_code, NSString *ret_msg))failure
+    failure:(void (^)(int ret_code, NSString *ret_msg))failure
 {
     [self rand:success failure:failure validate:FALSE];
 }
@@ -375,29 +421,29 @@
 -(void)downloadFile
 {
     
-//    NSString *fileName = [NSString stringWithFormat:@"%@.json", @"api"];
-//    NSString *bundleFile = NSHomeDirectory();//[[NSBundle mainBundle] bundlePath];
-//    NSString *downloadFile = [NSString stringWithFormat:@"%@/%@", bundleFile, fileName];
-//    
-//    NSLog(@"%@" ,[[NSBundle mainBundle] bundlePath]);
-//    NSLog(@"%@",[NSURL fileURLWithPath:downloadFile]);
-//    NSLog(@"%@", downloadFile);
-//    
-//    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://121.42.151.169/api"]];
-//    
-//    [_manager downloadTaskWithRequest:req progress:^(NSProgress * _Nonnull downloadProgress) {
-//        
-//    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
-//        return [NSURL fileURLWithPath:downloadFile];
-//        
-//    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
-//        
-//        NSLog(@"%@",response);
-//        NSLog(@"%@", filePath);
-//        NSLog(@"%@", error);
-//        
-//    }];
-
+    //    NSString *fileName = [NSString stringWithFormat:@"%@.json", @"api"];
+    //    NSString *bundleFile = NSHomeDirectory();//[[NSBundle mainBundle] bundlePath];
+    //    NSString *downloadFile = [NSString stringWithFormat:@"%@/%@", bundleFile, fileName];
+    //
+    //    NSLog(@"%@" ,[[NSBundle mainBundle] bundlePath]);
+    //    NSLog(@"%@",[NSURL fileURLWithPath:downloadFile]);
+    //    NSLog(@"%@", downloadFile);
+    //
+    //    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://121.42.151.169/api"]];
+    //
+    //    [_manager downloadTaskWithRequest:req progress:^(NSProgress * _Nonnull downloadProgress) {
+    //
+    //    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+    //        return [NSURL fileURLWithPath:downloadFile];
+    //
+    //    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+    //
+    //        NSLog(@"%@",response);
+    //        NSLog(@"%@", filePath);
+    //        NSLog(@"%@", error);
+    //
+    //    }];
+    
 }
 
 -(void)test:(NSString *)url
@@ -419,12 +465,17 @@
         }
         
         if (![resultJson objectForKey:@"search"]) {
-            failure(-1, @"search:没有设置!");
+            failure(-1, @"Search:没有设置!");
             return;
         }
         
         if (![resultJson objectForKey:@"book_list"]) {
             failure(-1, @"book_list:没有设置!");
+            return;
+        }
+        
+        if (![resultJson objectForKey:@"book_info"]) {
+            failure(-1, @"book_info:没有设置!");
             return;
         }
         
@@ -437,7 +488,7 @@
             failure(-1, @"缺少验证数据!");
             return;
         }
-       
+        
         NSString *vail_search = [[resultJson objectForKey:@"vaildata"] objectForKey:@"search"];
         if (!vail_search) {
             failure(-1, @"缺少验证search值!");
@@ -453,26 +504,35 @@
         //注入数据
         [self initInjection:resultJson];
         
-        //验证搜索
+        //验证搜索API
         [self Search:vail_search success:^(id responseObject) {
-            
+            MDLog(@"-- BookSearch Vail OK --");
         } failure:^(int ret_code, NSString *ret_msg) {
-            failure(ret_code, ret_msg);
-        } validate:true];
-        
-        //验证书籍列表信息
-        NSString *book_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_list"] objectForKey:@"bid"];
-        NSString *source_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_list"] objectForKey:@"sid"];
-        [self BookList:book_id source_id:source_id success:^(id responseObject) {
-        } failure:^(int ret_code, NSString *ret_msg) {
+            MDLog(@"-- BookSearch Vail Fail --");
             failure(ret_code, ret_msg);
         } validate:TRUE];
         
-        //验证数据内容信息
+        //验证书籍列表信息API
+        NSString *book_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_list"] objectForKey:@"bid"];
+        NSString *source_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_list"] objectForKey:@"sid"];
+        [self BookList:book_id source_id:source_id success:^(id responseObject) {
+            MDLog(@"-- BookList Vail OK --");
+        } failure:^(int ret_code, NSString *ret_msg) {
+            MDLog(@"-- BookList Vail Fail --");
+            failure(ret_code, ret_msg);
+        } validate:TRUE];
+        
+        //验证书籍信息接口API
+        [self BookInfo:book_id source_id:source_id success:^(id responseObject) {
+            MDLog(@"-- BookInfo Vail OK --");
+        } failure:^(int ret_code, NSString *ret_msg) {
+            MDLog(@"-- BookInfo %@ Fail --", responseObject);
+            failure(ret_code, ret_msg);
+        } validate:TRUE];
+        
+        //验证书籍章节内容API
         NSString *chapter_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_content"] objectForKey:@"cid"];
         NSString *bconent_source_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_content"] objectForKey:@"sid"];
-        
-        //内容验证
         [self BookContent:chapter_id source_id:bconent_source_id success:^(id responseObject) {
             MDLog(@"-- BookContent Vail OK --");
         } failure:^(int ret_code, NSString *ret_msg) {

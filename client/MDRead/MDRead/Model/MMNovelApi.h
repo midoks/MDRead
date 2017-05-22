@@ -13,7 +13,7 @@
 
 @interface MMNovelApi : NSObject
 {
-
+    
     AFHTTPSessionManager *_manager;
     NSMutableDictionary *_args;
 }
@@ -31,6 +31,12 @@
 
 #pragma mark - 书籍章节列表 -
 -(void)BookList:(NSString *)book_id
+      source_id:(NSString *)source_id
+        success:(void (^)(id responseObject))success
+        failure:(void (^)(int ret_code, NSString *ret_msg))failure;
+
+#pragma mark - 书籍信息 -
+-(void)BookInfo:(NSString *)book_id
       source_id:(NSString *)source_id
         success:(void (^)(id responseObject))success
         failure:(void (^)(int ret_code, NSString *ret_msg))failure;
@@ -59,6 +65,7 @@
 
 -(void)downloadFile;
 
+#pragma mark - 接口检测 -
 -(void)test:(NSString *)url
     success:(void (^)())success
     failure:(void (^)(int ret_code, NSString *ret_msg))failure;

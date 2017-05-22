@@ -114,10 +114,10 @@
     _recommend.selectionStyle = UITableViewCellSelectionStyleNone;
     _recommend.sectionTitle.text = @"推荐";
     [_recommend initRecommendData:^{
-        MDLog(@"-- initRecommend ok ----");
+        MDLog(@"-- _recommend initRecommend ok ----");
         
         [_recommend itemClick:^(NSDictionary *item) {
-            MDLog(@"-- itemClick ok ----");
+            MDLog(@"-- _recommend itemClick ok ----");
             
             
             
@@ -126,7 +126,7 @@
             bookInstro.bookInfo = item;
             
             MDLog(@"-- image:%@ -- ", [item objectForKey:@"image"]);
-            MDLog(@"-- id:%@ -- ", [item objectForKey:@"id"]);
+            MDLog(@"-- bid:%@ -- ", [item objectForKey:@"bid"]);
             MDLog(@"-- name:%@ -- ", [item objectForKey:@"name"]);
             MDLog(@"-- desc:%@ -- ", [item objectForKey:@"desc"]);
             MDLog(@"-- author:%@ -- ", [item objectForKey:@"author"]);
@@ -173,11 +173,11 @@
             MDLog(@"-- rand itemClick ok ----");
             
             MMBookInstroVC *bookInstro = [[MMBookInstroVC alloc] init];
+            bookInstro.bookInfo = item;
             
             MDLog(@"-- image:%@ -- ", [item objectForKey:@"image"]);
-            MDLog(@"-- id:%@ -- ", [item objectForKey:@"id"]);
+            MDLog(@"-- bid:%@ -- ", [item objectForKey:@"bid"]);
             MDLog(@"-- sid:%@ -- ", [item objectForKey:@"sid"]);
-            MDLog(@"-- cid:%@ -- ", [item objectForKey:@"cid"]);
             MDLog(@"-- name:%@ -- ", [item objectForKey:@"name"]);
             MDLog(@"-- desc:%@ -- ", [item objectForKey:@"desc"]);
             MDLog(@"-- author:%@ -- ", [item objectForKey:@"author"]);

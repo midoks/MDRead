@@ -6,7 +6,7 @@
 //  Copyright © 2016年 midoks. All rights reserved.
 //
 
-#define DEBUG 1
+#define __DEBUG
 
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
@@ -19,7 +19,7 @@
 #define MD_FH self.frame.size.height
 
 // 日志输出
-#ifdef DEBUG
+#ifdef __DEBUG
 #define MDLog(...) NSLog(__VA_ARGS__)
 #else
 #define MDLog(...)
