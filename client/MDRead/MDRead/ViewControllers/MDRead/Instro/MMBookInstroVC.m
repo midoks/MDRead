@@ -7,16 +7,10 @@
 //
 
 #import "MMBookInstroVC.h"
-
 #import "MMBookInstroCell.h"
-
 #import "MMBooksTableViewCell.h"
-
 #import "MMBookInstroBottom.h"
-
-
 #import "MMBooklookVC.h"
-
 #import "MMCommon.h"
 
 
@@ -80,11 +74,21 @@
     [footer buttonClick:^(MMInstroItem state) {
         
         if (state == MMInstroItemAdd) {
+            
+            
+            //[]
+            
             //            NSLog(@"添加书籍");
         } else if (state == MMInstroItemRead) {
             //            NSLog(@"开始阅读");
             
             MMBooklookVC *vc = [[MMBooklookVC alloc] init];
+            
+            vc.bookInfo = self.bookInfo;
+            
+            
+            
+            
             UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:vc];
             [self presentViewController:bookInstroView animated:YES completion:^{
             }];

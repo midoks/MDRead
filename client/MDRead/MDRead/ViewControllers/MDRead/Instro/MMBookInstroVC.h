@@ -17,6 +17,9 @@
     
 }
 
+
+@property (nonatomic, strong) NSDictionary *bookInfo;
+
 @property (nonatomic, strong) MMBookInstroTextCell *bookDesc;
 @property (nonatomic, strong) MMBookInstroHead *head;
 

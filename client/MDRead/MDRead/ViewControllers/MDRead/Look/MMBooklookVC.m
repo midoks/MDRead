@@ -8,6 +8,7 @@
 
 #import "MMBooklookVC.h"
 #import "MMSimPagesVC.h"
+#import "MMNovelApi.h"
 
 @interface MMBooklookVC ()
 
@@ -22,14 +23,25 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
+    //MDLog(@"%@", self.bookInfo);
+
+    [[MMNovelApi shareInstance] BookContent:@"2" source_id:@"1" success:^(id responseObject) {
+        //MDLog(@"%@", [responseObject objectForKey:@"content"]);
+        
+        [self initLookView:[responseObject objectForKey:@"content"]];
+        [self initView];
+        [self hiddenNavBtn];
+        
+    } failure:^(int ret_code, NSString *ret_msg) {
+        MDLog(@"content:%d:%@", ret_code, ret_msg);
+    }];
     
     
     //[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:8.0/255.0 green:57.0/255.0 blue:134.0/255.0 alpha:1]];
     //[[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    [self initLookView];
-    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,9 +49,8 @@
 }
 
 
--(void)initLookView
+-(void)initLookView:(NSString *)content
 {
-    
     [self createContentPages];
     NSDictionary *options = [NSDictionary dictionaryWithObject: [NSNumber numberWithInteger:UIPageViewControllerSpineLocationNone]
                                                         forKey: UIPageViewControllerOptionSpineLocationKey];
@@ -47,13 +58,15 @@
     _pagesVC = [[UIPageViewController alloc] initWithTransitionStyle: UIPageViewControllerTransitionStylePageCurl
                                                navigationOrientation: UIPageViewControllerNavigationOrientationHorizontal
                                                              options: options];
-
+    
     
     _pagesVC.dataSource = self;
     [[_pagesVC view] setFrame:[[self view] bounds]];
     
     MMSimPagesVC *initialViewController = [self viewControllerAtIndex:0];
+    initialViewController.bookContent = content;
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
+    
     
     [_pagesVC setViewControllers:viewControllers
                        direction:UIPageViewControllerNavigationDirectionForward
@@ -63,6 +76,8 @@
     [self addChildViewController:_pagesVC];
     [[self view] addSubview:[_pagesVC view]];
     [_pagesVC didMoveToParentViewController:self];
+    
+    
 }
 
 - (NSUInteger)indexOfViewController:(MMSimPagesVC *)viewController
@@ -81,6 +96,8 @@
     _pageContent = [[NSMutableArray alloc] initWithArray:pageStrings];
 }
 
+
+
 - (UIViewController *)pageViewController:
 (UIPageViewController *)pageViewController viewControllerBeforeViewController:(MMSimPagesVC *)viewController
 {
@@ -93,6 +110,8 @@
     index--;
     return [self viewControllerAtIndex:index];
 }
+
+
 
 - (UIViewController *)pageViewController:
 (UIPageViewController *)pageViewController viewControllerAfterViewController:(MMSimPagesVC *)viewController

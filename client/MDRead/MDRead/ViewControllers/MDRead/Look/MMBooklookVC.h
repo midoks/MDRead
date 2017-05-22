@@ -11,4 +11,7 @@
 
 @interface MMBooklookVC : MMBookBaseLookVC <UIPageViewControllerDataSource>
 
+
+@property (nonatomic, strong) NSDictionary *bookInfo;
+
 @end

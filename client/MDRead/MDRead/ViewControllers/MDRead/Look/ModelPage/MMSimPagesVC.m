@@ -46,15 +46,26 @@
 
 -(void) initPageContent
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"3" ofType:@"txt"];
-    NSString *_content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    
+    //NSLog(@"---b:%@----bb",_bookContent);
+    //NSLog(@"---c:%@----cc",self.dataObject);
+    
+    NSString *_content = @"";
+    if (!_bookContent){
+        
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"3" ofType:@"txt"];
+        _content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    } else {
+        _content = _bookContent;
+    }
+    
     _content = [_content stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
     _content = [_content stringByReplacingOccurrencesOfString:@"<br>" withString:@"\n"];
     _content = [_content stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"];
 
     _content = [_content substringFromIndex:8];
 //    
-//    NSLog(@"content:\n%@", _content);
+    //NSLog(@"content:\n%@", _content);
     
     UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(20, 40, MD_W - 40, MD_H - 70)];
     label.text = self.dataObject;

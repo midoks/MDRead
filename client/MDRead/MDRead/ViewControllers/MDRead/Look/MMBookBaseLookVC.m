@@ -33,8 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initView];
-    [self hiddenNavBtn];
+//    [self initView];
+//    [self hiddenNavBtn];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -80,7 +80,7 @@
     //一些特殊设置
     UIView *centerView = [[UIView alloc] initWithFrame:CGRectMake(MD_W/3, 0, MD_W/3, MD_H)];
     [centerView setUserInteractionEnabled:YES];
-    [centerView setBackgroundColor:[UIColor clearColor]];
+    [centerView setBackgroundColor:[UIColor yellowColor]];
     [self.view addSubview:centerView];
     
     UITapGestureRecognizer *tapGesture= [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleShowView:)];

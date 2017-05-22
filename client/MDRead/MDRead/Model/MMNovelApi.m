@@ -89,35 +89,42 @@
         
         if(validate){
             
+            MDLog(@"%@", responseObject);
+        
+            if ([[responseObject objectForKey:@"ret_code"] intValue] < 0 ){
+                failure(-1, [NSString stringWithFormat:@"%@:%@", search, [responseObject objectForKey:@"ret_msg"]]);
+                return;
+            };
+            
             if ([responseObject count] < 1) {
                 failure(-1, [NSString stringWithFormat:@"%@:%@", search, @"搜索后没有数据!"]);
                 return;
             }
             
-            NSArray *check = [[NSArray alloc] initWithObjects:
-                              @"book_id",@"book_name",@"book_author",
-                              @"book_desc",@"book_type",@"book_status",
-                              nil];
+            
+            NSArray *check = [[NSArray alloc] initWithObjects:@"bid",@"sid", @"image", @"name",@"author",@"desc",nil];
             
             NSString *tmpKeyName    = @"";
             NSString *tmpK          = @"";
         
             for (int i=0; i<[check count]; i++) {
                 tmpK = [check objectAtIndex:i];
-                tmpKeyName = [[responseObject objectAtIndex:0] objectForKey:tmpK];
+                tmpKeyName = [[[responseObject objectForKey:@"data"] objectAtIndex:0] objectForKey:tmpK];
                 if (tmpKeyName == NULL) {
                     failure(-1,[NSString stringWithFormat:@"%@:%@,字段缺失!", search, tmpK]);
                     return;
                 }
             }
         } else{
-            //NSLog(@"%@", [responseObject class]);
+            
+            MDLog(@"%@", [responseObject class]);
+            
             if([responseObject isKindOfClass:[NSArray class]]){
                 success(responseObject);
                 return;
             }
             
-            if ([responseObject objectForKey:@"ret_code"]) {
+            if ([[responseObject objectForKey:@"ret_code"] intValue] < 0) {
                 failure([[responseObject objectForKey:@"ret_code"] intValue], [responseObject objectForKey:@"ret_msg"]);
             }
             
@@ -143,9 +150,9 @@
         failure:(void (^)(int ret_code, NSString *ret_msg))failure
        validate:(BOOL)validate
 {
-    [self setArgs:@"book_id" value:book_id];
+    [self setArgs:@"bid" value:book_id];
     if (![source_id isEqualToString:@""]) {
-        [self setArgs:@"source_id" value:source_id];
+        [self setArgs:@"sid" value:source_id];
     }
     
     NSString *book_list = [_callbackUrls objectForKey:@"book_list"];
@@ -167,11 +174,10 @@
             }
             
             
-            NSMutableArray *check = [[NSMutableArray alloc] initWithObjects:
-                              @"chapter_id",@"chapter_name", @"sort", nil];
+            NSMutableArray *check = [[NSMutableArray alloc] initWithObjects:@"bid",@"sid",@"cid",@"name", nil];
             
             if (![source_id isEqualToString:@""]) {
-                [check addObject:@"source_id"];
+                [check addObject:@"sid"];
             }
             
             NSString *tmpKeyName    = @"";
@@ -208,15 +214,14 @@
            failure:(void (^)(int ret_code, NSString *ret_msg))failure
           validate:(BOOL)validate
 {
-    [self setArgs:@"chapter_id" value:chapter_id];
+    [self setArgs:@"cid" value:chapter_id];
     if (![source_id isEqualToString:@""]) {
-        [self setArgs:@"source_id" value:source_id];
+        [self setArgs:@"sid" value:source_id];
     }
     
     NSString *book_content = [_callbackUrls objectForKey:@"book_content"];
     
-    
-    
+
     if (!book_content) {
         failure(-1, [NSString stringWithFormat:@"book_content未设置"]);
         return;
@@ -456,17 +461,16 @@
         } validate:true];
         
         //验证书籍列表信息
-        NSString *book_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_list"] objectForKey:@"book_id"];
-        NSString *source_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_list"] objectForKey:@"source_id"];
+        NSString *book_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_list"] objectForKey:@"bid"];
+        NSString *source_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_list"] objectForKey:@"sid"];
         [self BookList:book_id source_id:source_id success:^(id responseObject) {
-            
         } failure:^(int ret_code, NSString *ret_msg) {
             failure(ret_code, ret_msg);
         } validate:TRUE];
         
         //验证数据内容信息
-        NSString *chapter_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_content"] objectForKey:@"chapter_id"];
-        NSString *bconent_source_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_content"] objectForKey:@"source_id"];
+        NSString *chapter_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_content"] objectForKey:@"cid"];
+        NSString *bconent_source_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_content"] objectForKey:@"sid"];
         
         //内容验证
         [self BookContent:chapter_id source_id:bconent_source_id success:^(id responseObject) {

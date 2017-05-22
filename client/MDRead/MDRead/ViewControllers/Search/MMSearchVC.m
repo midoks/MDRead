@@ -119,7 +119,11 @@
         [_recommend itemClick:^(NSDictionary *item) {
             MDLog(@"-- itemClick ok ----");
             
+            
+            
             MMBookInstroVC *bookInstro = [[MMBookInstroVC alloc] init];
+            
+            bookInstro.bookInfo = item;
             
             MDLog(@"-- image:%@ -- ", [item objectForKey:@"image"]);
             MDLog(@"-- id:%@ -- ", [item objectForKey:@"id"]);
@@ -172,6 +176,8 @@
             
             MDLog(@"-- image:%@ -- ", [item objectForKey:@"image"]);
             MDLog(@"-- id:%@ -- ", [item objectForKey:@"id"]);
+            MDLog(@"-- sid:%@ -- ", [item objectForKey:@"sid"]);
+            MDLog(@"-- cid:%@ -- ", [item objectForKey:@"cid"]);
             MDLog(@"-- name:%@ -- ", [item objectForKey:@"name"]);
             MDLog(@"-- desc:%@ -- ", [item objectForKey:@"desc"]);
             MDLog(@"-- author:%@ -- ", [item objectForKey:@"author"]);

@@ -11,5 +11,6 @@
 @interface MMSimPagesVC : UIViewController
 
 @property (nonatomic,strong)NSString *dataObject;
+@property (nonatomic,strong) NSString *bookContent;
 
 @end

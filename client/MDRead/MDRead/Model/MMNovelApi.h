@@ -29,24 +29,30 @@
       success:(void (^)(id   responseObject))success
       failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 
+#pragma mark - 书籍章节列表 -
 -(void)BookList:(NSString *)book_id
       source_id:(NSString *)source_id
         success:(void (^)(id responseObject))success
         failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 
+#pragma mark - 书籍章节内容 -
 -(void)BookContent:(NSString *)chapter_id
          source_id:(NSString *)source_id
            success:(void (^)(id responseObject))success
            failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 
+#pragma mark - 书籍热门推荐 -
 -(void)recommend:(void (^)(id responseObject))success
          failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 
+#pragma mark - 书籍随机推荐 -
 -(void)rand:(void (^)(id responseObject))success
     failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 
+#pragma mark - 数据榜单列表 -
 -(void)BangList:(void (^)(id responseObject))success
         failure:(void (^)(int ret_code, NSString *ret_msg))failure;
+
 
 -(void)AuthorList:(void (^)(id responseObject))success
           failure:(void (^)(int ret_code, NSString *ret_msg))failure;
