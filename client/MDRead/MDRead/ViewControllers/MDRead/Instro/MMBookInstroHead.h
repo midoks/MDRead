@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMBookInstroHead : UIView{
+@interface MMBookInstroHead : UIView {
     
 }
 
@@ -16,5 +16,15 @@
 @property (nonatomic, strong) UILabel *bTitle;
 @property (nonatomic, strong) UILabel *bAuthor;
 @property (nonatomic, strong) UILabel *bDesc;
+
+
+typedef enum _MMBookHeadItem {
+    MMBookHeadItemList,
+    MMBookHeadItemStatus
+} MMBookHeadItem;
+
+typedef void (^MMBookHeadItemClick)(MMBookHeadItem state);
+
+-(void)btnClick:(MMBookHeadItemClick)block;
 
 @end

@@ -63,6 +63,11 @@
 {
     _head = [[MMBookInstroHead alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     _tableView.tableHeaderView = _head;
+    
+    
+    [_head btnClick:^(MMBookHeadItem state) {
+        MDLog(@"btn:%d", state);
+    }];
 }
 
 -(void)initFooterView
@@ -71,18 +76,12 @@
     [footer buttonClick:^(MMInstroItem state) {
         
         if (state == MMInstroItemAdd) {
-            
-            
-            //[]
-            
             //NSLog(@"添加书籍");
         } else if (state == MMInstroItemRead) {
             //NSLog(@"开始阅读");
             
             MMBooklookVC *vc = [[MMBooklookVC alloc] init];
-            
             vc.bookInfo = self.bookInfo;
-            
             UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:vc];
             [self presentViewController:bookInstroView animated:YES completion:^{
             }];
@@ -104,8 +103,8 @@
     
     [[MMNovelApi shareInstance] BookInfo:[_bookInfo objectForKey:@"bid"] source_id:[_bookInfo objectForKey:@"sid"] success:^(id responseObject) {
         
-        NSLog(@"%@", _bookInfo);
-        NSLog(@"%@", responseObject);
+//        MDLog(@"%@", _bookInfo);
+//        MDLog(@"%@", responseObject);
 
         _bookInfoList = [responseObject objectForKey:@"data"];
         [_tableView reloadData];

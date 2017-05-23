@@ -32,6 +32,8 @@
     
     [MMConfig initConf];
     
+    MDLog(@"NSHomeDirectory:%@", NSHomeDirectory());
+    
     //设置window属性(在AppDelegate中定义window属性),初始化windows的大小和位置
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];

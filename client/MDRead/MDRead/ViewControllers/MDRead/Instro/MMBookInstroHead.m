@@ -6,10 +6,16 @@
 //  Copyright © 2016年 midoks. All rights reserved.
 //
 
-#import "MMBookInstroHead.h"
-#import "MMCommon.h"
 
+#import "MMCommon.h"
+#import "MMBookInstroHead.h"
 #import "UIImageView+WebCache.h"
+
+@interface MMBookInstroHead()
+
+@property (nonatomic, strong) MMBookHeadItemClick btnClick;
+
+@end
 
 @implementation MMBookInstroHead
 
@@ -62,42 +68,55 @@
     _bDesc.textAlignment = NSTextAlignmentLeft;
     [self addSubview:_bDesc];
     
-    //其他信息
-    CGFloat bookBottomWith = MD_DW / 3;
-    
     UIView *bookOther = [[UIView alloc] initWithFrame:CGRectMake(0, [self viewPosY:_bDesc], MD_DW, 50)];
-    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, bookBottomWith, 50)];
+    
+    //其他信息
+    CGFloat bookBottomWith = MD_DW / 2;
+    
+
+    //目录
+    UIButton *goList = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, bookBottomWith, 50)];
+    [goList setTitle:@"目录" forState:UIControlStateNormal];
+    [goList setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    goList.titleLabel.font = [UIFont systemFontOfSize:14];
+    [goList setImage:[UIImage imageNamed:@"md_button_status"] forState:UIControlStateNormal];
+    [goList setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
+    goList.tag = 0;
+    [bookOther addSubview:goList];
     
     //阅读状态
-    [leftButton setTitle:@"在读" forState:UIControlStateNormal];
-    [leftButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    leftButton.titleLabel.font = [UIFont systemFontOfSize:14];
-    [leftButton setImage:[UIImage imageNamed:@"md_button_status"] forState:UIControlStateNormal];
-    [leftButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
-    [bookOther addSubview:leftButton];
+    UIButton *goStatus = [[UIButton alloc] initWithFrame:CGRectMake(bookBottomWith, 0, bookBottomWith, 50)];
+    [goStatus setTitle:@"在读" forState:UIControlStateNormal];
+    [goStatus setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    goStatus.titleLabel.font = [UIFont systemFontOfSize:14];
+    [goStatus setImage:[UIImage imageNamed:@"md_button_status"] forState:UIControlStateNormal];
+    [goStatus setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
+    goStatus.tag = 1;
+    [bookOther addSubview:goStatus];
     
-    
-    //目录
-    UIButton *centerButon = [[UIButton alloc] initWithFrame:CGRectMake(bookBottomWith, 0, bookBottomWith, 50)];
-    [centerButon setTitle:@"目录" forState:UIControlStateNormal];
-    [centerButon setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    centerButon.titleLabel.font = [UIFont systemFontOfSize:14];
-    [centerButon setImage:[UIImage imageNamed:@"md_button_status"] forState:UIControlStateNormal];
-    [centerButon setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
-    [bookOther addSubview:centerButon];
-    
-    //书籍信息
-    UIButton *rightButon = [[UIButton alloc] initWithFrame:CGRectMake(bookBottomWith*2, 0, bookBottomWith, 50)];
-    [rightButon setTitle:@"信息" forState:UIControlStateNormal];
-    [rightButon setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    rightButon.titleLabel.font = [UIFont systemFontOfSize:14];
-    [rightButon setImage:[UIImage imageNamed:@"md_button_status"] forState:UIControlStateNormal];
-    [rightButon setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
-    [bookOther addSubview:rightButon];
+    //点击
+    [goList addTarget:self action:@selector(btnItemClick:) forControlEvents:UIControlEventTouchUpInside];
+    [goStatus addTarget:self action:@selector(btnItemClick:) forControlEvents:UIControlEventTouchUpInside];
 
     [self addSubview:bookOther];
 }
 
+-(void)btnClick:(MMBookHeadItemClick)block
+{
+    _btnClick = block;
+}
+
+
+-(void)btnItemClick:(UIButton *)s
+{
+    if (_btnClick){
+        if (s.tag == 0) {
+            _btnClick(MMBookHeadItemList);
+        } else {
+            _btnClick(MMBookHeadItemStatus);
+        }
+    }
+}
 
 -(void)layoutSubviews{
     
@@ -112,9 +131,7 @@
     _bTitle.font = [UIFont systemFontOfSize:24];
     _bTitle.textAlignment = NSTextAlignmentCenter;
     
-    
-    
-    
+
 }
 
 
