@@ -32,7 +32,7 @@
         
         [self initLookView:[responseObject objectForKey:@"content"]];
         [self initView];
-        [self hiddenNavBtn];
+        //[self hiddenNavBtn];
         
     } failure:^(int ret_code, NSString *ret_msg) {
         MDLog(@"content:%d:%@", ret_code, ret_msg);
@@ -52,7 +52,7 @@
 -(void)initLookView:(NSString *)content
 {
     [self createContentPages];
-    NSDictionary *options = [NSDictionary dictionaryWithObject: [NSNumber numberWithInteger:UIPageViewControllerSpineLocationNone]
+    NSDictionary *options = [NSDictionary dictionaryWithObject: [NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin]
                                                         forKey: UIPageViewControllerOptionSpineLocationKey];
     
     _pagesVC = [[UIPageViewController alloc] initWithTransitionStyle: UIPageViewControllerTransitionStylePageCurl

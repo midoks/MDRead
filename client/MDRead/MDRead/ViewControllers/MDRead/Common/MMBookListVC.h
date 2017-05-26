@@ -10,4 +10,6 @@
 
 @interface MMBookListVC : UIViewController
 
+@property (nonatomic, strong) NSDictionary *bookInfo;
+
 @end

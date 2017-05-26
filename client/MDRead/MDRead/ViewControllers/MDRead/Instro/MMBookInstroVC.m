@@ -11,6 +11,7 @@
 #import "MMBooksTableViewCell.h"
 #import "MMBookInstroBottom.h"
 #import "MMBooklookVC.h"
+#import "MMBookListVC.h"
 #import "MMNovelApi.h"
 #import "MMCommon.h"
 
@@ -67,6 +68,9 @@
     
     [_head btnClick:^(MMBookHeadItem state) {
         MDLog(@"btn:%d", state);
+        MMBookListVC *vc = [[MMBookListVC alloc] init];
+        vc.bookInfo = self.bookInfo;
+        [self.navigationController pushViewController:vc animated:YES];
     }];
 }
 

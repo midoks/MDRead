@@ -213,7 +213,14 @@
     [_manager POST:encoded parameters:_args progress:^(NSProgress * uploadProgress) {
     } success:^(NSURLSessionDataTask * task, id  responseObject) {
         
+        int ret_code = [[responseObject objectForKey:@"ret_code"] intValue];
+        if ( ret_code < 0){
+            failure(-1, [NSString stringWithFormat:@"%d:%@", ret_code, [responseObject objectForKey:@"ret_msg"]]);
+            return;
+        }
+        
         if(validate){
+            //MDLog(@"%@", responseObject);
             
             if ([responseObject count] < 1) {
                 failure(-1, [NSString stringWithFormat:@"%@:%@", book_list_url, @"书籍章节没有数据!"]);
@@ -222,16 +229,12 @@
             
             NSMutableArray *check = [[NSMutableArray alloc] initWithObjects:@"bid",@"sid",@"cid",@"name", nil];
             
-            if (![source_id isEqualToString:@""]) {
-                [check addObject:@"sid"];
-            }
-            
             NSString *tmpKeyName    = @"";
             NSString *tmpK          = @"";
             
             for (int i=0; i<[check count]; i++) {
                 tmpK = [check objectAtIndex:i];
-                tmpKeyName = [[responseObject objectAtIndex:0] objectForKey:tmpK];
+                tmpKeyName = [[[responseObject objectForKey:@"data"] objectAtIndex:0] objectForKey:tmpK];
                 if (tmpKeyName == NULL) {
                     failure(-1,[NSString stringWithFormat:@"%@:%@,字段缺失!", book_list_url, tmpK]);
                     return;

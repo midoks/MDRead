@@ -112,9 +112,10 @@
     if (_btnClick){
         if (s.tag == 0) {
             _btnClick(MMBookHeadItemList);
-        } else {
-            _btnClick(MMBookHeadItemStatus);
         }
+//        else {
+//            _btnClick(MMBookHeadItemStatus);
+//        }
     }
 }
 
