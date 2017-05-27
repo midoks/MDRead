@@ -5,6 +5,7 @@
 //  Created by midoks on 16/5/28.
 //  Copyright © 2016年 midoks. All rights reserved.
 //
+#import <UIKit/UIKit.h>
 
 #import "MMNovelApi.h"
 #import "MMCommon.h"
@@ -39,6 +40,11 @@
         [_manager.requestSerializer setValue:@"MDREAD IOS Client/1.0(midoks@163.com)" forHTTPHeaderField:@"User-Agent"];
         
         _args = [[NSMutableDictionary alloc] init];
+        
+        NSString *identifierNumber = [[UIDevice currentDevice] identifierForVendor].UUIDString;
+        MDLog(@"手机序列号: %@",identifierNumber);
+        
+        
     }
     return self;
 }

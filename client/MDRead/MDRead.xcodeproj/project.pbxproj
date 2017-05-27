@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		821B3A6C1D8538E7000ABCE7 /* MMDismissingAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 821B3A681D8538E7000ABCE7 /* MMDismissingAnimator.m */; };
 		821B3A6D1D8538E7000ABCE7 /* MMPresentingAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 821B3A6B1D8538E7000ABCE7 /* MMPresentingAnimator.m */; };
+		821CC14D1ED94852003108A0 /* MMReadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 821CC14C1ED94852003108A0 /* MMReadModel.m */; };
 		8222883B1D755B5200D0CB6E /* MMBookInstroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8222883A1D755B5200D0CB6E /* MMBookInstroCell.m */; };
 		8227233B1D16DA73005340E6 /* MMBookshelfVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8227233A1D16DA73005340E6 /* MMBookshelfVC.m */; };
 		82306C471CC1D99E00888A10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82306C461CC1D99E00888A10 /* LaunchScreen.storyboard */; };
@@ -92,6 +93,8 @@
 		821B3A681D8538E7000ABCE7 /* MMDismissingAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDismissingAnimator.m; sourceTree = "<group>"; };
 		821B3A6A1D8538E7000ABCE7 /* MMPresentingAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPresentingAnimator.h; sourceTree = "<group>"; };
 		821B3A6B1D8538E7000ABCE7 /* MMPresentingAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPresentingAnimator.m; sourceTree = "<group>"; };
+		821CC14B1ED94852003108A0 /* MMReadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMReadModel.h; sourceTree = "<group>"; };
+		821CC14C1ED94852003108A0 /* MMReadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMReadModel.m; sourceTree = "<group>"; };
 		822288391D755B5200D0CB6E /* MMBookInstroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookInstroCell.h; sourceTree = "<group>"; };
 		8222883A1D755B5200D0CB6E /* MMBookInstroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBookInstroCell.m; sourceTree = "<group>"; };
 		822723391D16DA73005340E6 /* MMBookshelfVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookshelfVC.h; sourceTree = "<group>"; };
@@ -516,6 +519,8 @@
 			children = (
 				82DAC73B1CF9E76200E17706 /* MMNovelApi.h */,
 				82DAC73C1CF9E76200E17706 /* MMNovelApi.m */,
+				821CC14B1ED94852003108A0 /* MMReadModel.h */,
+				821CC14C1ED94852003108A0 /* MMReadModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -794,6 +799,7 @@
 				821B3A6D1D8538E7000ABCE7 /* MMPresentingAnimator.m in Sources */,
 				82CB2D051D5C457D008DE5FC /* RootVC.m in Sources */,
 				82BF79EF1DBB139F00E53808 /* MMSimPagesVC.m in Sources */,
+				821CC14D1ED94852003108A0 /* MMReadModel.m in Sources */,
 				82921E831DAE1C8E006C9765 /* MMBottomView.m in Sources */,
 				82C454851CB80F0600B83065 /* AppDelegate.m in Sources */,
 				827B026E1CCBE8FC00E2269B /* MMUILabel+textSize.m in Sources */,

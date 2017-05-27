@@ -8,4 +8,5 @@ target "MDRead" do
     pod 'pop', '~> 1.0'
     pod 'JSONKit'
     pod 'MJRefresh'
+    pod 'MBProgressHUD'
 end

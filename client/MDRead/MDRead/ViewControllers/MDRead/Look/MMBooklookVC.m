@@ -32,15 +32,12 @@
         
         [self initLookView:[responseObject objectForKey:@"content"]];
         [self initView];
-        //[self hiddenNavBtn];
+        [self hiddenNavBtn];
         
     } failure:^(int ret_code, NSString *ret_msg) {
         MDLog(@"content:%d:%@", ret_code, ret_msg);
     }];
     
-    
-    //[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:8.0/255.0 green:57.0/255.0 blue:134.0/255.0 alpha:1]];
-    //[[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
     self.view.backgroundColor = [UIColor whiteColor];
 }
 

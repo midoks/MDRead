@@ -22,7 +22,7 @@
     [super viewDidLoad];
     
     self.title = @"目录";
-
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MD_W, MD_H) style:UITableViewStylePlain];
@@ -64,6 +64,7 @@
     NSDictionary *info = [_chapterList objectAtIndex:indexPath.row];
     cell.textLabel.text = [info objectForKey:@"name"];
     cell.textLabel.font = [UIFont systemFontOfSize:14];
+    cell.textLabel.textColor = [UIColor grayColor];
     cell.accessoryType = UITableViewCellAccessoryNone;
     return cell;
 }
