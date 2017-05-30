@@ -9,6 +9,8 @@
 #import "MMBooklookVC.h"
 #import "MMSimPagesVC.h"
 #import "MMNovelApi.h"
+#import "MMReadModel.h"
+
 
 @interface MMBooklookVC ()
 
@@ -25,18 +27,29 @@
 {
     [super viewDidLoad];
     
-    //MDLog(@"%@", self.bookInfo);
-
-    [[MMNovelApi shareInstance] BookContent:@"2" source_id:@"1" success:^(id responseObject) {
-        //MDLog(@"%@", [responseObject objectForKey:@"content"]);
-        
+    MDLog(@"_bookInfo:%@", self.bookInfo);
+    
+    NSString *book_id = [_bookInfo objectForKey:@"bid"];
+    NSString *source_id = [_bookInfo objectForKey:@"sid"];
+    
+    
+    [[MMReadModel shareInstance] parseBookContent:book_id source_id:source_id success:^(id responseObject) {
         [self initLookView:[responseObject objectForKey:@"content"]];
-        [self initView];
-        [self hiddenNavBtn];
-        
+        [self initTap];
     } failure:^(int ret_code, NSString *ret_msg) {
-        MDLog(@"content:%d:%@", ret_code, ret_msg);
+        
     }];
+    
+
+//    [[MMNovelApi shareInstance] BookContent:@"2" source_id:@"1" success:^(id responseObject) {
+//        //MDLog(@"%@", [responseObject objectForKey:@"content"]);
+//        
+//        [self initLookView:[responseObject objectForKey:@"content"]];
+//        [self initTap];
+//        
+//    } failure:^(int ret_code, NSString *ret_msg) {
+//        MDLog(@"content:%d:%@", ret_code, ret_msg);
+//    }];
     
     self.view.backgroundColor = [UIColor whiteColor];
 }

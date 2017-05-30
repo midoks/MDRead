@@ -11,6 +11,5 @@
 @interface MMBookBaseLookVC : UIViewController <UIGestureRecognizerDelegate>
 
 
--(void)initView;
--(void)hiddenNavBtn;
+-(void)initTap;
 @end

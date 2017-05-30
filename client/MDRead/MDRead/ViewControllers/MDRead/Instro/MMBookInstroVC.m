@@ -77,7 +77,7 @@
 -(void)initFooterView
 {
     MMBookInstroBottom *footer = [[MMBookInstroBottom alloc] initWithFrame:CGRectMake(0, MD_DH - 54, MD_DW, 54)];
-    [footer buttonClick:^(MMInstroItem state) {
+    [footer btnClick:^(MMInstroItem state) {
         
         if (state == MMInstroItemAdd) {
             //NSLog(@"添加书籍");
@@ -88,6 +88,7 @@
             vc.bookInfo = self.bookInfo;
             UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:vc];
             [self presentViewController:bookInstroView animated:YES completion:^{
+                
             }];
         }
     }];
@@ -96,8 +97,7 @@
 
 -(void)cancelButtonClick
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-    }];
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 

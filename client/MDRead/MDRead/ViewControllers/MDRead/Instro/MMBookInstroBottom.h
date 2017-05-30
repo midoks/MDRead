@@ -18,6 +18,6 @@ typedef void (^MMInstroClick)(MMInstroItem state);
 
 @interface MMBookInstroBottom : UIView
 
--(void)buttonClick:(MMInstroClick)block;
+-(void)btnClick:(MMInstroClick)block;
 
 @end

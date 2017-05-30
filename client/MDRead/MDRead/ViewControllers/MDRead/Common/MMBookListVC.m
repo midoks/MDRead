@@ -8,6 +8,8 @@
 
 #import "MMBookListVC.h"
 #import "MMNovelApi.h"
+#import "MMReadModel.h"
+
 
 @interface MMBookListVC () <UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate>
 
@@ -30,11 +32,14 @@
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
     
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"md_back"] style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClick)];
+    self.navigationItem.leftBarButtonItem = leftButton;
+    
+    MMReadModel *s = [[MMReadModel shareInstance] readModel];
+    MDLog(@"%@", s);
     
     //MDLog(@"%@", self.bookInfo);
-    
     [[MMNovelApi shareInstance] BookList:[_bookInfo objectForKey:@"bid"] source_id:[_bookInfo objectForKeyedSubscript:@"sid"] success:^(id responseObject) {
-        
         //MDLog(@"%@", responseObject);
         _chapterList = [responseObject objectForKey:@"data"];
         [_tableView reloadData];
@@ -43,6 +48,12 @@
         MDLog(@"%d:%@", ret_code, ret_msg);
     }];
     
+}
+
+
+-(void)cancelButtonClick
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

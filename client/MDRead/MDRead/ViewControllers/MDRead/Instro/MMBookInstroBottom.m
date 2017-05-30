@@ -74,7 +74,7 @@
     [self addSubview:readBook];
 }
 
--(void)buttonClick:(MMInstroClick)block
+-(void)btnClick:(MMInstroClick)block
 {
     self.btnClick = block;
 }

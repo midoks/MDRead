@@ -30,11 +30,11 @@
     [super viewWillAppear:animated];
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [self initView];
-//    [self hiddenNavBtn];
+    [self initView];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -49,9 +49,8 @@
 }
 
 -(void)initView {
-    
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [[UIApplication sharedApplication] setStatusBarHidden:TRUE];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     self.isHidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -77,10 +76,15 @@
     UITapGestureRecognizer *maskTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenNavBtn)];
     [_maskView addGestureRecognizer:maskTap];
     
+}
+
+
+-(void)initTap
+{
     //一些特殊设置
     UIView *centerView = [[UIView alloc] initWithFrame:CGRectMake(MD_W/3, 0, MD_W/3, MD_H)];
     [centerView setUserInteractionEnabled:YES];
-    [centerView setBackgroundColor:[UIColor yellowColor]];
+    [centerView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:centerView];
     
     UITapGestureRecognizer *tapGesture= [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleShowView:)];
@@ -133,12 +137,13 @@
     _moonDayImageView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 24, 24)];
     _moonDayImageView.image = [UIImage imageNamed:moonDayName];
     [_moonDayView addSubview:_moonDayImageView];
+    
+    [self hiddenNavBtn];
 }
 
 -(void)cancelButtonClick
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-    }];
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 #pragma mark - 状态栏设置
@@ -146,11 +151,12 @@
 //[[UIApplication sharedApplication] setStatusBarHidden:YES]; 开始起效
 - (BOOL)prefersStatusBarHidden
 {
-    NSLog(@"%d", self.isHidden);
+    MDLog(@"isHidden:%d", self.isHidden);
     return self.isHidden;
 }
 
 - (UIStatusBarStyle) preferredStatusBarStyle {
+    MDLog(@"UIStatusBarStyle:%@", @"preferredStatusBarStyle");
     return  UIStatusBarStyleLightContent;
 }
 

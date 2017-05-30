@@ -42,7 +42,8 @@
         failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 
 #pragma mark - 书籍章节内容 -
--(void)BookContent:(NSString *)chapter_id
+-(void)BookContent:(NSString *)book_id
+        chapter_id:(NSString *)chapter_id
          source_id:(NSString *)source_id
            success:(void (^)(id responseObject))success
            failure:(void (^)(int ret_code, NSString *ret_msg))failure;

@@ -9,6 +9,10 @@
 #import "MMCommon.h"
 #import <CommonCrypto/CommonDigest.h>
 
+@interface MMCommon()
+
+@end
+
 @implementation MMCommon
 
 
@@ -145,6 +149,68 @@
             digest[8],digest[9],digest[10],digest[11],
             digest[12],digest[13],digest[14],digest[15]
             ];
+}
+
+#pragma mark - 创建文件路径 -
++(BOOL)createFilePath:(NSString *)path
+{
+    NSFileManager *fm = [NSFileManager defaultManager];
+    
+    if ([fm fileExistsAtPath:path]){
+        return TRUE;
+    }
+    
+    @try {
+        [fm createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+        return TRUE;
+    } @catch (NSException *exception) {
+    } @finally {}
+    
+    return FALSE;
+}
+
+#pragma mark - 文档相关方法 -
+
++(NSString *)modelPathName
+{
+    return @"MDRead";
+}
+
+#pragma mark - 文档保存 -
++(BOOL)docsModelSave:(NSString *)webSite folderName:(NSString *)folderName fileName:(NSString *)fileName object:(NSObject *)object
+{
+    NSString *docsPath =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true).lastObject;
+    NSString *modelPathName = [self modelPathName];
+    NSString *modelPath = [NSString stringWithFormat:@"%@/%@/%@/%@/", docsPath, modelPathName, webSite, folderName];
+    
+    if( [self createFilePath:modelPath] ){
+        modelPath = [NSString stringWithFormat:@"%@/%@.txt", modelPath, fileName];
+        [NSKeyedArchiver archiveRootObject:object toFile:modelPath];
+    }
+    
+    //MDLog(@"%@", modelPath);
+    return TRUE;
+}
+
+#pragma mark - 读取文档 -
++(id)docsModelGet:(NSString *)webSite folderName:(NSString *)folderName fileName:(NSString *)fileName
+{
+    NSString *docsPath =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true).lastObject;
+    NSString *modelPathName = [self modelPathName];
+    NSString *modelPath = [NSString stringWithFormat:@"%@/%@/%@/%@/%@.txt", docsPath, modelPathName, webSite, folderName, fileName];
+    
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:modelPath];
+}
+
+
+#pragma mark - 文档判断 -
++(BOOL)isExistDocsModel:(NSString *)webSite folderName:(NSString *)folderName fileName:(NSString *)fileName
+{
+    NSString *docsPath =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true).lastObject;
+    NSString *modelPathName = [self modelPathName];
+    NSString *modelPath = [NSString stringWithFormat:@"%@/%@/%@/%@/%@.txt", docsPath, modelPathName, webSite, folderName,fileName];
+    //MDLog(@"file:%@", modelPath);
+    return [[NSFileManager defaultManager] fileExistsAtPath:modelPath];
 }
 
 @end

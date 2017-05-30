@@ -40,6 +40,12 @@ static NSString *collectViewIdentifier = @"collectViewIdentifier";
         [self initEmptyDataView];
     }
     
+    
+//    NSString *p = [[NSFileManager defaultManager] s];
+//    MDLog(@"%@",p);
+    
+    NSString *t =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true).lastObject;
+    MDLog(@"%@",t);
     //self.navigationController.delegate = self;
 }
 

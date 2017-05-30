@@ -254,21 +254,24 @@
 }
 
 #pragma mark - 章节内容 -
--(void)BookContent:(NSString *)chapter_id
+-(void)BookContent:(NSString *)book_id
+        chapter_id:(NSString *)chapter_id
          source_id:(NSString *)source_id
            success:(void (^)(id responseObject))success
            failure:(void (^)(int ret_code, NSString *ret_msg))failure
 {
-    [self BookContent:chapter_id source_id:source_id success:success failure:failure validate:FALSE];
+    [self BookContent:book_id chapter_id:chapter_id source_id:source_id success:success failure:failure validate:FALSE];
 }
 
 #pragma mark - 章节内容 validate -
--(void)BookContent:(NSString *)chapter_id
+-(void)BookContent:(NSString *)book_id
+        chapter_id:(NSString *)chapter_id
          source_id:(NSString *)source_id
            success:(void (^)(id responseObject))success
            failure:(void (^)(int ret_code, NSString *ret_msg))failure
           validate:(BOOL)validate
 {
+    [self setArgs:@"bid" value:book_id];
     [self setArgs:@"cid" value:chapter_id];
     if (![source_id isEqualToString:@""]) {
         [self setArgs:@"sid" value:source_id];
@@ -542,7 +545,7 @@
         //验证书籍章节内容API
         NSString *chapter_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_content"] objectForKey:@"cid"];
         NSString *bconent_source_id = [[[resultJson objectForKey:@"vaildata"] objectForKey:@"book_content"] objectForKey:@"sid"];
-        [self BookContent:chapter_id source_id:bconent_source_id success:^(id responseObject) {
+        [self BookContent:book_id chapter_id:chapter_id source_id:bconent_source_id success:^(id responseObject) {
             MDLog(@"-- BookContent Vail OK --");
         } failure:^(int ret_code, NSString *ret_msg) {
             MDLog(@"-- BookContent %@ Fail --", responseObject);

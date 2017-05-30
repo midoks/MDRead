@@ -13,6 +13,7 @@
 		8222883B1D755B5200D0CB6E /* MMBookInstroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8222883A1D755B5200D0CB6E /* MMBookInstroCell.m */; };
 		8227233B1D16DA73005340E6 /* MMBookshelfVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8227233A1D16DA73005340E6 /* MMBookshelfVC.m */; };
 		82306C471CC1D99E00888A10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82306C461CC1D99E00888A10 /* LaunchScreen.storyboard */; };
+		8242DF9B1EDC335F00E7A2E3 /* MMReadChapterListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8242DF9A1EDC335F00E7A2E3 /* MMReadChapterListModel.m */; };
 		827B026E1CCBE8FC00E2269B /* MMUILabel+textSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 827B026D1CCBE8FC00E2269B /* MMUILabel+textSize.m */; };
 		828ABCD21D89331D00C9F575 /* libnetwork.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 828ABCD11D89331D00C9F575 /* libnetwork.tbd */; };
 		828ABCD41D8936A500C9F575 /* libSystem.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 828ABCD31D8936A500C9F575 /* libSystem.tbd */; };
@@ -100,6 +101,8 @@
 		822723391D16DA73005340E6 /* MMBookshelfVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookshelfVC.h; sourceTree = "<group>"; };
 		8227233A1D16DA73005340E6 /* MMBookshelfVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBookshelfVC.m; sourceTree = "<group>"; };
 		82306C461CC1D99E00888A10 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8242DF991EDC335F00E7A2E3 /* MMReadChapterListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMReadChapterListModel.h; sourceTree = "<group>"; };
+		8242DF9A1EDC335F00E7A2E3 /* MMReadChapterListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMReadChapterListModel.m; sourceTree = "<group>"; };
 		827B026C1CCBE8FC00E2269B /* MMUILabel+textSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMUILabel+textSize.h"; sourceTree = "<group>"; };
 		827B026D1CCBE8FC00E2269B /* MMUILabel+textSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMUILabel+textSize.m"; sourceTree = "<group>"; };
 		828ABCD11D89331D00C9F575 /* libnetwork.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libnetwork.tbd; path = usr/lib/libnetwork.tbd; sourceTree = SDKROOT; };
@@ -343,13 +346,6 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		8290529E1DBB27F30008DC0B /* Tool */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tool;
-			sourceTree = "<group>";
-		};
 		82BF79EC1DBB139F00E53808 /* ModelPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,7 +393,6 @@
 		82C1979F1D6D9B8300917F66 /* Look */ = {
 			isa = PBXGroup;
 			children = (
-				8290529E1DBB27F30008DC0B /* Tool */,
 				82BF79EC1DBB139F00E53808 /* ModelPage */,
 				82C197A71D6DE4EE00917F66 /* MMBooklookVC.h */,
 				82C197A81D6DE4EE00917F66 /* MMBooklookVC.m */,
@@ -521,6 +516,8 @@
 				82DAC73C1CF9E76200E17706 /* MMNovelApi.m */,
 				821CC14B1ED94852003108A0 /* MMReadModel.h */,
 				821CC14C1ED94852003108A0 /* MMReadModel.m */,
+				8242DF991EDC335F00E7A2E3 /* MMReadChapterListModel.h */,
+				8242DF9A1EDC335F00E7A2E3 /* MMReadChapterListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -818,6 +815,7 @@
 				82BF79EB1DB9DA8800E53808 /* MMConfig.m in Sources */,
 				829052A41DBC7F190008DC0B /* MMButton.m in Sources */,
 				82A24A2A1DE98FAA00DA6666 /* MMBookListVC.m in Sources */,
+				8242DF9B1EDC335F00E7A2E3 /* MMReadChapterListModel.m in Sources */,
 				82D72BE21D1E5F03006E0176 /* MMBookshelfCollectionViewCell.m in Sources */,
 				82CF29941DB07E69006762A3 /* MMBookBaseLookVC.m in Sources */,
 				8222883B1D755B5200D0CB6E /* MMBookInstroCell.m in Sources */,
