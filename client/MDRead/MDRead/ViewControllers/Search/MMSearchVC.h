@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMSearchVC : UIViewController{
-    
+@interface MMSearchVC : UIViewController
+{
 }
 
 @end

@@ -36,6 +36,18 @@
     return [UIColor colorWithRed:red green:green blue:blue alpha:1.0f];
 }
 
+#pragma mark - 获取值(test) -
++(NSArray *) getRgbWithColor:(UIColor *)color
+{
+    CGFloat red = 0.0;
+    CGFloat green = 0.0;
+    CGFloat blue = 0.0;
+    CGFloat alpha = 0.0;
+    [color getRed:&red green:&green blue:&blue alpha:&alpha];
+    return @[@(red), @(green), @(blue), @(alpha)];
+}
+
+
 
 -(void)timerFireMethod:(NSTimer*)theTimer
 {

@@ -46,11 +46,10 @@
 
 -(void)initTitle
 {
-    _title = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 150, 30)];
+    _title = [[UILabel alloc] initWithFrame:CGRectMake(10, 5,  150, 30)];
     _title.backgroundColor = [UIColor grayColor];
     _title.alpha = 0.3;
     _title.font = [UIFont systemFontOfSize:14];
-    
     [self addSubview:_title];
 }
 
@@ -72,10 +71,6 @@
 }
 
 -(void)setSDesc:(NSString *)desc{
-
-    if ([desc isEqualToString:@""]){
-        desc = @"暂无描述";
-    }
     
     _desc.backgroundColor = [UIColor clearColor];
     _desc.alpha = 1;
@@ -92,9 +87,10 @@
     [self addSubview:_image];
 }
 
--(void)setSImage:(NSString *)imageUrl{
-    _image.backgroundColor = [UIColor clearColor];
+-(void)setSImage:(NSString *)imageUrl
+{
     _image.alpha = 1;
+    _image.backgroundColor = [UIColor clearColor];
     [_image sd_setImageWithURL:[[NSURL alloc] initWithString:imageUrl]];
 }
 
@@ -102,6 +98,10 @@
 {
     [super layoutSubviews];
     
+    //MDLog(@"%f", MD_FW - 10 - 60);
+    _title.frame = CGRectMake(10, 5,  MD_FW - 10 - 60 - 20, 30);
+    _desc.frame = CGRectMake(10, 40, MD_FW - 10 - 60 - 20, 50);
+    _image.frame =  CGRectMake(MD_FW - 10 - 60, 5, 60, 85);
 }
 
 @end

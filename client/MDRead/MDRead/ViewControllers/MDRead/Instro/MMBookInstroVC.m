@@ -15,6 +15,9 @@
 #import "MMNovelApi.h"
 #import "MMCommon.h"
 
+#import "MMPresentingAnimator.h"
+#import "UIImageView+WebCache.h"
+
 
 @interface MMBookInstroVC () <UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate>
 
@@ -34,6 +37,8 @@
     [self initFooterView];
     
     [self reloadBookInfo];
+    
+    MDLog(@"%@", _bookInfo);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,6 +63,8 @@
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClick)];
     self.navigationItem.rightBarButtonItem = rightButton;
+    
+    
 }
 
 -(void)initHeadView
@@ -72,6 +79,11 @@
         vc.bookInfo = self.bookInfo;
         [self.navigationController pushViewController:vc animated:YES];
     }];
+    
+    [_head.bImage sd_setImageWithURL:[NSURL URLWithString:[_bookInfo objectForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"books_test"]];
+    _head.bTitle.text = [_bookInfo objectForKey:@"name"];
+    _head.bDesc.text = [_bookInfo objectForKey:@"desc"];
+    _head.bAuthor.text = [_bookInfo objectForKey:@"author"];
 }
 
 -(void)initFooterView

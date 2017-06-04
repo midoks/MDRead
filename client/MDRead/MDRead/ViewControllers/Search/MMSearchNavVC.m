@@ -10,8 +10,13 @@
 #import "MMSearchCell.h"
 #import "MMNovelApi.h"
 #import "MMCommon.h"
+#import "MMBookInstroVC.h"
 
-@interface MMSearchNavVC () <UISearchBarDelegate,UITableViewDataSource, UITableViewDelegate>
+#import "MMPresentingAnimator.h"
+#import "UIImageView+WebCache.h"
+
+
+@interface MMSearchNavVC () <UISearchBarDelegate,UITableViewDataSource, UITableViewDelegate,UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, strong) UISearchBar *search;
 
@@ -86,19 +91,26 @@
 #pragma mark - cancel -
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self dismissViewControllerAnimated:NO completion:^(){}];
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    //NSLog(@"%@", searchBar.text);
+    //MDLog(@"%@", searchBar.text);
     [[MMNovelApi shareInstance] Search:searchBar.text success:^(id _Nonnull responseObject) {
-        NSLog(@"%@", responseObject);
-   
-        _tableData = responseObject;
-        [_tableView reloadData];
+        //MDLog(@"%@", responseObject);
+        
+        int code = [[responseObject objectForKey:@"ret_code"] intValue];
+        if (code > -1){
+            _tableData = [responseObject objectForKey:@"data"];
+            [_tableView reloadData];
+        } else {
+            NSString *ret_msg = [responseObject objectForKey:@"ret_msg"];
+            [MMCommon showMessage:[NSString stringWithFormat:@"%@", ret_msg]];
+        }
+        
     } failure:^(int ret_code, NSString *ret_msg) {
-        [MMCommon showMessage:[NSString stringWithFormat:@"%d:%@", ret_code, ret_msg]];
+        [MMCommon showMessage:[NSString stringWithFormat:@"%@", ret_msg]];
     }];
     
     [searchBar resignFirstResponder];
@@ -125,26 +137,34 @@
 {
     MMSearchCell *cell = [[MMSearchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MMSearchNavVC"];
     
-    [cell setSTitle:[[_tableData objectAtIndex:indexPath.row] objectForKey:@"book_name"]];
-    [cell setSDesc:[[_tableData objectAtIndex:indexPath.row] objectForKey:@"book_desc"]];
+    [cell setSTitle:[[_tableData objectAtIndex:indexPath.row] objectForKey:@"name"]];
+    [cell setSDesc:[[_tableData objectAtIndex:indexPath.row] objectForKey:@"desc"]];
     
-    
-    NSString *image = [[_tableData objectAtIndex:indexPath.row] objectForKey:@"book_image"];
-    //NSLog(@"%@", image);
-    
+    NSString *image = [[_tableData objectAtIndex:indexPath.row] objectForKey:@"image"];
     [cell setSImage:image];
-    
-    //cell.textLabel.text = [[_tableData objectAtIndex:indexPath.row] objectForKey:@"book_name"];
-    
-//    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-//    cell.textLabel.text = [[_tableData objectAtIndex:indexPath.row] objectForKey:@"book_name"];
-//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
+    
+    NSDictionary *item = [_tableData objectAtIndex:indexPath.row];
+    MMBookInstroVC *bookInstro = [[MMBookInstroVC alloc] init];
+    bookInstro.bookInfo = item;
+    
+    UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:bookInstro];
+    bookInstroView.transitioningDelegate = self;
+    
+    [self presentViewController:bookInstroView animated:YES completion:^{}];
+    
+}
+
+#pragma mark - 动画效果 -
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
+    MMPresentingAnimator *a = [[MMPresentingAnimator alloc] init];
+    a.targetEdge = UIRectEdgeRight;
+    return a;
 }
 
 @end

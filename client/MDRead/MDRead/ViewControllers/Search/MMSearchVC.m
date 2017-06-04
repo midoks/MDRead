@@ -122,27 +122,16 @@
             
             
             MMBookInstroVC *bookInstro = [[MMBookInstroVC alloc] init];
-            
             bookInstro.bookInfo = item;
             
-            MDLog(@"-- image:%@ -- ", [item objectForKey:@"image"]);
-            MDLog(@"-- bid:%@ -- ", [item objectForKey:@"bid"]);
-            MDLog(@"-- name:%@ -- ", [item objectForKey:@"name"]);
-            MDLog(@"-- desc:%@ -- ", [item objectForKey:@"desc"]);
-            MDLog(@"-- author:%@ -- ", [item objectForKey:@"author"]);
+            MDLog(@"-- item:%@ -- ", item);
             
             
             UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:bookInstro];
             bookInstroView.transitioningDelegate = self;
             
+            [self presentViewController:bookInstroView animated:YES completion:^{}];
             
-            [self presentViewController:bookInstroView animated:YES completion:^{
-                [bookInstro.head.bImage sd_setImageWithURL:[NSURL URLWithString:[item objectForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"books_test"]];
-                bookInstro.head.bTitle.text = [item objectForKey:@"name"];
-                bookInstro.head.bDesc.text = [item objectForKey:@"desc"];
-                bookInstro.head.bAuthor.text = [item objectForKey:@"author"];
-                
-            }];
         }];
         
     }];
@@ -175,12 +164,7 @@
             MMBookInstroVC *bookInstro = [[MMBookInstroVC alloc] init];
             bookInstro.bookInfo = item;
             
-            MDLog(@"-- image:%@ -- ", [item objectForKey:@"image"]);
-            MDLog(@"-- bid:%@ -- ", [item objectForKey:@"bid"]);
-            MDLog(@"-- sid:%@ -- ", [item objectForKey:@"sid"]);
-            MDLog(@"-- name:%@ -- ", [item objectForKey:@"name"]);
-            MDLog(@"-- desc:%@ -- ", [item objectForKey:@"desc"]);
-            MDLog(@"-- author:%@ -- ", [item objectForKey:@"author"]);
+            MDLog(@"-- rand item:%@ -- ", item);
             
             
             UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:bookInstro];
@@ -188,10 +172,7 @@
             
             
             [self presentViewController:bookInstroView animated:YES completion:^{
-                [bookInstro.head.bImage sd_setImageWithURL:[NSURL URLWithString:[item objectForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"books_test"]];
-                bookInstro.head.bTitle.text = [item objectForKey:@"name"];
-                bookInstro.head.bDesc.text = [item objectForKey:@"desc"];
-                bookInstro.head.bAuthor.text = [item objectForKey:@"author"];
+               
                 
             }];
         }];

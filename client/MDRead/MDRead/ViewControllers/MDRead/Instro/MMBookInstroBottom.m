@@ -52,7 +52,7 @@
     UIButton *addBook = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, w, self.frame.size.height)];
     addBook.tag = 0;
     [addBook setTitle:@"阅读" forState:UIControlStateNormal];
-    //[addBook setTintColor:[UIColor blueColor]];
+    //[addBook setTintColor:[UIColor cyanColor]];
 //    addBook.tintColor = [UIColor colorWithRed:30/255 green:138/255 blue:230/255 alpha:1];
     addBook.titleLabel.font = [UIFont systemFontOfSize:16];
     addBook.titleLabel.font = [UIFont boldSystemFontOfSize:16];

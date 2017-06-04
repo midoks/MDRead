@@ -16,6 +16,7 @@
 
 +(void)asynTask:(void (^)())task;
 +(UIColor *)randomColor;
++(NSArray *) getRgbWithColor:(UIColor *)color;
 
 +(void)showMessage:(NSString *)message;
 

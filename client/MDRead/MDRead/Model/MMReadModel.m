@@ -9,11 +9,9 @@
 #import "MMReadModel.h"
 #import "MMCommon.h"
 #import "MMNovelApi.h"
-#import "MMReadChapterListModel.h"
+#import "MMReadChapterModel.h"
 
 @interface MMReadModel() <NSCoding>
-
-@property (nonatomic, strong) MMReadChapterListModel *chapterList;
 
 @end
 
@@ -21,25 +19,20 @@
 
 -(id)init
 {
-    if(self = [super init]){
-    
-    }
+    self = [super init];
     return self;
 }
-
 
 #pragma mark - NSCoding -
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
-
-    MDLog(@"%@", @"类型保存。。");
+    [aCoder encodeObject:_chapterList forKey:@"chapterList"];
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
-    if(self = [super init]){
-        MDLog(@"12123123123123123123");
-    }
+    self = [super init];
+    _chapterList = [aDecoder decodeObjectForKey:@"chapterList"];
     return self;
 }
 
@@ -61,50 +54,66 @@
 }
 
 #pragma mark - 解析book列表数据 -
--(void)parseBookList:(NSString *)book_id
-           source_id:(NSString *)source_id
-             success:(void (^)(id responseObject))success
+-(void)parseBookList:(void (^)(id responseObject))success
              failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 {
     
     
-    //获取书籍章节列表
-    [[MMNovelApi shareInstance] BookList:book_id source_id:source_id success:^(id responseObject) {
-        
-        MDLog(@"%@", responseObject);
-        NSMutableArray *list = [responseObject objectForKey:@"data"];
-        
-        //MDLog(@"%@", list);
-        
-        success(list);
-    } failure:^(int ret_code, NSString *ret_msg) {
-        failure(ret_code, ret_msg);
-    }];
+    
+    NSString *book_id = [_bookInfo objectForKey:@"bid"];
+    NSString *source_id = [_bookInfo objectForKey:@"sid"];
+    
+    if ([self isExistFileBook]){
+        MMReadModel *p = [self readBook];
+        _chapterList = p.chapterList;
+        success(_chapterList);
+    } else {
+        //获取书籍章节列表
+        [[MMNovelApi shareInstance] BookList:book_id source_id:source_id success:^(id responseObject) {
+            
+            NSMutableArray *list = [responseObject objectForKey:@"data"];
+            _chapterList = [[NSMutableArray alloc] init];
+            
+            for (int i=0; i< [list count]; i++) {
+                MMReadChapterModel *a = [[MMReadChapterModel alloc] init];
+                a.cid = [[list objectAtIndex:i] objectForKey:@"cid"];
+                a.sid = [[list objectAtIndex:i] objectForKey:@"sid"];
+                a.bid = [[list objectAtIndex:i] objectForKey:@"bid"];
+                a.name = [[list objectAtIndex:i] objectForKey:@"name"];
+                
+                [_chapterList addObject:a];
+            }
+            
+            [self save];
+            
+            success(_chapterList);
+        } failure:^(int ret_code, NSString *ret_msg) {
+            failure(ret_code, ret_msg);
+        }];
+    }
 }
 
 #pragma mark - 解析book数据 -
--(void)parseBookContent:(NSString *)book_id
-              source_id:(NSString *)source_id
-                success:(void (^)(id responseObject))success
+-(void)parseBookContent:(void (^)(id responseObject))success
                 failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 {
-    [self parseBookList:book_id source_id:source_id success:^(id responseObject) {
-        MDLog(@"responseObject:%@", responseObject);
+    [self parseBookList:^(id responseObject) {
+
+        if ([responseObject count] < 1) {
+            failure(-1, @"缺少章节数据!");
+            [MMCommon showMessage:@"缺少章节数据!"];
+            return;
+        }
         
-        NSMutableDictionary *chapter = [responseObject objectAtIndex:0];
+        MMReadChapterModel *chapter = [responseObject objectAtIndex:0];
         
-        MDLog(@"%@", chapter);
-        
-        NSString *book_id = [chapter objectForKey:@"bid"];
-        NSString *chapter_id = [chapter objectForKey:@"cid"];
-        NSString *source_id = [chapter objectForKey:@"sid"];
+        NSString *book_id = chapter.bid;
+        NSString *chapter_id = chapter.cid;
+        NSString *source_id = chapter.sid;
         
         [[MMNovelApi shareInstance] BookContent:book_id chapter_id:chapter_id source_id:source_id success:^(id responseObject) {
             
-            MDLog(@"%@", responseObject);
-            
             success(responseObject);
-            
         } failure:^(int ret_code, NSString *ret_msg) {
             failure(ret_code, ret_msg);
         }];
@@ -114,45 +123,26 @@
     }];
 }
 
-
-#pragma mark - 返回阅读模型 -
--(MMReadModel *)readModel
-{
-    MMReadModel *model;
-    if([self isExistFileBook]){
-        MDLog(@"%@", @"存在文档");
-        id m = [self readFileBook];
-        
-        model = (MMReadModel *)m;
-        NSLog(@"%@", m);
-    } else {
-        MDLog(@"%@", @"不存在文档");
-        
-        [self save];
-    }
-    
-    return model;
-}
-
-
 #pragma mark 读取文件
--(id)readFileBook
+-(id)readBook
 {
-    id model = [MMCommon docsModelGet:[self getWebSite] folderName:@"ss" fileName:@"ss"];
+    NSString *folderName = [NSString stringWithFormat:@"%@_%@",[_bookInfo objectForKey:@"bid"], [_bookInfo objectForKey:@"sid"]];
+    id model = [MMCommon docsModelGet:[self getWebSite] folderName:folderName fileName:[_bookInfo objectForKey:@"name"]];
     return model;
 }
 
 #pragma mark - 保存文档 -
 -(void)save
 {
-    [MMCommon docsModelSave:[self getWebSite] folderName:@"ss" fileName:@"ss" object:self];
+    NSString *folderName = [NSString stringWithFormat:@"%@_%@",[_bookInfo objectForKey:@"bid"], [_bookInfo objectForKey:@"sid"]];
+    [MMCommon docsModelSave:[self getWebSite] folderName:folderName fileName:[_bookInfo objectForKey:@"name"] object:self];
 }
 
 #pragma mark - 是否存在文件数据 -
 -(BOOL)isExistFileBook
 {
-    
-    BOOL r = [MMCommon isExistDocsModel:[self getWebSite] folderName:@"ss" fileName:@"ss"];
+    NSString *folderName = [NSString stringWithFormat:@"%@_%@",[_bookInfo objectForKey:@"bid"], [_bookInfo objectForKey:@"sid"]];
+    BOOL r = [MMCommon isExistDocsModel:[self getWebSite] folderName:folderName fileName:[_bookInfo objectForKey:@"name"]];
     if (r) {
         return TRUE;
     }

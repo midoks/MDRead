@@ -22,34 +22,23 @@
 
 @implementation MMBooklookVC
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    MDLog(@"_bookInfo:%@", self.bookInfo);
-    
-    NSString *book_id = [_bookInfo objectForKey:@"bid"];
-    NSString *source_id = [_bookInfo objectForKey:@"sid"];
-    
-    
-    [[MMReadModel shareInstance] parseBookContent:book_id source_id:source_id success:^(id responseObject) {
+    MMReadModel *mmrm = [MMReadModel shareInstance];
+    mmrm.bookInfo = _bookInfo;
+
+    [mmrm parseBookContent:^(id responseObject) {
         [self initLookView:[responseObject objectForKey:@"content"]];
         [self initTap];
     } failure:^(int ret_code, NSString *ret_msg) {
+        MDLog(@"%d:%@", ret_code, ret_msg);
         
+        [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+        [self dismissViewControllerAnimated:YES completion:^{}];
     }];
-    
-
-//    [[MMNovelApi shareInstance] BookContent:@"2" source_id:@"1" success:^(id responseObject) {
-//        //MDLog(@"%@", [responseObject objectForKey:@"content"]);
-//        
-//        [self initLookView:[responseObject objectForKey:@"content"]];
-//        [self initTap];
-//        
-//    } failure:^(int ret_code, NSString *ret_msg) {
-//        MDLog(@"content:%d:%@", ret_code, ret_msg);
-//    }];
     
     self.view.backgroundColor = [UIColor whiteColor];
 }
@@ -68,7 +57,6 @@
     _pagesVC = [[UIPageViewController alloc] initWithTransitionStyle: UIPageViewControllerTransitionStylePageCurl
                                                navigationOrientation: UIPageViewControllerNavigationOrientationHorizontal
                                                              options: options];
-    
     
     _pagesVC.dataSource = self;
     [[_pagesVC view] setFrame:[[self view] bounds]];

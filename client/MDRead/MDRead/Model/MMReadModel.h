@@ -7,20 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MMReadChapterModel.h"
 
 @interface MMReadModel : NSObject 
 
+@property (nonatomic, strong) NSDictionary *bookInfo;
+@property (nonatomic, strong) NSMutableArray<MMReadChapterModel *> *chapterList;
+
 +(MMReadModel*)shareInstance;
 
--(MMReadModel *)readModel;
-
--(void)parseBookList:(NSString *)book_id
-           source_id:(NSString *)source_id
-             success:(void (^)(id responseObject))success
+-(void)parseBookList:(void (^)(id responseObject))success
              failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 
--(void)parseBookContent:(NSString *)book_id
-              source_id:(NSString *)source_id
-                success:(void (^)(id responseObject))success
+-(void)parseBookContent:(void (^)(id responseObject))success
                 failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 @end

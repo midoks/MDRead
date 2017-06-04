@@ -8,13 +8,16 @@
 
 #import "MMBookListVC.h"
 #import "MMNovelApi.h"
+#import "MMReadChapterModel.h"
 #import "MMReadModel.h"
+#import "MMCommon.h"
 
 
 @interface MMBookListVC () <UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *chapterList;
+//@property (nonatomic, strong) NSMutableArray *chapterList;
+@property (nonatomic, strong) NSMutableArray<MMReadChapterModel *> *chapterList;
 
 @end
 
@@ -24,7 +27,6 @@
     [super viewDidLoad];
     
     self.title = @"目录";
-    
     self.view.backgroundColor = [UIColor whiteColor];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MD_W, MD_H) style:UITableViewStylePlain];
@@ -32,24 +34,24 @@
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
     
+    
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"md_back"] style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClick)];
     self.navigationItem.leftBarButtonItem = leftButton;
     
-    MMReadModel *s = [[MMReadModel shareInstance] readModel];
-    MDLog(@"%@", s);
+    MMReadModel *mmna = [MMReadModel shareInstance];
+    mmna.bookInfo = self.bookInfo;
     
-    //MDLog(@"%@", self.bookInfo);
-    [[MMNovelApi shareInstance] BookList:[_bookInfo objectForKey:@"bid"] source_id:[_bookInfo objectForKeyedSubscript:@"sid"] success:^(id responseObject) {
-        //MDLog(@"%@", responseObject);
-        _chapterList = [responseObject objectForKey:@"data"];
+    [mmna parseBookList:^(id responseObject) {
+        
+        _chapterList = responseObject;
+        //MDLog(@"%@", _chapterList);
         [_tableView reloadData];
         
     } failure:^(int ret_code, NSString *ret_msg) {
-        MDLog(@"%d:%@", ret_code, ret_msg);
+        [MMCommon showMessage:ret_msg];
     }];
     
 }
-
 
 -(void)cancelButtonClick
 {
@@ -68,12 +70,11 @@
     return 44;
 }
 
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    NSDictionary *info = [_chapterList objectAtIndex:indexPath.row];
-    cell.textLabel.text = [info objectForKey:@"name"];
+    MMReadChapterModel *info = [_chapterList objectAtIndex:indexPath.row];
+    cell.textLabel.text = info.name;
     cell.textLabel.font = [UIFont systemFontOfSize:14];
     cell.textLabel.textColor = [UIColor grayColor];
     cell.accessoryType = UITableViewCellAccessoryNone;
