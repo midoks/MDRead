@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @interface MMBooksSrcollView : UIView
 
 @property (nonatomic, strong) UILabel *sectionTitle;
-
-
-
 -(void)initViewData:(NSMutableDictionary *)data;
+
+-(void)itemClick:(mdItemClick)block;
 
 @end

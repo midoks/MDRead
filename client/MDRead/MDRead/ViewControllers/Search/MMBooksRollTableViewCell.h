@@ -7,14 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMCommon.h"
+#import "MMBooksSrcollView.h"
 
 @interface MMBooksRollTableViewCell : UITableViewCell
 
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 
 @property(nonatomic, strong) UILabel *sectionTitle;
--(void)initRankData;
+@property(nonatomic, strong) NSMutableArray<MMBooksSrcollView *>* pages;
+@property(nonatomic, strong) MMBooksSrcollView *currentPage;
 
 -(NSInteger)rollHeight;
+-(void)initRankData;
+-(void)setClickBlock:(mdItemClick)block;
 
 @end

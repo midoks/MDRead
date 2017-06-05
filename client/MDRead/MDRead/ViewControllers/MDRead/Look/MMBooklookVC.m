@@ -10,6 +10,7 @@
 #import "MMSimPagesVC.h"
 #import "MMNovelApi.h"
 #import "MMReadModel.h"
+#import "MMCommon.h"
 
 
 @interface MMBooklookVC ()
@@ -33,11 +34,14 @@
         [self initLookView:[responseObject objectForKey:@"content"]];
         [self initTap];
     } failure:^(int ret_code, NSString *ret_msg) {
-        MDLog(@"%d:%@", ret_code, ret_msg);
+        //MDLog(@"%d:%@", ret_code, ret_msg);
         
-        [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-        [self dismissViewControllerAnimated:YES completion:^{}];
+        [MMCommon showMessage:ret_msg];
+        
+        [self dismissViewControllerAnimated:NO completion:^{
+            [[UIApplication sharedApplication] setStatusBarHidden:NO];
+            [self.navigationController setNavigationBarHidden:NO animated:NO];
+        }];
     }];
     
     self.view.backgroundColor = [UIColor whiteColor];

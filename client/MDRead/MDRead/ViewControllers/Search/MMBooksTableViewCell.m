@@ -113,10 +113,8 @@ static NSString *collectViewIdentifier = @"collectViewIdentifier";
         _dataList = responseObject;
         [self reloadData];
         success();
-        
     } failure:^(int ret_code, NSString *ret_msg) {
-        success();
-        [MMCommon showMessage:[NSString stringWithFormat:@"%d:%@", ret_code, ret_msg]];
+        [MMCommon showMessage:[NSString stringWithFormat:@"%@", ret_msg]];
     }];
 }
 
@@ -136,8 +134,7 @@ static NSString *collectViewIdentifier = @"collectViewIdentifier";
         [self reloadData];
         success();
     } failure:^(int ret_code, NSString *ret_msg) {
-        success();
-        [MMCommon showMessage:[NSString stringWithFormat:@"%d:%@", ret_code, ret_msg]];
+        [MMCommon showMessage:[NSString stringWithFormat:@"%@", ret_msg]];
     }];
 }
 

@@ -57,9 +57,6 @@
 -(void)parseBookList:(void (^)(id responseObject))success
              failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 {
-    
-    
-    
     NSString *book_id = [_bookInfo objectForKey:@"bid"];
     NSString *source_id = [_bookInfo objectForKey:@"sid"];
     
@@ -101,7 +98,6 @@
 
         if ([responseObject count] < 1) {
             failure(-1, @"缺少章节数据!");
-            [MMCommon showMessage:@"缺少章节数据!"];
             return;
         }
         

@@ -15,10 +15,11 @@
 @interface MMBooksRollTableViewCell() <UIScrollViewDelegate>
 
 @property(nonatomic, strong) UIScrollView *roll;
-@property(nonatomic, strong) NSMutableArray *listPage;
 @property(nonatomic, strong) UIPageControl *pageIndicator;
 
 @property(nonatomic, strong) id list;
+@property(nonatomic, copy) mdItemClick itemClickBlock;
+
 
 @end
 
@@ -84,18 +85,24 @@
     
     [self addSubview:_roll];
     
-    _listPage = [[NSMutableArray alloc] init];
+    _pages = [[NSMutableArray alloc] init];
     
     for (NSInteger i = 0; i<3; i++) {
         
         MMBooksSrcollView *rollView = [[MMBooksSrcollView alloc] initWithFrame:CGRectMake(MD_DW * i, 0, MD_DW, rollH)];
         rollView.tag = i;
         
-        [_listPage addObject:rollView];
+        [_pages addObject:rollView];
         [_roll addSubview:rollView];
     }
-    
     [_roll scrollRectToVisible:CGRectMake(MD_DW, 0, MD_DW, rollH) animated:NO];
+}
+
+-(void)setClickBlock:(mdItemClick)block
+{
+    _itemClickBlock = block;
+    _currentPage = [_pages objectAtIndex:1];
+    [_currentPage itemClick:block];
 }
 
 -(void)initPageIndicator
@@ -113,14 +120,14 @@
 -(void)initRankData
 {
     [[MMNovelApi shareInstance] BangList:^(id responseObject) {
-        
+        //MDLog(@"%@", responseObject);
         _list = responseObject;
         _pageIndicator.numberOfPages = [_list count];
         
         [self goRollPage:@"init"];
         
     } failure:^(int ret_code, NSString *ret_msg) {
-        [MMCommon showMessage:[NSString stringWithFormat:@"%d:%@", ret_code, ret_msg]];
+        [MMCommon showMessage:[NSString stringWithFormat:@"%@", ret_msg]];
     }];
 }
 
@@ -129,15 +136,14 @@
     NSUInteger c = [_list count]-1;
     NSInteger pos = 0;
     
-    MMBooksSrcollView *view_left = [_listPage objectAtIndex:0];
-    MMBooksSrcollView *view_center = [_listPage objectAtIndex:1];
-    MMBooksSrcollView *view_right = [_listPage objectAtIndex:2];
+    MMBooksSrcollView *view_left = [_pages objectAtIndex:0];
+    MMBooksSrcollView *view_center = [_pages objectAtIndex:1];
+    MMBooksSrcollView *view_right = [_pages objectAtIndex:2];
     
     if(!_list){
         [MMCommon showMessage:@"没有数据!"];
         return;
     }
-    
     
     if ([op isEqualToString:@"++"]) {
         pos = _pageIndicator.currentPage + 1;
@@ -148,7 +154,7 @@
         NSInteger prefix_v = (c-1+pos)%c;
         NSInteger suffix_v = (pos+1)%[_list count];
         
-        //NSLog(@"p:%ld,c:%ld,s:%ld", (long)prefix_v, (long)pos, (long)suffix_v);
+        //MDLog(@"p:%ld,c:%ld,s:%ld", (long)prefix_v, (long)pos, (long)suffix_v);
 
         view_left.sectionTitle.text = [[_list objectAtIndex:prefix_v] objectForKey:@"title"];
         [view_left initViewData:[[_list objectAtIndex:prefix_v] objectForKey:@"data"]];
@@ -167,10 +173,10 @@
             pos = c;
         }
         
-        NSInteger prefix_v = (c+pos)%[_list count];
-        NSInteger suffix_v = (pos+1)%[_list count];
+        NSInteger prefix_v = (c+pos) % [_list count];
+        NSInteger suffix_v = (pos+1) % [_list count];
         
-        //NSLog(@"p:%ld,c:%ld,s:%ld", (long)prefix_v, (long)pos, (long)suffix_v);
+        //MDLog(@"p:%ld,c:%ld,s:%ld", (long)prefix_v, (long)pos, (long)suffix_v);
         
         view_left.sectionTitle.text = [[_list objectAtIndex:prefix_v] objectForKey:@"title"];
         [view_left initViewData:[[_list objectAtIndex:prefix_v] objectForKey:@"data"]];
@@ -180,7 +186,6 @@
         
         view_right.sectionTitle.text = [[_list objectAtIndex:suffix_v] objectForKey:@"title"];
         [view_right initViewData:[[_list objectAtIndex:suffix_v] objectForKey:@"data"]];
-    
         
     } else if([op isEqualToString:@"init"]) {
     
@@ -193,8 +198,11 @@
         view_right.sectionTitle.text = [[_list objectAtIndex:pos+1] objectForKey:@"title"];
         [view_right initViewData:[[_list objectAtIndex:pos+1] objectForKey:@"data"]];
     }
-    //NSLog(@"pos:%ld", (long)pos);
+
     _pageIndicator.currentPage = pos;
+    //MDLog(@"pos:%d", pos);
+    _currentPage = _pages[pos%3];
+    [_currentPage itemClick:self.itemClickBlock];
 }
 
 -(NSInteger)rollHeight

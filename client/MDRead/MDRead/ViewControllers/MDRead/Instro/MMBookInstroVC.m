@@ -37,8 +37,6 @@
     [self initFooterView];
     
     [self reloadBookInfo];
-    
-    MDLog(@"%@", _bookInfo);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,9 +70,8 @@
     _head = [[MMBookInstroHead alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     _tableView.tableHeaderView = _head;
     
-    
     [_head btnClick:^(MMBookHeadItem state) {
-        MDLog(@"btn:%d", state);
+        //MDLog(@"btn:%d", state);
         MMBookListVC *vc = [[MMBookListVC alloc] init];
         vc.bookInfo = self.bookInfo;
         [self.navigationController pushViewController:vc animated:YES];
@@ -116,17 +113,12 @@
 #pragma mark - 加载书籍信息 -
 -(void)reloadBookInfo
 {
-    
     [[MMNovelApi shareInstance] BookInfo:[_bookInfo objectForKey:@"bid"] source_id:[_bookInfo objectForKey:@"sid"] success:^(id responseObject) {
-        
-//        MDLog(@"%@", _bookInfo);
-//        MDLog(@"%@", responseObject);
-
         _bookInfoList = [responseObject objectForKey:@"data"];
         [_tableView reloadData];
         
     } failure:^(int ret_code, NSString *ret_msg) {
-        MDLog(@"%d:%@", ret_code, ret_msg);
+        [MMCommon showMessage:ret_msg];
     }];
 
 }

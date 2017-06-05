@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-
+typedef void (^mdItemClick)(NSDictionary *item);
 
 @interface MMCommon : NSObject
 

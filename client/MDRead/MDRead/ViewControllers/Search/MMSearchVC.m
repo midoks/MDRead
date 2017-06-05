@@ -17,6 +17,7 @@
 
 #import "MMBooksTableViewCell.h"
 #import "MMBooksRollTableViewCell.h"
+#import "MMBooksSrcollView.h"
 
 #import "MMPresentingAnimator.h"
 #import "UIImageView+WebCache.h"
@@ -82,7 +83,6 @@
         [self.recommend initRecommendData:^{
             [self.tableView.mj_header endRefreshing];
         }];
-        
     }];
 }
 
@@ -114,18 +114,13 @@
     _recommend.selectionStyle = UITableViewCellSelectionStyleNone;
     _recommend.sectionTitle.text = @"推荐";
     [_recommend initRecommendData:^{
-        MDLog(@"-- _recommend initRecommend ok ----");
+        //MDLog(@"-- _recommend initRecommend ok ----");
         
         [_recommend itemClick:^(NSDictionary *item) {
-            MDLog(@"-- _recommend itemClick ok ----");
-            
-            
-            
+            //MDLog(@"-- _recommend itemClick ok ----");
+
             MMBookInstroVC *bookInstro = [[MMBookInstroVC alloc] init];
             bookInstro.bookInfo = item;
-            
-            MDLog(@"-- item:%@ -- ", item);
-            
             
             UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:bookInstro];
             bookInstroView.transitioningDelegate = self;
@@ -137,8 +132,6 @@
     }];
     
     self.transitioningDelegate = self;
-    
-    
 }
 
 -(void)initRank
@@ -146,6 +139,17 @@
     _rank = [MMBooksRollTableViewCell cellWithTableView:_tableView];
     _rank.selectionStyle = UITableViewCellSelectionStyleNone;
     _rank.sectionTitle.text = @"排行榜";
+    id _self = self;
+    
+    [_rank setClickBlock:^(NSDictionary *item) {
+        MMBookInstroVC *bookInstro = [[MMBookInstroVC alloc] init];
+        bookInstro.bookInfo = item;
+        
+        UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:bookInstro];
+        bookInstroView.transitioningDelegate = _self;
+        
+        [_self presentViewController:bookInstroView animated:YES completion:^{}];
+    }];
 }
 
 -(void)initRand
@@ -156,27 +160,19 @@
     _randStatus = NO;
     [_rand initRandData:^{
         self.randStatus = YES;
-        MDLog(@"-- initRand ok ----");
-        
+        //MDLog(@"-- initRand ok ----");
         [_rand itemClick:^(NSDictionary *item) {
-            MDLog(@"-- rand itemClick ok ----");
+            //MDLog(@"-- rand itemClick ok ----");
             
             MMBookInstroVC *bookInstro = [[MMBookInstroVC alloc] init];
             bookInstro.bookInfo = item;
-            
-            MDLog(@"-- rand item:%@ -- ", item);
-            
+            //MDLog(@"-- rand item:%@ -- ", item);
             
             UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:bookInstro];
             bookInstroView.transitioningDelegate = self;
             
-            
-            [self presentViewController:bookInstroView animated:YES completion:^{
-               
-                
-            }];
+            [self presentViewController:bookInstroView animated:YES completion:^{}];
         }];
-        
     }];
 }
 
@@ -186,7 +182,7 @@
     _searchResult = [[MMSearchNavVC alloc] init];
     UINavigationController *ss = [[UINavigationController alloc] initWithRootViewController:_searchResult];
     
-    [self presentViewController:ss animated:NO completion:nil];
+    [self presentViewController:ss animated:NO completion:^(){}];
 }
 
 #pragma mark - UITableViewDataSource && UITableViewDelegate -

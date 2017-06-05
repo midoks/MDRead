@@ -151,12 +151,12 @@
 //[[UIApplication sharedApplication] setStatusBarHidden:YES]; 开始起效
 - (BOOL)prefersStatusBarHidden
 {
-    MDLog(@"isHidden:%d", self.isHidden);
+    //MDLog(@"isHidden:%d", self.isHidden);
     return self.isHidden;
 }
 
 - (UIStatusBarStyle) preferredStatusBarStyle {
-    MDLog(@"UIStatusBarStyle:%@", @"preferredStatusBarStyle");
+    //MDLog(@"UIStatusBarStyle:%@", @"preferredStatusBarStyle");
     return  UIStatusBarStyleLightContent;
 }
 

@@ -5,12 +5,10 @@
 //  Created by midoks on 16/6/27.
 //  Copyright © 2016年 midoks. All rights reserved.
 //
-
-#import "MMBooksSrcollView.h"
-
-#import "MMBookCell.h"
 #import "MMCommon.h"
 
+#import "MMBooksSrcollView.h"
+#import "MMBookCell.h"
 #import "UIImageView+WebCache.h"
 
 
@@ -22,6 +20,8 @@ static NSString *collectViewIdentifier = @"MMBooksSrcollView_collectViewIdentifi
 @property(nonatomic, strong) UICollectionView *collectView;
 @property(nonatomic, strong) NSMutableArray *collectData;
 
+@property(nonatomic, copy) mdItemClick itemClickBlock;
+
 @end
 
 @implementation MMBooksSrcollView
@@ -30,7 +30,7 @@ static NSString *collectViewIdentifier = @"MMBooksSrcollView_collectViewIdentifi
 -(id)initWithFrame:(CGRect)frame
 {
     if ([super initWithFrame:frame]){
-
+        
         [self initTitle];
         [self initView];
     }
@@ -76,10 +76,10 @@ static NSString *collectViewIdentifier = @"MMBooksSrcollView_collectViewIdentifi
     flowLayout.minimumInteritemSpacing = 0;//定义每个UICollectionView 的边距距
     flowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 0, 5);//上左下右
     
-   
+    
     _collectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [_collectView registerClass:[MMBookCell class] forCellWithReuseIdentifier:collectViewIdentifier];
-
+    
     _collectView.backgroundColor = [UIColor whiteColor];
     [self addSubview:_collectView];
 }
@@ -105,23 +105,32 @@ static NSString *collectViewIdentifier = @"MMBooksSrcollView_collectViewIdentifi
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MMBookCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:collectViewIdentifier forIndexPath:indexPath];
-    
     NSDictionary *tmp = [_collectData objectAtIndex:indexPath.row];
     
     if (tmp) {
-        [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:[tmp objectForKey:@"book_image"]]
+        [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:[tmp objectForKey:@"image"]]
                               placeholderImage:[UIImage imageNamed:@"books_test"]];
-        cell.bookName.text = [tmp objectForKey:@"book_name"];
+        cell.bookName.text = [tmp objectForKey:@"name"];
     } else {
         cell.bookImageView.image = [UIImage imageNamed:@"books_test"];
-        cell.bookName.text = @"--加载中--";
+        cell.bookName.text = @"- 加载中 -";
     }
     return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSLog(@"%@", indexPath);
+    NSDictionary *tmp = [_collectData objectAtIndex:indexPath.row];
+    if (tmp) {
+        if (_itemClickBlock){
+            _itemClickBlock(tmp);
+        }
+    }
+}
+
+-(void)itemClick:(mdItemClick)block
+{
+    _itemClickBlock = block;
 }
 
 @end
