@@ -199,8 +199,6 @@
         modelPath = [NSString stringWithFormat:@"%@/%@.txt", modelPath, fileName];
         [NSKeyedArchiver archiveRootObject:object toFile:modelPath];
     }
-    
-    //MDLog(@"%@", modelPath);
     return TRUE;
 }
 

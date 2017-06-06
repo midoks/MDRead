@@ -34,16 +34,14 @@
         [self initLookView:[responseObject objectForKey:@"content"]];
         [self initTap];
     } failure:^(int ret_code, NSString *ret_msg) {
-        //MDLog(@"%d:%@", ret_code, ret_msg);
         
+        //MDLog(@"%d:%@", ret_code, ret_msg);
         [MMCommon showMessage:ret_msg];
         
         [self dismissViewControllerAnimated:NO completion:^{
             [[UIApplication sharedApplication] setStatusBarHidden:NO];
-            [self.navigationController setNavigationBarHidden:NO animated:NO];
         }];
     }];
-    
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
@@ -78,8 +76,6 @@
     [self addChildViewController:_pagesVC];
     [[self view] addSubview:[_pagesVC view]];
     [_pagesVC didMoveToParentViewController:self];
-    
-    
 }
 
 - (NSUInteger)indexOfViewController:(MMSimPagesVC *)viewController

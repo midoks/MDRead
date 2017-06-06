@@ -14,10 +14,6 @@
 @property (nonatomic, strong) NSString *sid;
 @property (nonatomic, strong) NSString *cid;
 @property (nonatomic, strong) NSString *name;
-
-+(MMReadChapterModel*)shareInstance;
-
-
--(void)save;
+@property (nonatomic, strong) NSString *cache;
 
 @end

@@ -75,8 +75,14 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     MMReadChapterModel *info = [_chapterList objectAtIndex:indexPath.row];
     cell.textLabel.text = info.name;
+
+    if ([info.cache isEqual:@"yes"]){
+        cell.textLabel.textColor = [UIColor blackColor];
+    } else {
+        cell.textLabel.textColor = [UIColor grayColor];
+    }
+    
     cell.textLabel.font = [UIFont systemFontOfSize:14];
-    cell.textLabel.textColor = [UIColor grayColor];
     cell.accessoryType = UITableViewCellAccessoryNone;
     return cell;
 }

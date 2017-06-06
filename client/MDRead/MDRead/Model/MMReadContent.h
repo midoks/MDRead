@@ -8,9 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+#import "MMReadChapterModel.h"
+
 @interface MMReadContent : NSObject
 
-@property (nonatomic,strong) NSDictionary *bookInfo;
++(MMReadContent*)shareInstance;
+
 @property (nonatomic, strong) NSString *content;
+
+-(void)getChapterInfo:(MMReadChapterModel *)chapterInfo
+              success:(void (^)(id responseObject))success
+              failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 
 @end

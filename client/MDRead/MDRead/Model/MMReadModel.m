@@ -10,6 +10,7 @@
 #import "MMCommon.h"
 #import "MMNovelApi.h"
 #import "MMReadChapterModel.h"
+#import "MMReadContent.h"
 
 @interface MMReadModel() <NSCoding>
 
@@ -59,17 +60,18 @@
 {
     NSString *book_id = [_bookInfo objectForKey:@"bid"];
     NSString *source_id = [_bookInfo objectForKey:@"sid"];
+    _chapterList = [[NSMutableArray alloc] init];
     
     if ([self isExistFileBook]){
-        MMReadModel *p = [self readBook];
-        _chapterList = p.chapterList;
-        success(_chapterList);
+        MMReadModel *m = [self readBook];
+        _chapterList = m.chapterList;
+        success(m.chapterList);
     } else {
+        
         //获取书籍章节列表
         [[MMNovelApi shareInstance] BookList:book_id source_id:source_id success:^(id responseObject) {
             
             NSMutableArray *list = [responseObject objectForKey:@"data"];
-            _chapterList = [[NSMutableArray alloc] init];
             
             for (int i=0; i< [list count]; i++) {
                 MMReadChapterModel *a = [[MMReadChapterModel alloc] init];
@@ -77,12 +79,11 @@
                 a.sid = [[list objectAtIndex:i] objectForKey:@"sid"];
                 a.bid = [[list objectAtIndex:i] objectForKey:@"bid"];
                 a.name = [[list objectAtIndex:i] objectForKey:@"name"];
-                
+                a.cache = @"no";
                 [_chapterList addObject:a];
             }
             
             [self save];
-            
             success(_chapterList);
         } failure:^(int ret_code, NSString *ret_msg) {
             failure(ret_code, ret_msg);
@@ -102,14 +103,12 @@
         }
         
         MMReadChapterModel *chapter = [responseObject objectAtIndex:0];
-        
-        NSString *book_id = chapter.bid;
-        NSString *chapter_id = chapter.cid;
-        NSString *source_id = chapter.sid;
-        
-        [[MMNovelApi shareInstance] BookContent:book_id chapter_id:chapter_id source_id:source_id success:^(id responseObject) {
+        [[MMReadContent shareInstance] getChapterInfo:chapter success:^(id responseObject) {
             
             success(responseObject);
+            [[_chapterList objectAtIndex:0] setCache:@"yes"];
+            [self save];
+            
         } failure:^(int ret_code, NSString *ret_msg) {
             failure(ret_code, ret_msg);
         }];
@@ -120,10 +119,10 @@
 }
 
 #pragma mark 读取文件
--(id)readBook
+-(MMReadModel*)readBook
 {
     NSString *folderName = [NSString stringWithFormat:@"%@_%@",[_bookInfo objectForKey:@"bid"], [_bookInfo objectForKey:@"sid"]];
-    id model = [MMCommon docsModelGet:[self getWebSite] folderName:folderName fileName:[_bookInfo objectForKey:@"name"]];
+    MMReadModel *model = [MMCommon docsModelGet:[self getWebSite] folderName:folderName fileName:[_bookInfo objectForKey:@"name"]];
     return model;
 }
 
