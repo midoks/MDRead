@@ -49,6 +49,7 @@
 }
 
 -(void)initView {
+    
     [[UIApplication sharedApplication] setStatusBarHidden:TRUE];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
@@ -68,27 +69,16 @@
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClick)];
     [rightButton setTintColor:[UIColor whiteColor]];
     self.navigationItem.rightBarButtonItem = rightButton;
-    
-    //整个大遮罩 -- 退出
-    _maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MD_W, MD_H)];
-    [_maskView setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:_maskView];
-    UITapGestureRecognizer *maskTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenNavBtn)];
-    [_maskView addGestureRecognizer:maskTap];
-    
-}
 
+}
 
 -(void)initTap
 {
-    //一些特殊设置
-    UIView *centerView = [[UIView alloc] initWithFrame:CGRectMake(MD_W/3, 0, MD_W/3, MD_H)];
-    [centerView setUserInteractionEnabled:YES];
-    [centerView setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:centerView];
-    
+
     UITapGestureRecognizer *tapGesture= [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleShowView:)];
-    [centerView addGestureRecognizer:tapGesture];
+    tapGesture.numberOfTapsRequired = 1;
+    tapGesture.delegate = self;
+    [self.view addGestureRecognizer:tapGesture];
     
     //底部工具视图(自定义)
     _mmbView = [[MMBottomView alloc] initWithFrame:CGRectMake(0, MD_H - 50, MD_W, 50)];
@@ -138,6 +128,14 @@
     _moonDayImageView.image = [UIImage imageNamed:moonDayName];
     [_moonDayView addSubview:_moonDayImageView];
     
+    
+    //大遮罩 -- 进入|退出
+    _maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MD_W, MD_H)];
+    [_maskView setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:_maskView];
+    UITapGestureRecognizer *maskTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenNavBtn)];
+    [_maskView addGestureRecognizer:maskTap];
+    
     [self hiddenNavBtn];
 }
 
@@ -167,9 +165,9 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     [UIView animateWithDuration:0.2 animations:^{
-        [self.mmbView setFrame:CGRectMake(0, MD_H - 50, MD_W, 50)];
-        [self.maskView setFrame:CGRectMake(0, 0, MD_W, MD_H)];
-        [self.moonDayView setFrame:CGRectMake(MD_W - 60, MD_H - 120, 48, 48)];
+        [_mmbView setFrame:CGRectMake(0, MD_H - 50, MD_W, 50)];
+        [_maskView setFrame:CGRectMake(0, 0, MD_W, MD_H)];
+        [_moonDayView setFrame:CGRectMake(MD_W - 60, MD_H - 120, 48, 48)];
     }];
 }
 
@@ -180,9 +178,9 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     [UIView animateWithDuration:0.2 animations:^{
-        [self.mmbView setFrame:CGRectMake(0, MD_H, MD_W, 50)];
-        [self.maskView setFrame:CGRectMake(0, 0, MD_W, 0)];
-        [self.moonDayView setFrame:CGRectMake(MD_W, MD_H - 120, 48, 48)];
+        [_mmbView setFrame:CGRectMake(0, MD_H, MD_W, 50)];
+        [_maskView setFrame:CGRectMake(0, 0, MD_W, 0)];
+        [_moonDayView setFrame:CGRectMake(MD_W, MD_H - 120, 48, 48)];
     }];
 }
 
