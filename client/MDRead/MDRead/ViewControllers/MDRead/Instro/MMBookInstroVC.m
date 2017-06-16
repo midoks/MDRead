@@ -95,6 +95,7 @@
             
             MMBooklookVC *vc = [[MMBooklookVC alloc] init];
             vc.bookInfo = self.bookInfo;
+            [vc readBook];
             UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:vc];
             [self presentViewController:bookInstroView animated:YES completion:^{
                 

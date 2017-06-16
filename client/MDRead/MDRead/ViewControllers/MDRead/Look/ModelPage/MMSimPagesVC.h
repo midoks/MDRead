@@ -10,7 +10,9 @@
 
 @interface MMSimPagesVC : UIViewController
 
-@property (nonatomic,strong)NSString *dataObject;
-@property (nonatomic,strong) NSString *bookContent;
+
+@property (nonatomic, strong) NSString *bTitle;
+@property (nonatomic, strong) NSString *bContent;
+@property (nonatomic, strong) NSString *bLeft;
 
 @end

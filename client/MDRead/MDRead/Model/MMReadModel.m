@@ -28,12 +28,14 @@
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:_chapterList forKey:@"chapterList"];
+    [aCoder encodeObject:_record forKey:@"record"];
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super init];
     _chapterList = [aDecoder decodeObjectForKey:@"chapterList"];
+    _record = [aDecoder decodeObjectForKey:@"record"];
     return self;
 }
 
@@ -55,7 +57,7 @@
 }
 
 #pragma mark - 解析book列表数据 -
--(void)parseBookList:(void (^)(id responseObject))success
+-(void)getBookList:(void (^)(id responseObject))success
              failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 {
     NSString *book_id = [_bookInfo objectForKey:@"bid"];
@@ -92,21 +94,48 @@
 }
 
 #pragma mark - 解析book数据 -
--(void)parseBookContent:(void (^)(id responseObject))success
+-(void)getBookContent:(void (^)(id responseObject))success
                 failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 {
-    [self parseBookList:^(id responseObject) {
+    if ([self isExistFileBook]){
+        MMReadModel *m = [self readBook];
+        _record = m.record;
+    }
 
+   
+    if (!_record) {
+        _record = [[MMReadRecordModel alloc] init];
+        _record.chapter_pos = 0;
+        _record.chapter_page_pos = 1;
+    }
+    
+    MDLog(@"getBookContent:_record:%@", _record);
+    
+    [self goBookChapter:_record.chapter_pos page:_record.chapter_page_pos success:^(id responseObject) {
+        success(responseObject);
+        
+    } failure:^(int ret_code, NSString *ret_msg) {
+        failure(ret_code, ret_msg);
+    }];
+}
+
+-(void)goBookChapter:(NSUInteger)chapter_pos
+                page:(NSUInteger)page_pos
+             success:(void (^)(id responseObject))success
+             failure:(void (^)(int ret_code, NSString *ret_msg))failure
+{
+    [self getBookList:^(id responseObject) {
+        
         if ([responseObject count] < 1) {
             failure(-1, @"缺少章节数据!");
             return;
         }
         
-        MMReadChapterModel *chapter = [responseObject objectAtIndex:0];
+        MMReadChapterModel *chapter = [responseObject objectAtIndex:chapter_pos];
         [[MMReadContent shareInstance] getChapterInfo:chapter success:^(id responseObject) {
             
             success(responseObject);
-            [[_chapterList objectAtIndex:0] setCache:@"yes"];
+            [[_chapterList objectAtIndex:chapter_pos] setCache:@"yes"];
             [self save];
             
         } failure:^(int ret_code, NSString *ret_msg) {
@@ -117,6 +146,7 @@
         failure(ret_code, ret_msg);
     }];
 }
+
 
 #pragma mark 读取文件
 -(MMReadModel*)readBook

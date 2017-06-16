@@ -13,6 +13,8 @@
 		8222883B1D755B5200D0CB6E /* MMBookInstroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8222883A1D755B5200D0CB6E /* MMBookInstroCell.m */; };
 		8227233B1D16DA73005340E6 /* MMBookshelfVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8227233A1D16DA73005340E6 /* MMBookshelfVC.m */; };
 		82306C471CC1D99E00888A10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82306C461CC1D99E00888A10 /* LaunchScreen.storyboard */; };
+		823947601EEB952300393E87 /* MMReadRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239475F1EEB952300393E87 /* MMReadRecordModel.m */; };
+		823947631EEB953100393E87 /* MMReadMarkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 823947621EEB953100393E87 /* MMReadMarkModel.m */; };
 		8242DF9E1EDFD26C00E7A2E3 /* MMReadChapterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8242DF9D1EDFD26C00E7A2E3 /* MMReadChapterModel.m */; };
 		8242DFA11EE2A5BA00E7A2E3 /* MMReadContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 8242DFA01EE2A5BA00E7A2E3 /* MMReadContent.m */; };
 		827B026E1CCBE8FC00E2269B /* MMUILabel+textSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 827B026D1CCBE8FC00E2269B /* MMUILabel+textSize.m */; };
@@ -102,6 +104,10 @@
 		822723391D16DA73005340E6 /* MMBookshelfVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookshelfVC.h; sourceTree = "<group>"; };
 		8227233A1D16DA73005340E6 /* MMBookshelfVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBookshelfVC.m; sourceTree = "<group>"; };
 		82306C461CC1D99E00888A10 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8239475E1EEB952300393E87 /* MMReadRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMReadRecordModel.h; sourceTree = "<group>"; };
+		8239475F1EEB952300393E87 /* MMReadRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMReadRecordModel.m; sourceTree = "<group>"; };
+		823947611EEB953100393E87 /* MMReadMarkModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMReadMarkModel.h; sourceTree = "<group>"; };
+		823947621EEB953100393E87 /* MMReadMarkModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMReadMarkModel.m; sourceTree = "<group>"; };
 		8242DF9C1EDFD26C00E7A2E3 /* MMReadChapterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMReadChapterModel.h; sourceTree = "<group>"; };
 		8242DF9D1EDFD26C00E7A2E3 /* MMReadChapterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMReadChapterModel.m; sourceTree = "<group>"; };
 		8242DF9F1EE2A5BA00E7A2E3 /* MMReadContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMReadContent.h; sourceTree = "<group>"; };
@@ -523,6 +529,10 @@
 				821CC14C1ED94852003108A0 /* MMReadModel.m */,
 				8242DF9F1EE2A5BA00E7A2E3 /* MMReadContent.h */,
 				8242DFA01EE2A5BA00E7A2E3 /* MMReadContent.m */,
+				8239475E1EEB952300393E87 /* MMReadRecordModel.h */,
+				8239475F1EEB952300393E87 /* MMReadRecordModel.m */,
+				823947611EEB953100393E87 /* MMReadMarkModel.h */,
+				823947621EEB953100393E87 /* MMReadMarkModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -808,9 +818,11 @@
 				827B026E1CCBE8FC00E2269B /* MMUILabel+textSize.m in Sources */,
 				82D72BF01D210C73006E0176 /* MMBooksRollTableViewCell.m in Sources */,
 				8242DF9E1EDFD26C00E7A2E3 /* MMReadChapterModel.m in Sources */,
+				823947631EEB953100393E87 /* MMReadMarkModel.m in Sources */,
 				82D47EBB1D5C462900958099 /* MMSettingsVC.m in Sources */,
 				82C197A91D6DE4EE00917F66 /* MMBooklookVC.m in Sources */,
 				82D47EC11D5C4E2000958099 /* MMSuggestVC.m in Sources */,
+				823947601EEB952300393E87 /* MMReadRecordModel.m in Sources */,
 				82D72BF31D21199D006E0176 /* MMBooksSrcollView.m in Sources */,
 				821B3A6C1D8538E7000ABCE7 /* MMDismissingAnimator.m in Sources */,
 				828B0A2E1E1F65E70016B6BB /* MMSearchCell.m in Sources */,

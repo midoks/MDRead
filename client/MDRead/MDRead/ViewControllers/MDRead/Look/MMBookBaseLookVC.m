@@ -69,12 +69,18 @@
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClick)];
     [rightButton setTintColor:[UIColor whiteColor]];
     self.navigationItem.rightBarButtonItem = rightButton;
-
+    
 }
 
 -(void)initTap
 {
-
+    //大遮罩 -- 进入|退出
+    _maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MD_W, MD_H)];
+    [_maskView setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:_maskView];
+    UITapGestureRecognizer *maskTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenNavBtn)];
+    [_maskView addGestureRecognizer:maskTap];
+    
     UITapGestureRecognizer *tapGesture= [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleShowView:)];
     tapGesture.numberOfTapsRequired = 1;
     tapGesture.delegate = self;
@@ -129,12 +135,7 @@
     [_moonDayView addSubview:_moonDayImageView];
     
     
-    //大遮罩 -- 进入|退出
-    _maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MD_W, MD_H)];
-    [_maskView setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:_maskView];
-    UITapGestureRecognizer *maskTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenNavBtn)];
-    [_maskView addGestureRecognizer:maskTap];
+    
     
     [self hiddenNavBtn];
 }

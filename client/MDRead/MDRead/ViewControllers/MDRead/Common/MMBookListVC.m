@@ -11,6 +11,7 @@
 #import "MMReadChapterModel.h"
 #import "MMReadModel.h"
 #import "MMCommon.h"
+#import "MMBooklookVC.h"
 
 
 @interface MMBookListVC () <UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate>
@@ -38,19 +39,23 @@
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"md_back"] style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClick)];
     self.navigationItem.leftBarButtonItem = leftButton;
     
+    [self reloadList];
+}
+
+
+-(void)reloadList
+{
     MMReadModel *mmna = [MMReadModel shareInstance];
     mmna.bookInfo = self.bookInfo;
     
-    [mmna parseBookList:^(id responseObject) {
+    [mmna getBookList:^(id responseObject) {
         
         _chapterList = responseObject;
-        //MDLog(@"%@", _chapterList);
         [_tableView reloadData];
         
     } failure:^(int ret_code, NSString *ret_msg) {
         [MMCommon showMessage:ret_msg];
     }];
-    
 }
 
 -(void)cancelButtonClick
@@ -90,6 +95,17 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    MMBooklookVC *vc = [[MMBooklookVC alloc] init];
+    vc.bookInfo = self.bookInfo;
+    
+    [vc goChapter:indexPath.row page:1 success:^(id responseObject) {
+        [self reloadList];
+    } failure:^(int ret_code, NSString *ret_msg) {
+    }];
+    
+    UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:bookInstroView animated:YES completion:nil];
 }
 
 @end

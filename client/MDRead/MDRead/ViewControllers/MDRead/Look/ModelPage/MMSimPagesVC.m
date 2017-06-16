@@ -11,6 +11,10 @@
 
 @interface MMSimPagesVC ()
 
+@property (nonatomic, strong) UILabel *btitleLabel;
+@property (nonatomic, strong) UILabel *bLeftLabel;
+@property (nonatomic, strong) UILabel *bTextLabel;
+
 @end
 
 @implementation MMSimPagesVC
@@ -25,7 +29,7 @@
     [self initPageBottom];
     
     //self.view.backgroundColor = [UIColor colorWithRed:42/255 green:42/255 blue:42/255 alpha:1];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,46 +40,46 @@
 #pragma mark - 初始化标题 -
 -(void) initPageTitle
 {
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, MD_W - 40, 10)];
-    [title setText:@"第二章 活着的艰难"];
-    [title setTextColor:[UIColor grayColor]];
-    [title setFont:[UIFont systemFontOfSize:10.0]];
-    [self.view addSubview:title];
+    _btitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, MD_W - 40, 10)];
+    
+    if (_bTitle) {
+        [_btitleLabel setText:_bTitle];
+    } else {
+        [_btitleLabel setText:@"测试"];
+    }
+    
+    [_btitleLabel setTextColor:[UIColor grayColor]];
+    [_btitleLabel setFont:[UIFont systemFontOfSize:10.0]];
+    [self.view addSubview:_btitleLabel];
 }
 
 
 -(void) initPageContent
 {
     
-    //NSLog(@"---b:%@----bb",_bookContent);
-    //NSLog(@"---c:%@----cc",self.dataObject);
-    
     NSString *_content = @"";
-    if (!_bookContent){
+    if (!_bContent){
         
         NSString *path = [[NSBundle mainBundle] pathForResource:@"3" ofType:@"txt"];
         _content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     } else {
-        _content = _bookContent;
+        _content = _bContent;
     }
     
-    _content = [_content stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
-    _content = [_content stringByReplacingOccurrencesOfString:@"<br>" withString:@"\n"];
-    _content = [_content stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"];
-
-    _content = [_content substringFromIndex:8];
-//    
+//    _content = [_content stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
+//    _content = [_content stringByReplacingOccurrencesOfString:@"<br>" withString:@"\n"];
+//    _content = [_content stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"];
+//    _content = [_content substringFromIndex:8];
     //NSLog(@"content:\n%@", _content);
     
-    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(20, 40, MD_W - 40, MD_H - 70)];
-    label.text = self.dataObject;
-    label.font = [UIFont fontWithName:@"Helvetica" size:19.f];
-    label.numberOfLines = 0;
-    label.text = _content;
-    label.layer.opacity = 1;
+    _bTextLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 40, MD_W - 40, MD_H - 70)];
+    _bTextLabel.font = [UIFont fontWithName:@"Helvetica" size:19.f];
+    _bTextLabel.numberOfLines = 0;
+    _bTextLabel.text = _content;
+    _bTextLabel.layer.opacity = 1;
     
     //label.textColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1];
-    [self.view addSubview:label];
+    [self.view addSubview:_bTextLabel];
     
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
     paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
@@ -87,33 +91,34 @@
     paraStyle.headIndent = 0;
     paraStyle.tailIndent = 0;
     //设置字间距 NSKernAttributeName:@1.5f
-    NSDictionary *dic = @{NSFontAttributeName:label.font,
+    NSDictionary *dic = @{NSFontAttributeName:_bTextLabel.font,
                           NSParagraphStyleAttributeName:paraStyle,
                           NSKernAttributeName:@1.5f};
     
     NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:_content attributes:dic];
-    label.attributedText = attributeStr;
-    
-//    AVSpeechSynthesizer *synthesize = [[AVSpeechSynthesizer alloc]init];
-//    AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:_content];
-//    [synthesize speakUtterance:utterance];
+    _bTextLabel.attributedText = attributeStr;
 }
 
 
 -(void)initPageBottom
 {
-    UILabel *bLeft = [[UILabel alloc] initWithFrame:CGRectMake(20, MD_H - 25, (MD_W - 40)/2, 20)];
-    [bLeft setText:@"3/9 1.0%"];
-    [bLeft setTextColor:[UIColor blackColor]];
-    [bLeft setTextColor:[UIColor grayColor]];
-    [bLeft setFont:[UIFont systemFontOfSize:10.0]];
-    [self.view addSubview:bLeft];
+    _bLeftLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, MD_H - 25, (MD_W - 40)/2, 20)];
+    
+    if (_bLeft){
+        [_bLeftLabel setText:_bLeft];
+    } else {
+        [_bLeftLabel setText:@"0/0 0.00%"];
+    }
+    
+    [_bLeftLabel setTextColor:[UIColor blackColor]];
+    [_bLeftLabel setTextColor:[UIColor grayColor]];
+    [_bLeftLabel setFont:[UIFont systemFontOfSize:10.0]];
+    [self.view addSubview:_bLeftLabel];
     
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"HH:mm"];
     NSString *dateString = [dateFormatter stringFromDate:currentDate];
-    
     
     UILabel *bRight = [[UILabel alloc] initWithFrame:CGRectMake(20 + (MD_W - 40)/2, MD_H - 25, (MD_W - 40)/2, 20)];
     [bRight setText:dateString];

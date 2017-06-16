@@ -14,4 +14,11 @@
 
 @property (nonatomic, strong) NSDictionary *bookInfo;
 
+-(void)readBook;
+
+-(void)goChapter:(NSUInteger)chapter_pos
+            page:(NSUInteger)chapter_page
+         success:(void (^)(id responseObject))success
+         failure:(void (^)(int ret_code, NSString *ret_msg))failure;
+
 @end

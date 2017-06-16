@@ -15,9 +15,9 @@
 
 @interface MMBooklookVC ()
 
-@property (nonatomic, strong) NSMutableArray* pageContent;
-@property (nonatomic, strong) MMSimPagesVC* pageVC;
+@property (nonatomic, strong) MMSimPagesVC *pageView;
 @property (nonatomic, strong) UIPageViewController *pagesVC;
+@property (nonatomic, strong) MMReadModel *readModel;
 
 @end
 
@@ -26,33 +26,59 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    MMReadModel *mmrm = [MMReadModel shareInstance];
-    mmrm.bookInfo = _bookInfo;
+    _readModel = [MMReadModel shareInstance];
+    _readModel.bookInfo = _bookInfo;
+    MDLog(@"%@", _bookInfo);
+}
 
-    [mmrm parseBookContent:^(id responseObject) {
+
+-(void)readBook
+{
+    _readModel = [MMReadModel shareInstance];
+    _readModel.bookInfo = _bookInfo;
+    
+    MDLog(@"readBook ----- start ------");
+    [_readModel getBookContent:^(id responseObject) {
         [self initLookView:[responseObject objectForKey:@"content"]];
         [self initTap];
+        MDLog(@"readBook ----- ok ------");
     } failure:^(int ret_code, NSString *ret_msg) {
         
-        //MDLog(@"%d:%@", ret_code, ret_msg);
         [MMCommon showMessage:ret_msg];
-        
+
         [self dismissViewControllerAnimated:NO completion:^{
             [[UIApplication sharedApplication] setStatusBarHidden:NO];
         }];
+        MDLog(@"readBook ----- fail ------");
     }];
-    self.view.backgroundColor = [UIColor whiteColor];
+    MDLog(@"readBook ----- end ------");
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+-(void)goChapter:(NSUInteger)chapter_pos
+            page:(NSUInteger)chapter_page
+         success:(void (^)(id responseObject))success
+         failure:(void (^)(int ret_code, NSString *ret_msg))failure;
+{
+    _readModel = [MMReadModel shareInstance];
+    _readModel.bookInfo = _bookInfo;
+    
+    [_readModel goBookChapter:chapter_pos page:chapter_page success:^(id responseObject) {
+        [self initLookView:[responseObject objectForKey:@"content"]];
+        [self initTap];
+        success(responseObject);
+    } failure:^(int ret_code, NSString *ret_msg) {
+        [MMCommon showMessage:ret_msg];
+        
+        failure(ret_code, ret_msg);
+    }];
+    
 }
 
-
+#pragma mark - 仿真翻页 -
 -(void)initLookView:(NSString *)content
 {
-    [self createContentPages];
     NSDictionary *options = [NSDictionary dictionaryWithObject: [NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin]
                                                         forKey: UIPageViewControllerOptionSpineLocationKey];
     
@@ -63,10 +89,10 @@
     _pagesVC.dataSource = self;
     [[_pagesVC view] setFrame:[[self view] bounds]];
     
-    MMSimPagesVC *initialViewController = [self viewControllerAtIndex:0];
-    initialViewController.bookContent = content;
-    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
-    
+    _pageView = [[MMSimPagesVC alloc] init];
+    _pageView.bContent = content;
+    _pageView.bTitle = [_bookInfo objectForKey:@"name"];
+    NSArray *viewControllers = [NSArray arrayWithObject:_pageView];
     
     [_pagesVC setViewControllers:viewControllers
                        direction:UIPageViewControllerNavigationDirectionForward
@@ -78,65 +104,32 @@
     [_pagesVC didMoveToParentViewController:self];
 }
 
-- (NSUInteger)indexOfViewController:(MMSimPagesVC *)viewController
-{
-    return [_pageContent indexOfObject:viewController.dataObject];
-}
 
-
-- (void)createContentPages
-{
-    NSMutableArray *pageStrings = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 5; i++)
-    {
-        [pageStrings addObject:[NSString stringWithFormat:@"第%d页",i]];
-    }
-    _pageContent = [[NSMutableArray alloc] initWithArray:pageStrings];
-}
-
-
-
-- (UIViewController *)pageViewController:
-(UIPageViewController *)pageViewController viewControllerBeforeViewController:(MMSimPagesVC *)viewController
+#pragma mark - UIPageViewControllerDataSource -
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
+      viewControllerBeforeViewController:(UIViewController *)viewController
 {
     
-    NSUInteger index = [self indexOfViewController:viewController];
-    if ((index == 0) || (index == NSNotFound)) {
-        return nil;
-    }
+    MDLog(@"上一页");
     
-    index--;
-    return [self viewControllerAtIndex:index];
+    MMBooklookVC *s = [[MMBooklookVC alloc] init];
+    s.bookInfo = _bookInfo;
+    MDLog(@"%@", _bookInfo);
+    return s;
 }
 
-
-
-- (UIViewController *)pageViewController:
-(UIPageViewController *)pageViewController viewControllerAfterViewController:(MMSimPagesVC *)viewController
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
+       viewControllerAfterViewController:(UIViewController *)viewController
 {
-    NSUInteger index = [self indexOfViewController:viewController];
-    if (index == NSNotFound) {
-        return nil;
-    }
-    
-    index++;
-    if (index == [self.pageContent count]) {
-        index = 0;
-    }
-    return [self viewControllerAtIndex:index];
-}
 
-- (MMSimPagesVC *)viewControllerAtIndex:(NSUInteger)index
-{
-    if (([self.pageContent count] == 0) ||
-        (index >= [self.pageContent count])) {
-        return nil;
-    }
+    MMBooklookVC *s = [[MMBooklookVC alloc] init];
+    s.bookInfo = _bookInfo;
+    MDLog(@"%d", s.readModel.record.chapter_pos);
+    s.readModel.record.chapter_pos = _readModel.record.chapter_pos + 1;
+    MDLog(@"%d", s.readModel.record.chapter_pos);
+    [s readBook];
     
-    // Create a new view controller and pass suitable data.
-    MMSimPagesVC *dataViewController = [[MMSimPagesVC alloc] init];
-    dataViewController.dataObject = [_pageContent objectAtIndex:index];
-    return dataViewController;
+    return s;
 }
 
 @end
