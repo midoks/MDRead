@@ -96,8 +96,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    MMBooklookVC *vc = [[MMBooklookVC alloc] init];
-    vc.bookInfo = self.bookInfo;
+    MMBooklookVC *vc = [[MMBooklookVC alloc] initWithBookInfo:self.bookInfo];
     
     [vc goChapter:indexPath.row page:1 success:^(id responseObject) {
         [self reloadList];

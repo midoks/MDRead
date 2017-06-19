@@ -33,7 +33,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self initView];
 }
 
@@ -50,11 +49,7 @@
 
 -(void)initView {
     
-    [[UIApplication sharedApplication] setStatusBarHidden:TRUE];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-    
-    self.isHidden = YES;
-    self.automaticallyAdjustsScrollViewInsets = NO;
+
     //导航设置
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
@@ -69,6 +64,11 @@
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClick)];
     [rightButton setTintColor:[UIColor whiteColor]];
     self.navigationItem.rightBarButtonItem = rightButton;
+    
+    self.isHidden = YES;
+    [[UIApplication sharedApplication] setStatusBarHidden:TRUE];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
 }
 
@@ -134,9 +134,7 @@
     _moonDayImageView.image = [UIImage imageNamed:moonDayName];
     [_moonDayView addSubview:_moonDayImageView];
     
-    
-    
-    
+
     [self hiddenNavBtn];
 }
 

@@ -56,6 +56,27 @@
     return shareInstance;
 }
 
+-(void)setBookInfo:(NSDictionary *)bookInfo
+{
+    _bookInfo = bookInfo;
+    
+    if ([self isExistFileBook]){
+        MMReadModel *m = [self readBook];
+        _record = m.record;
+    }
+    
+    
+    
+    
+    if (!_record) {
+        _record = [[MMReadRecordModel alloc] init];
+        _record.chapter_pos = 0;
+        _record.chapter_page_pos = 1;
+    }
+    
+    
+}
+
 #pragma mark - 解析book列表数据 -
 -(void)getBookList:(void (^)(id responseObject))success
              failure:(void (^)(int ret_code, NSString *ret_msg))failure;
@@ -97,17 +118,6 @@
 -(void)getBookContent:(void (^)(id responseObject))success
                 failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 {
-    if ([self isExistFileBook]){
-        MMReadModel *m = [self readBook];
-        _record = m.record;
-    }
-
-   
-    if (!_record) {
-        _record = [[MMReadRecordModel alloc] init];
-        _record.chapter_pos = 0;
-        _record.chapter_page_pos = 1;
-    }
     
     MDLog(@"getBookContent:_record:%@", _record);
     

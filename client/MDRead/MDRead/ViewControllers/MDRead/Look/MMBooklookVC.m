@@ -23,14 +23,17 @@
 
 @implementation MMBooklookVC
 
+-(id)initWithBookInfo:(NSDictionary *)info
+{
+    self = [super init];
+    _bookInfo = info;
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    _readModel = [MMReadModel shareInstance];
-    _readModel.bookInfo = _bookInfo;
-    MDLog(@"%@", _bookInfo);
 }
 
 
@@ -40,8 +43,9 @@
     _readModel.bookInfo = _bookInfo;
     
     MDLog(@"readBook ----- start ------");
+    
     [_readModel getBookContent:^(id responseObject) {
-        [self initLookView:[responseObject objectForKey:@"content"]];
+        [self initLookView:responseObject];
         [self initTap];
         MDLog(@"readBook ----- ok ------");
     } failure:^(int ret_code, NSString *ret_msg) {
@@ -49,10 +53,11 @@
         [MMCommon showMessage:ret_msg];
 
         [self dismissViewControllerAnimated:NO completion:^{
-            [[UIApplication sharedApplication] setStatusBarHidden:NO];
+            //[[UIApplication sharedApplication] setStatusBarHidden:NO];
         }];
         MDLog(@"readBook ----- fail ------");
     }];
+    
     MDLog(@"readBook ----- end ------");
 }
 
@@ -65,7 +70,7 @@
     _readModel.bookInfo = _bookInfo;
     
     [_readModel goBookChapter:chapter_pos page:chapter_page success:^(id responseObject) {
-        [self initLookView:[responseObject objectForKey:@"content"]];
+        [self initLookView:responseObject];
         [self initTap];
         success(responseObject);
     } failure:^(int ret_code, NSString *ret_msg) {
@@ -73,7 +78,6 @@
         
         failure(ret_code, ret_msg);
     }];
-    
 }
 
 #pragma mark - 仿真翻页 -
@@ -92,6 +96,7 @@
     _pageView = [[MMSimPagesVC alloc] init];
     _pageView.bContent = content;
     _pageView.bTitle = [_bookInfo objectForKey:@"name"];
+    //_pageView.view.backgroundColor = [UIColor blueColor];
     NSArray *viewControllers = [NSArray arrayWithObject:_pageView];
     
     [_pagesVC setViewControllers:viewControllers
@@ -111,10 +116,9 @@
 {
     
     MDLog(@"上一页");
-    
-    MMBooklookVC *s = [[MMBooklookVC alloc] init];
-    s.bookInfo = _bookInfo;
-    MDLog(@"%@", _bookInfo);
+    MMBooklookVC *s = [[MMBooklookVC alloc] initWithBookInfo:_bookInfo];
+    //MDLog(@"%@", _bookInfo);
+    [s readBook];
     return s;
 }
 
@@ -122,12 +126,17 @@
        viewControllerAfterViewController:(UIViewController *)viewController
 {
 
-    MMBooklookVC *s = [[MMBooklookVC alloc] init];
-    s.bookInfo = _bookInfo;
-    MDLog(@"%d", s.readModel.record.chapter_pos);
+    MMBooklookVC *s = [[MMBooklookVC alloc] initWithBookInfo:_bookInfo];
+    MDLog(@"chapter_pos:%d", _readModel.record.chapter_pos);
     s.readModel.record.chapter_pos = _readModel.record.chapter_pos + 1;
-    MDLog(@"%d", s.readModel.record.chapter_pos);
-    [s readBook];
+    MDLog(@"chapter_pos:%d", s.readModel.record.chapter_pos);
+    
+    
+    [s goChapter:2 page:1 success:^(id responseObject) {
+        
+    } failure:^(int ret_code, NSString *ret_msg) {
+        
+    }];
     
     return s;
 }

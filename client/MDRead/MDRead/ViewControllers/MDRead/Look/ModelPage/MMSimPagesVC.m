@@ -28,6 +28,10 @@
     [self initPageContent];
     [self initPageBottom];
     
+    
+    
+    MDLog(@"frame:%@", NSStringFromCGRect(self.view.frame));
+    
     //self.view.backgroundColor = [UIColor colorWithRed:42/255 green:42/255 blue:42/255 alpha:1];
     
 }
@@ -78,8 +82,13 @@
     _bTextLabel.text = _content;
     _bTextLabel.layer.opacity = 1;
     
+    
+    
+    MDLog(@"_bTextLabel:%@", NSStringFromCGRect(_bTextLabel.frame));
+    
     //label.textColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1];
     [self.view addSubview:_bTextLabel];
+    //_bLeftLabel.backgroundColor = [UIColor yellowColor];
     
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
     paraStyle.lineBreakMode = NSLineBreakByCharWrapping;

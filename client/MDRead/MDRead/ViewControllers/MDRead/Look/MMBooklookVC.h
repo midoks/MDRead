@@ -16,6 +16,8 @@
 
 -(void)readBook;
 
+-(id)initWithBookInfo:(NSDictionary *)info;
+
 -(void)goChapter:(NSUInteger)chapter_pos
             page:(NSUInteger)chapter_page
          success:(void (^)(id responseObject))success

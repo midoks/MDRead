@@ -10,6 +10,7 @@
 #import "MMReadChapterModel.h"
 #import "MMCommon.h"
 #import "MMNovelApi.h"
+#import <CoreText/CoreText.h>
 
 @interface MMReadContent() <NSCoding>
 
@@ -34,7 +35,6 @@
 {
     [aCoder encodeObject:_content forKey:@"content"];
 }
-
 
 +(MMReadContent*)shareInstance
 {
@@ -65,17 +65,85 @@
     if (r) {
         MMReadContent *m = [MMCommon docsModelGet:[self getWebSite] folderName:folderName fileName:fileName];
         MDLog(@"cahce chapter content:%@", fileName);
-        success(m.content);
+        NSMutableArray *page = [self contentParse:m.content];
+        NSValue *v = [page objectAtIndex:0];
+        NSRange c;
+        [v getValue:&c];
+        
+        MDLog(@"text_nsrange:%@", NSStringFromRange(c));
+        
+        
+        NSString *text = [m.content substringWithRange:c];
+        
+        MDLog(@"text:%@", text);
+    
+        success(text);
     } else {
         [[MMNovelApi shareInstance] BookContent:book_id chapter_id:chapter_id source_id:source_id success:^(id responseObject) {
             MDLog(@"net chapter content:%@", fileName);
-            success(responseObject);
-            _content = responseObject;
+            
+            _content = [responseObject objectForKey:@"content"];
+            
+            
+            [self contentParse:_content];
             [MMCommon docsModelSave:[self getWebSite] folderName:folderName fileName:fileName object:self];
+            success(_content);
         } failure:^(int ret_code, NSString *ret_msg) {
             failure(ret_code, ret_msg);
         }];
     }
+}
+
+-(NSMutableArray *)contentParse:(NSString *)content
+{
+    
+    MDLog(@"content:%@", content);
+    NSMutableArray *page = [[NSMutableArray alloc] init];
+    
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    paraStyle.alignment = NSTextAlignmentLeft;
+    paraStyle.lineSpacing = 6; //设置行间距
+    paraStyle.hyphenationFactor = 1.0;
+    paraStyle.firstLineHeadIndent = 0.0;
+    paraStyle.paragraphSpacingBefore = 0.0;
+    paraStyle.headIndent = 0;
+    paraStyle.tailIndent = 0;
+    
+    UIFont *font = [UIFont fontWithName:@"Helvetica" size:19.f];
+    
+    //设置字间距 NSKernAttributeName:@1.5f
+    NSDictionary *dic = @{NSFontAttributeName:font,
+                          NSParagraphStyleAttributeName:paraStyle,
+                          NSKernAttributeName:@1.5f};
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:content attributes:dic];
+    CTFramesetterRef framesetter =  CTFramesetterCreateWithAttributedString( (CFAttributedStringRef) attrString );
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, NULL, CGRectMake(0, 0, 320, 568) );
+    
+    NSRange rangeText = NSMakeRange(0, 0);
+    NSInteger rangeOffset = 0;
+    
+    do {
+        
+        CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(rangeOffset, 0), path, nil);
+        CFRange nn = CTFrameGetVisibleStringRange(frame);
+        
+        MDLog(@"page -- location:%ld,length:%ld", nn.location, nn.length);
+        
+        rangeOffset += nn.length;
+        rangeText.location = nn.location;
+        rangeText.length = nn.length;
+        
+        MDLog(@"page -- rangeText -- location:%ld,length:%ld", (unsigned long)rangeText.location, (unsigned long)rangeText.length);
+        
+        NSValue *value = [NSValue valueWithBytes:&rangeText objCType:@encode(NSRange)];
+        [page addObject:value];
+        
+    } while (rangeText.location + rangeText.length < attrString.length);
+    
+    return page;
 }
 
 #pragma mark - 获取来源地址 -

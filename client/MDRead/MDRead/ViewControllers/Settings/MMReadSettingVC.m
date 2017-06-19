@@ -9,6 +9,7 @@
 #import "MMReadSettingVC.h"
 
 #import "MMSuggestVC.h"
+#import "MMSourceVC.h"
 
 @interface MMReadSettingVC() <UITableViewDataSource, UITableViewDelegate>
 
@@ -90,6 +91,7 @@
         
         if (indexPath.row == 0){
             cell.textLabel.text = @"不预读";
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else if (indexPath.row == 1){
             cell.textLabel.text = @"10章";
         } else if (indexPath.row == 2){
@@ -120,14 +122,15 @@
     if( indexPath.section == 2){
         
         if(indexPath.row == 0){
-            NSLog(@"切换来源");
+            
+            MMSourceVC *source = [[MMSourceVC alloc] init];
+            [self.navigationController pushViewController:source animated:YES];
         } else if(indexPath.row == 1){
             
             MMSuggestVC *sug = [[MMSuggestVC alloc] init];
             [self.navigationController pushViewController:sug animated:YES];
         }
     }
-    
 }
 
 @end

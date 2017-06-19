@@ -93,8 +93,7 @@
         } else if (state == MMInstroItemRead) {
             //NSLog(@"开始阅读");
             
-            MMBooklookVC *vc = [[MMBooklookVC alloc] init];
-            vc.bookInfo = self.bookInfo;
+            MMBooklookVC *vc = [[MMBooklookVC alloc] initWithBookInfo:self.bookInfo];
             [vc readBook];
             UINavigationController *bookInstroView = [[UINavigationController alloc] initWithRootViewController:vc];
             [self presentViewController:bookInstroView animated:YES completion:^{
