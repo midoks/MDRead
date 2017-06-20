@@ -30,6 +30,7 @@
 
     [self setNotify];
     
+    
     [MMConfig initConf];
     
     MDLog(@"NSHomeDirectory:%@", NSHomeDirectory());

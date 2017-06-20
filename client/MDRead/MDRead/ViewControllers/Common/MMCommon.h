@@ -24,6 +24,8 @@ typedef void (^mdItemClick)(NSDictionary *item);
 +(NSString *)md5:(NSString *)md5Str;
 +(NSString *)fileMd5:(NSString *)path;
 
++(BOOL)createFilePath:(NSString *)path;
++(NSString *)modelPathName;
 #pragma mark - 文档相关方法 -
 +(BOOL)isExistDocsModel:(NSString *)webSite folderName:(NSString *)folderName fileName:(NSString *)fileName;
 +(BOOL)docsModelSave:(NSString *)webSite folderName:(NSString *)folderName fileName:(NSString *)fileName object:(NSObject *)object;

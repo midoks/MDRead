@@ -70,6 +70,7 @@
 		82D72BF31D21199D006E0176 /* MMBooksSrcollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D72BF21D21199D006E0176 /* MMBooksSrcollView.m */; };
 		82DAC73D1CF9E76200E17706 /* MMNovelApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DAC73C1CF9E76200E17706 /* MMNovelApi.m */; };
 		82DAC75C1CFD879200E17706 /* MMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DAC75B1CFD879200E17706 /* MMCommon.m */; };
+		82E18B8A1EF8CF92009FCED4 /* MMScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E18B891EF8CF92009FCED4 /* MMScanVC.m */; };
 		82E217581D980540007C4EB7 /* MMLookView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E217571D980540007C4EB7 /* MMLookView.m */; };
 		82EB0CAD1DD893000034F3DF /* MMUIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EB0CAC1DD893000034F3DF /* MMUIColor.m */; };
 		82F216801D1A987600238B41 /* 1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 82F2167C1D1A987600238B41 /* 1.txt */; };
@@ -214,6 +215,8 @@
 		82DAC73C1CF9E76200E17706 /* MMNovelApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMNovelApi.m; sourceTree = "<group>"; };
 		82DAC75A1CFD879200E17706 /* MMCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCommon.h; sourceTree = "<group>"; };
 		82DAC75B1CFD879200E17706 /* MMCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCommon.m; sourceTree = "<group>"; };
+		82E18B881EF8CF92009FCED4 /* MMScanVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMScanVC.h; sourceTree = "<group>"; };
+		82E18B891EF8CF92009FCED4 /* MMScanVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMScanVC.m; sourceTree = "<group>"; };
 		82E217561D980540007C4EB7 /* MMLookView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLookView.h; sourceTree = "<group>"; };
 		82E217571D980540007C4EB7 /* MMLookView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLookView.m; sourceTree = "<group>"; };
 		82EB0CAB1DD893000034F3DF /* MMUIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMUIColor.h; sourceTree = "<group>"; };
@@ -304,6 +307,8 @@
 				82C197741D5E2F7B00917F66 /* MMAboutVC.m */,
 				827866DD1EF771E000A1075C /* MMSourceVC.h */,
 				827866DE1EF771E000A1075C /* MMSourceVC.m */,
+				82E18B881EF8CF92009FCED4 /* MMScanVC.h */,
+				82E18B891EF8CF92009FCED4 /* MMScanVC.m */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -844,6 +849,7 @@
 				82C454851CB80F0600B83065 /* AppDelegate.m in Sources */,
 				82327DE41EF7C15300941432 /* MMSourceListModel.m in Sources */,
 				827B026E1CCBE8FC00E2269B /* MMUILabel+textSize.m in Sources */,
+				82E18B8A1EF8CF92009FCED4 /* MMScanVC.m in Sources */,
 				82D72BF01D210C73006E0176 /* MMBooksRollTableViewCell.m in Sources */,
 				8242DF9E1EDFD26C00E7A2E3 /* MMReadChapterModel.m in Sources */,
 				823947631EEB953100393E87 /* MMReadMarkModel.m in Sources */,

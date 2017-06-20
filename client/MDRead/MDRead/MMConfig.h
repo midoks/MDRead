@@ -11,11 +11,16 @@
 #define MD_VERSION           @"MD_VERSION"
 #define MDCONF_INIT          @"md_init2"
 
-//配置名
+/**
+ * 是否第一次使用
+ */
 #define MDCONf_IsFristOpened @"IsFristOpened"
 
-//阅读配置
-// YES
+/**
+ * 阅读配置
+ * YES:傍晚
+ * NO: 白天
+ */
 #define MDCONF_R_MOONDAY     @"rMoonDay"
 
 

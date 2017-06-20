@@ -7,10 +7,13 @@
 //
 
 #import "MMSourceVC.h"
+#import "MMSourceListModel.h"
+#import "MMScanVC.h"
 
 @interface MMSourceVC () <UITableViewDataSource, UITableViewDelegate>
 
 @property(nonatomic, strong) UITableView *tableView;
+@property(nonatomic, strong) MMSourceListModel *slist;
 
 @end
 
@@ -27,21 +30,28 @@
     
     UIBarButtonItem  *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addSource:)];
     self.navigationItem.rightBarButtonItem = rightButton;
+    
+    
+    _slist = [MMSourceListModel shareInstance];
 }
 
 #pragma mark - 添加来源 -
 -(void)addSource:(UIButton *)btn
 {
 
-
-    
+    MMScanVC *v = [[MMScanVC alloc] init];
+    [self.navigationController pushViewController:v animated:YES];
 }
 
 
 #pragma mark - UITableViewDataSource && UITableViewDelegate -
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    NSUInteger c = _slist.list.count;
+    if ( c < 1 ){
+        return 1;
+    }
+    return c;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -53,7 +63,12 @@
 {
     
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    
+    NSUInteger c = _slist.list.count;
+    if ( c < 1 ){
+        cell.textLabel.text = @"暂无来源!!!";
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        return cell;
+    }
     
     if(indexPath.section == 0){
         
@@ -68,7 +83,6 @@
             cell.textLabel.text = @"仿真翻页";
         }
     }
-    
     return cell;
 }
 

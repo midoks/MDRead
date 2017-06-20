@@ -11,6 +11,8 @@
 
 @implementation MMConfig
 
+
+#pragma  mark - 初始化配置 -
 +(void)initConf
 {
     if(![self getBoolOption:MDCONF_INIT]){

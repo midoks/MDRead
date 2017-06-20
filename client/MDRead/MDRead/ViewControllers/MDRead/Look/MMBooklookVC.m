@@ -127,9 +127,9 @@
 {
 
     MMBooklookVC *s = [[MMBooklookVC alloc] initWithBookInfo:_bookInfo];
-    MDLog(@"chapter_pos:%d", _readModel.record.chapter_pos);
+    MDLog(@"chapter_pos:%lud", _readModel.record.chapter_pos);
     s.readModel.record.chapter_pos = _readModel.record.chapter_pos + 1;
-    MDLog(@"chapter_pos:%d", s.readModel.record.chapter_pos);
+    MDLog(@"chapter_pos:%lud", s.readModel.record.chapter_pos);
     
     
     [s goChapter:2 page:1 success:^(id responseObject) {

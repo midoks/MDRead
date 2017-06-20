@@ -7,6 +7,7 @@
 //
 
 #import "MMSourceListModel.h"
+#import "MMCommon.h"
 
 @interface MMSourceListModel() <NSCoding>
 
@@ -17,6 +18,7 @@
 -(id)init
 {
     self = [super init];
+    [self readModel];
     return self;
 }
 
@@ -43,5 +45,60 @@
     });
     return shareInstance;
 }
+
+-(void)readModel
+{
+    if ([self isExistDocsModel:@"source_list"]) {
+        MMSourceListModel *m = [self docsModelGet:@"source_list"];
+        _list = m.list;
+    } else {
+        _list = [[NSMutableArray alloc] init];
+        [self save];
+    }
+}
+
+-(void)save
+{
+    [self docsModelSave:@"source_list" object:self];
+}
+
+-(void)dealloc
+{
+    //[super dealloc];
+    MDLog(@"%@", @"MMSourceListModel -- dealloc --- ");
+    [self save];
+}
+
+
+#pragma mark - Private Methods -
+
+#pragma mark - 文档保存 -
+-(BOOL)docsModelSave:(NSString *)fileName object:(NSObject *)object
+{
+    NSString *docsPath =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true).lastObject;
+    if( [MMCommon createFilePath:docsPath] ){
+        docsPath = [NSString stringWithFormat:@"%@/%@.txt", docsPath, fileName];
+        [NSKeyedArchiver archiveRootObject:object toFile:docsPath];
+    }
+    return TRUE;
+}
+
+#pragma mark - 读取文档 -
+-(id)docsModelGet:(NSString *)fileName
+{
+    NSString *docsPath =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true).lastObject;
+    docsPath = [NSString stringWithFormat:@"%@/%@.txt", docsPath, fileName];
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:docsPath];
+}
+
+
+#pragma mark - 文档判断 -
+-(BOOL)isExistDocsModel:(NSString *)fileName
+{
+    NSString *docsPath =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true).lastObject;
+    docsPath = [NSString stringWithFormat:@"%@/%@.txt", docsPath, fileName];
+    return [[NSFileManager defaultManager] fileExistsAtPath:docsPath];
+}
+
 
 @end

@@ -20,7 +20,17 @@
 
 // 日志输出
 #ifdef __DEBUG
+
+#if TARGET_IPHONE_SIMULATOR//模拟器
+//XCODE 测试
 #define MDLog(...) NSLog(__VA_ARGS__)
+#else
+//真是测试
+#define MDLog(FORMAT, ...) fprintf(stderr,"%s:%d\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+
+#endif
+
+
 #else
 #define MDLog(...)
 #endif
