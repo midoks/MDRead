@@ -30,7 +30,6 @@
 
 #endif
 
-
 #else
 #define MDLog(...)
 #endif
