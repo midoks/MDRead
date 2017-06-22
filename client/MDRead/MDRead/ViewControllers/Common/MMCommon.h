@@ -18,7 +18,9 @@ typedef void (^mdItemClick)(NSDictionary *item);
 +(UIColor *)randomColor;
 +(NSArray *) getRgbWithColor:(UIColor *)color;
 
++(void)show:(NSString *)title message:(NSString *)message time:(NSTimeInterval)ti;
 +(void)showMessage:(NSString *)message;
++(void)showMessage:(NSString *)message time:(NSTimeInterval)ti callback:(void (^)())callback;
 
 #pragma mark - 加密相关 -
 +(NSString *)md5:(NSString *)md5Str;

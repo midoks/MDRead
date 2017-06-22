@@ -13,6 +13,8 @@
 		8222883B1D755B5200D0CB6E /* MMBookInstroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8222883A1D755B5200D0CB6E /* MMBookInstroCell.m */; };
 		8227233B1D16DA73005340E6 /* MMBookshelfVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8227233A1D16DA73005340E6 /* MMBookshelfVC.m */; };
 		82306C471CC1D99E00888A10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82306C461CC1D99E00888A10 /* LaunchScreen.storyboard */; };
+		823125831EFA852300C9976F /* MMScanVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 823125821EFA852300C9976F /* MMScanVIew.m */; };
+		823125881EFB953900C9976F /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 823125871EFB953900C9976F /* sound.caf */; };
 		82327DE11EF7C05200941432 /* MMSourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82327DE01EF7C05200941432 /* MMSourceModel.m */; };
 		82327DE41EF7C15300941432 /* MMSourceListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82327DE31EF7C15300941432 /* MMSourceListModel.m */; };
 		823947601EEB952300393E87 /* MMReadRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239475F1EEB952300393E87 /* MMReadRecordModel.m */; };
@@ -109,6 +111,9 @@
 		822723391D16DA73005340E6 /* MMBookshelfVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookshelfVC.h; sourceTree = "<group>"; };
 		8227233A1D16DA73005340E6 /* MMBookshelfVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBookshelfVC.m; sourceTree = "<group>"; };
 		82306C461CC1D99E00888A10 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		823125811EFA852300C9976F /* MMScanVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMScanVIew.h; sourceTree = "<group>"; };
+		823125821EFA852300C9976F /* MMScanVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMScanVIew.m; sourceTree = "<group>"; };
+		823125871EFB953900C9976F /* sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.caf; sourceTree = "<group>"; };
 		82327DDF1EF7C05200941432 /* MMSourceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSourceModel.h; sourceTree = "<group>"; };
 		82327DE01EF7C05200941432 /* MMSourceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSourceModel.m; sourceTree = "<group>"; };
 		82327DE21EF7C15300941432 /* MMSourceListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSourceListModel.h; sourceTree = "<group>"; };
@@ -309,6 +314,8 @@
 				827866DE1EF771E000A1075C /* MMSourceVC.m */,
 				82E18B881EF8CF92009FCED4 /* MMScanVC.h */,
 				82E18B891EF8CF92009FCED4 /* MMScanVC.m */,
+				823125811EFA852300C9976F /* MMScanVIew.h */,
+				823125821EFA852300C9976F /* MMScanVIew.m */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -322,6 +329,14 @@
 				82D72BE11D1E5F03006E0176 /* MMBookshelfCollectionViewCell.m */,
 			);
 			path = Bookshelf;
+			sourceTree = "<group>";
+		};
+		823125861EFB953900C9976F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				823125871EFB953900C9976F /* sound.caf */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		82327DDE1EF7C02F00941432 /* SourceModel */ = {
@@ -480,6 +495,7 @@
 		82C4547F1CB80F0600B83065 /* MDRead */ = {
 			isa = PBXGroup;
 			children = (
+				823125861EFB953900C9976F /* Resources */,
 				82C454B31CB80F9000B83065 /* ViewControllers */,
 				82DAC73A1CF9E51D00E17706 /* Model */,
 				82327DDE1EF7C02F00941432 /* SourceModel */,
@@ -764,6 +780,7 @@
 				828D0DD71CC3642800F4BCCA /* ReleaseNotes.txt in Resources */,
 				82C4548D1CB80F0600B83065 /* Assets.xcassets in Resources */,
 				82F216811D1A987600238B41 /* 2.txt in Resources */,
+				823125881EFB953900C9976F /* sound.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,6 +859,7 @@
 				82C1977B1D60B9CA00917F66 /* MMSearchNavVC.m in Sources */,
 				821B3A6D1D8538E7000ABCE7 /* MMPresentingAnimator.m in Sources */,
 				82CB2D051D5C457D008DE5FC /* RootVC.m in Sources */,
+				823125831EFA852300C9976F /* MMScanVIew.m in Sources */,
 				82BF79EF1DBB139F00E53808 /* MMSimPagesVC.m in Sources */,
 				8242DFA11EE2A5BA00E7A2E3 /* MMReadContent.m in Sources */,
 				821CC14D1ED94852003108A0 /* MMReadModel.m in Sources */,

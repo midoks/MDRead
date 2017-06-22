@@ -44,6 +44,8 @@
 }
 
 
+
+
 #pragma mark - UITableViewDataSource && UITableViewDelegate -
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -65,7 +67,7 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     NSUInteger c = _slist.list.count;
     if ( c < 1 ){
-        cell.textLabel.text = @"暂无来源!!!";
+        cell.textLabel.text = @"暂无来源";
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         return cell;
     }

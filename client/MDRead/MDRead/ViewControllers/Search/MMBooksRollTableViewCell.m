@@ -141,7 +141,7 @@
     MMBooksSrcollView *view_right = [_pages objectAtIndex:2];
     
     if(!_list){
-        [MMCommon showMessage:@"没有数据!"];
+        [MMCommon showMessage:@"没有数据"];
         return;
     }
     

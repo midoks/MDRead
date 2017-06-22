@@ -49,27 +49,33 @@
 
 
 
--(void)timerFireMethod:(NSTimer*)theTimer
++(void)timerFireMethod:(NSTimer*)theTimer
 {
     UIAlertView *promptAlert = (UIAlertView*)[theTimer userInfo];
-    [promptAlert dismissWithClickedButtonIndex:0 animated:NO];
+    [promptAlert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
--(void)showAlert
++(void)show:(NSString *)title message:(NSString *)message time:(NSTimeInterval)ti
 {
-    UIAlertView *promptAlert = [[UIAlertView alloc] initWithTitle:@"提示:" message:@"添加收藏成功!" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+    UIAlertView *promptAlert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
     
-    [NSTimer scheduledTimerWithTimeInterval:0.5f
+    [NSTimer scheduledTimerWithTimeInterval:ti
                                      target:self
                                    selector:@selector(timerFireMethod:)
                                    userInfo:promptAlert
-                                    repeats:NO];
+                                repeats:NO];
+    
     [promptAlert show];
 }
 
 
-#pragma mark - 消息 -
 +(void)showMessage:(NSString *)message
+{
+    [self showMessage:message time:3.0 callback:nil];
+}
+
+#pragma mark - 消息 -
++(void)showMessage:(NSString *)message time:(NSTimeInterval)ti callback:(void (^)())callback
 {
     UIWindow * window = [UIApplication sharedApplication].keyWindow;
     [window.superview removeFromSuperview];
@@ -109,10 +115,13 @@
     showview.frame = CGRectMake((Psize.width - (LabelSize.size.width + 20))/2, (Psize.height)/2,
                                 ceil(LabelSize.size.width) + 20, ceil(LabelSize.size.height) + 10);
     
-    [UIView animateWithDuration:3.0 animations:^{
+    [UIView animateWithDuration:ti animations:^{
         showview.alpha = 0;
     } completion:^(BOOL finished) {
         [showview removeFromSuperview];
+        if (callback != nil) {
+            callback();
+        }
     }];
 }
 
