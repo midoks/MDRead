@@ -99,7 +99,7 @@
     NSString *nsTextCotent = textView.text;
     NSInteger existTextNum = [nsTextCotent length];
     NSInteger remainTextNum = 240 - existTextNum;
-    _residue.text = [NSString stringWithFormat:@"%ld/240",remainTextNum];
+    _residue.text = [NSString stringWithFormat:@"%ld/240",(long)remainTextNum];
 }
 
 -(BOOL)textView:(UITextView*)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*)text
