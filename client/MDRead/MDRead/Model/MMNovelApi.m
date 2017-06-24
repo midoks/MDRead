@@ -449,6 +449,30 @@
     return NO;
 }
 
+#pragma mark - 意见反馈 -
+-(void)feedBack:(NSString *)content
+        success:(void (^)(id responseObject))success
+        failure:(void (^)(int ret_code, NSString *ret_msg))failure
+{
+    NSString *feedback = [_callbackUrls objectForKey:@"feedback"];
+    if (!feedback) {
+        failure(-1, [NSString stringWithFormat:@"feedback未设置"]);
+        return;
+    }
+    
+    [self setArgs:@"content" value:content];
+    
+    NSString *encoded = [feedback stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    [_manager POST:encoded parameters:_args progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(-1, [NSString stringWithFormat:@"%@:%@", feedback, @"获取数据失败!"]);
+    }];
+}
+
 #pragma mark - 测试 -
 
 -(void)downloadFile

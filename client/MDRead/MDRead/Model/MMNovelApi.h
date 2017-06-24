@@ -66,8 +66,16 @@
 
 -(void)downloadFile;
 
+#pragma mark - 接口标题 -
 -(NSString *)getApiTitle;
+
+#pragma mark - 是否存在反馈 -
 -(BOOL)isExistFeedBack;
+
+#pragma mark - 意见反馈 -
+-(void)feedBack:(NSString *)content
+        success:(void (^)(id responseObject))success
+        failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 
 #pragma mark - 接口检测 -
 -(void)test:(NSString *)url
