@@ -48,8 +48,6 @@
     _logInfo = [_logInfo stringByAppendingString:[NSString stringWithFormat:@"机器UUID : %@\n", [device identifierForVendor].UUIDString]];
     //_logInfo = [_logInfo stringByAppendingString:[NSString stringWithFormat:@"sUUID : %@\n", [device systemVersion]]];
     
-    
-    
     if([self isJailBreak]){
         _logInfo = [_logInfo stringByAppendingString:[NSString stringWithFormat:@"是否越狱: YES\n"]];
     } else {
@@ -68,8 +66,6 @@
     _content.editable = NO;
     _content.linkTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:8],NSParagraphStyleAttributeName:paragraphStyle};
     [self.view addSubview:_content];
-    
-    
     
     
     _servie = [[LDNetDiagnoService alloc] initWithAppCode:appName
