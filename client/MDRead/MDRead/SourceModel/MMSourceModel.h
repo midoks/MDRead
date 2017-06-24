@@ -10,8 +10,8 @@
 
 @interface MMSourceModel : NSObject
 
-@property (nonatomic, strong) NSString *websize;
-@property (nonatomic, assign) BOOL *selected;
-@property (nonatomic, assign) id data;
+@property (nonatomic, strong) NSString *website;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, assign) BOOL selected;
 
 @end

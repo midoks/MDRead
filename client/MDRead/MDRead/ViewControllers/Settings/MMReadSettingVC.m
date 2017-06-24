@@ -8,12 +8,17 @@
 
 #import "MMReadSettingVC.h"
 
-#import "MMSuggestVC.h"
+#import "MMFeedBackVC.h"
 #import "MMSourceVC.h"
+#import "MMSourceModel.h"
+#import "MMSourceListModel.h"
+#import "MMNovelApi.h"
+#import "MMPingVC.h"
 
 @interface MMReadSettingVC() <UITableViewDataSource, UITableViewDelegate>
 
 @property(nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) MMSourceListModel *list;
 
 @end
 
@@ -24,6 +29,8 @@
     [self setTitle:@"阅读设置"];
     
     [self initTableView];
+    
+    _list = [MMSourceListModel shareInstance];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,7 +60,11 @@
     } else if (section == 1){
         return 4;
     } else if (section == 2){
-        return 2;
+        BOOL s = [[MMNovelApi shareInstance] isExistFeedBack];
+        if (s){
+            return 3;
+        }
+        return 1;
     }
     return 1;
 }
@@ -103,10 +114,23 @@
     } else if (indexPath.section == 2){
         
         if(indexPath.row == 0){
+            
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+            
+            if (_list.list.count > 0) {
+                MMSourceModel *s = [_list getCurrent];
+                cell.detailTextLabel.text = s.title;
+            }
             cell.textLabel.text = @"切换来源";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            return cell;
         } else if (indexPath.row == 1) {
+            
             cell.textLabel.text = @"意见反馈";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        } else if (indexPath.row == 2){
+            
+            cell.textLabel.text = @"接口诊断";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     }
@@ -124,11 +148,22 @@
         if(indexPath.row == 0){
             
             MMSourceVC *source = [[MMSourceVC alloc] init];
+            source.title = @"切换来源";
             [self.navigationController pushViewController:source animated:YES];
         } else if(indexPath.row == 1){
             
-            MMSuggestVC *sug = [[MMSuggestVC alloc] init];
-            [self.navigationController pushViewController:sug animated:YES];
+            MMFeedBackVC *feedback = [[MMFeedBackVC alloc] init];
+            feedback.title = @"意见反馈";
+            [self.navigationController pushViewController:feedback animated:YES];
+        } else if (indexPath.row == 2){
+            
+            MMPingVC *ping = [[MMPingVC alloc] init];
+            
+            MMSourceModel *s = [_list getCurrent];
+            ping.apiUrl = s.website;
+            
+            ping.title = @"接口诊断";
+            [self.navigationController pushViewController:ping animated:YES];
         }
     }
 }

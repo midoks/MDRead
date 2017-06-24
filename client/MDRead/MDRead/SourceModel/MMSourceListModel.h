@@ -14,5 +14,9 @@
 @property (nonatomic, strong) NSMutableArray<MMSourceModel *> *list;
 
 +(MMSourceListModel*)shareInstance;
+-(void)addSource:(NSString *)website title:(NSString *)title;
+-(void)setCurrent:(NSInteger)row;
+-(MMSourceModel *)getCurrent;
+-(void)save;
 
 @end

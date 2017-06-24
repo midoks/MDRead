@@ -66,6 +66,9 @@
 
 -(void)downloadFile;
 
+-(NSString *)getApiTitle;
+-(BOOL)isExistFeedBack;
+
 #pragma mark - 接口检测 -
 -(void)test:(NSString *)url
     success:(void (^)())success

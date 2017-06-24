@@ -57,6 +57,54 @@
     }
 }
 
+-(MMSourceModel *)getCurrent
+{
+    NSUInteger list_c = [_list count];
+    if (list_c > 0){
+        for (int i = 0;  i < [_list count]; i++) {
+           MMSourceModel *s = [_list objectAtIndex:i];
+            if (s.selected){
+                return s;
+            }
+        }
+    }
+    return nil;
+}
+
+-(void)setCurrent:(NSInteger)row
+{
+    NSUInteger list_c = [_list count];
+    if (list_c > 0){
+        for (int i = 0;  i < [_list count]; i++) {
+            [[_list objectAtIndex:i] setSelected:NO];
+        }
+    }
+    
+    [[_list objectAtIndex:row] setSelected:YES];
+    [self save];
+}
+
+
+-(void)addSource:(NSString *)website title:(NSString *)title
+{
+    MMSourceModel * s = [[MMSourceModel alloc] init];
+    
+    s.website = website;
+    s.title = title;
+    s.selected = YES;
+
+    NSUInteger list_c = [_list count];
+    if (list_c > 0){
+        for (int i = 0;  i < [_list count]; i++) {
+            [[_list objectAtIndex:i] setSelected:NO];
+        }
+    }
+    
+    [_list addObject:s];
+    
+    [self save];
+}
+
 -(void)save
 {
     [self docsModelSave:@"source_list" object:self];

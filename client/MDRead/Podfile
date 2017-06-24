@@ -9,4 +9,6 @@ target "MDRead" do
     pod 'JSONKit'
     pod 'MJRefresh'
     pod 'MBProgressHUD'
+    
+    pod 'LDNetDiagnoService'
 end

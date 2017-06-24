@@ -15,6 +15,9 @@
 		82306C471CC1D99E00888A10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82306C461CC1D99E00888A10 /* LaunchScreen.storyboard */; };
 		823125831EFA852300C9976F /* MMScanVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 823125821EFA852300C9976F /* MMScanVIew.m */; };
 		823125881EFB953900C9976F /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 823125871EFB953900C9976F /* sound.caf */; };
+		8231258B1EFCF1B400C9976F /* MMMakeQrcodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8231258A1EFCF1B400C9976F /* MMMakeQrcodeVC.m */; };
+		8231258E1EFD0EF700C9976F /* MMFeedBackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8231258D1EFD0EF700C9976F /* MMFeedBackVC.m */; };
+		823125911EFD257B00C9976F /* MMPingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 823125901EFD257B00C9976F /* MMPingVC.m */; };
 		82327DE11EF7C05200941432 /* MMSourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82327DE01EF7C05200941432 /* MMSourceModel.m */; };
 		82327DE41EF7C15300941432 /* MMSourceListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82327DE31EF7C15300941432 /* MMSourceListModel.m */; };
 		823947601EEB952300393E87 /* MMReadRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239475F1EEB952300393E87 /* MMReadRecordModel.m */; };
@@ -65,7 +68,6 @@
 		82CF29941DB07E69006762A3 /* MMBookBaseLookVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CF29931DB07E69006762A3 /* MMBookBaseLookVC.m */; };
 		82D47EBB1D5C462900958099 /* MMSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D47EBA1D5C462900958099 /* MMSettingsVC.m */; };
 		82D47EBE1D5C476100958099 /* MMReadSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D47EBD1D5C476100958099 /* MMReadSettingVC.m */; };
-		82D47EC11D5C4E2000958099 /* MMSuggestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D47EC01D5C4E2000958099 /* MMSuggestVC.m */; };
 		82D72BDF1D1E4D8E006E0176 /* MMBooksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D72BDE1D1E4D8E006E0176 /* MMBooksTableViewCell.m */; };
 		82D72BE21D1E5F03006E0176 /* MMBookshelfCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D72BE11D1E5F03006E0176 /* MMBookshelfCollectionViewCell.m */; };
 		82D72BF01D210C73006E0176 /* MMBooksRollTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D72BEF1D210C73006E0176 /* MMBooksRollTableViewCell.m */; };
@@ -114,6 +116,12 @@
 		823125811EFA852300C9976F /* MMScanVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMScanVIew.h; sourceTree = "<group>"; };
 		823125821EFA852300C9976F /* MMScanVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMScanVIew.m; sourceTree = "<group>"; };
 		823125871EFB953900C9976F /* sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.caf; sourceTree = "<group>"; };
+		823125891EFCF1B400C9976F /* MMMakeQrcodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMakeQrcodeVC.h; sourceTree = "<group>"; };
+		8231258A1EFCF1B400C9976F /* MMMakeQrcodeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMakeQrcodeVC.m; sourceTree = "<group>"; };
+		8231258C1EFD0EF700C9976F /* MMFeedBackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMFeedBackVC.h; sourceTree = "<group>"; };
+		8231258D1EFD0EF700C9976F /* MMFeedBackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMFeedBackVC.m; sourceTree = "<group>"; };
+		8231258F1EFD257B00C9976F /* MMPingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPingVC.h; sourceTree = "<group>"; };
+		823125901EFD257B00C9976F /* MMPingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPingVC.m; sourceTree = "<group>"; };
 		82327DDF1EF7C05200941432 /* MMSourceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSourceModel.h; sourceTree = "<group>"; };
 		82327DE01EF7C05200941432 /* MMSourceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSourceModel.m; sourceTree = "<group>"; };
 		82327DE21EF7C15300941432 /* MMSourceListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSourceListModel.h; sourceTree = "<group>"; };
@@ -206,8 +214,6 @@
 		82D47EBA1D5C462900958099 /* MMSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSettingsVC.m; sourceTree = "<group>"; };
 		82D47EBC1D5C476100958099 /* MMReadSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMReadSettingVC.h; sourceTree = "<group>"; };
 		82D47EBD1D5C476100958099 /* MMReadSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMReadSettingVC.m; sourceTree = "<group>"; };
-		82D47EBF1D5C4E2000958099 /* MMSuggestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSuggestVC.h; sourceTree = "<group>"; };
-		82D47EC01D5C4E2000958099 /* MMSuggestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSuggestVC.m; sourceTree = "<group>"; };
 		82D72BDD1D1E4D8E006E0176 /* MMBooksTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBooksTableViewCell.h; sourceTree = "<group>"; };
 		82D72BDE1D1E4D8E006E0176 /* MMBooksTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBooksTableViewCell.m; sourceTree = "<group>"; };
 		82D72BE01D1E5F03006E0176 /* MMBookshelfCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBookshelfCollectionViewCell.h; sourceTree = "<group>"; };
@@ -306,8 +312,6 @@
 				82D47EBA1D5C462900958099 /* MMSettingsVC.m */,
 				82D47EBC1D5C476100958099 /* MMReadSettingVC.h */,
 				82D47EBD1D5C476100958099 /* MMReadSettingVC.m */,
-				82D47EBF1D5C4E2000958099 /* MMSuggestVC.h */,
-				82D47EC01D5C4E2000958099 /* MMSuggestVC.m */,
 				82C197731D5E2F7B00917F66 /* MMAboutVC.h */,
 				82C197741D5E2F7B00917F66 /* MMAboutVC.m */,
 				827866DD1EF771E000A1075C /* MMSourceVC.h */,
@@ -316,6 +320,12 @@
 				82E18B891EF8CF92009FCED4 /* MMScanVC.m */,
 				823125811EFA852300C9976F /* MMScanVIew.h */,
 				823125821EFA852300C9976F /* MMScanVIew.m */,
+				823125891EFCF1B400C9976F /* MMMakeQrcodeVC.h */,
+				8231258A1EFCF1B400C9976F /* MMMakeQrcodeVC.m */,
+				8231258C1EFD0EF700C9976F /* MMFeedBackVC.h */,
+				8231258D1EFD0EF700C9976F /* MMFeedBackVC.m */,
+				8231258F1EFD257B00C9976F /* MMPingVC.h */,
+				823125901EFD257B00C9976F /* MMPingVC.m */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -873,7 +883,7 @@
 				823947631EEB953100393E87 /* MMReadMarkModel.m in Sources */,
 				82D47EBB1D5C462900958099 /* MMSettingsVC.m in Sources */,
 				82C197A91D6DE4EE00917F66 /* MMBooklookVC.m in Sources */,
-				82D47EC11D5C4E2000958099 /* MMSuggestVC.m in Sources */,
+				8231258B1EFCF1B400C9976F /* MMMakeQrcodeVC.m in Sources */,
 				823947601EEB952300393E87 /* MMReadRecordModel.m in Sources */,
 				82D72BF31D21199D006E0176 /* MMBooksSrcollView.m in Sources */,
 				821B3A6C1D8538E7000ABCE7 /* MMDismissingAnimator.m in Sources */,
@@ -883,11 +893,13 @@
 				82DAC73D1CF9E76200E17706 /* MMNovelApi.m in Sources */,
 				82D72BDF1D1E4D8E006E0176 /* MMBooksTableViewCell.m in Sources */,
 				82E217581D980540007C4EB7 /* MMLookView.m in Sources */,
+				823125911EFD257B00C9976F /* MMPingVC.m in Sources */,
 				8227233B1D16DA73005340E6 /* MMBookshelfVC.m in Sources */,
 				82BF79EB1DB9DA8800E53808 /* MMConfig.m in Sources */,
 				829052A41DBC7F190008DC0B /* MMButton.m in Sources */,
 				82A24A2A1DE98FAA00DA6666 /* MMBookListVC.m in Sources */,
 				82D72BE21D1E5F03006E0176 /* MMBookshelfCollectionViewCell.m in Sources */,
+				8231258E1EFD0EF700C9976F /* MMFeedBackVC.m in Sources */,
 				82CF29941DB07E69006762A3 /* MMBookBaseLookVC.m in Sources */,
 				8222883B1D755B5200D0CB6E /* MMBookInstroCell.m in Sources */,
 				82C197881D68137B00917F66 /* MMBookCell.m in Sources */,

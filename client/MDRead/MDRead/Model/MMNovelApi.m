@@ -428,6 +428,27 @@
     //NSLog(@"%@", _callbackUrls)
 }
 
+#pragma mark - 获取来源接口标题 -
+-(NSString *)getApiTitle
+{
+    NSString *title = [_callbackUrls objectForKey:@"title"];
+    if (title) {
+        return title;
+    }
+    return @"default";
+}
+
+#pragma mark - 是否存在意见反馈 -
+-(BOOL)isExistFeedBack
+{
+    NSString *feedback = [_callbackUrls objectForKey:@"feedback"];
+    if (feedback) {
+        return YES;
+    }
+
+    return NO;
+}
+
 #pragma mark - 测试 -
 
 -(void)downloadFile
@@ -471,8 +492,15 @@
         NSData *jsonData = [tmpDa dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *resultJson = [jsonData objectFromJSONData];
         
+        
+        
         if([resultJson objectForKey:@"ret_code"]){
             failure(-1, @"入口获取数据失败!");
+            return;
+        }
+        
+        if(![resultJson objectForKey:@"title"]){
+            failure(-1, @"缺少标题!");
             return;
         }
         

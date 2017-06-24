@@ -11,6 +11,7 @@
 #import "MMNovelApi.h"
 #import "MMSystemInfo.h"
 #import "MMScanVIew.h"
+#import "MMSourceListModel.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface MMScanVC () <AVCaptureMetadataOutputObjectsDelegate>
@@ -37,6 +38,9 @@
     
     self.title = @"扫一扫";
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    //MMSourceListModel *source = [MMSourceListModel shareInstance];
+    //[source addSource:@"http://www.baidu.com/" title:@"bb"];
     
     [self initUI];
 }
@@ -119,15 +123,16 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
     
     [self palySoundName:@"sound.caf"];
     
-    
-    //MDLog(@"code:%@", code);
     BOOL vail = [self vaildURLForString:code];
     if (vail) {
-        [[MMNovelApi shareInstance] addArgs:@"sysinfo" dic:[[MMSystemInfo shareInstance] getInfo]];
+        
         [[MMNovelApi shareInstance] test:code success:^{
-            
             [MMCommon showMessage:@"验证通过" time:1.0 callback:^{
+                
                 [self closeVC];
+                MMSourceListModel *source = [MMSourceListModel shareInstance];
+                NSString *title = [[MMNovelApi shareInstance] getApiTitle];
+                [source addSource:code title:title];
             }];
             
         } failure:^(int ret_code, NSString *ret_msg) {
@@ -135,7 +140,6 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
             [MMCommon showMessage:ret_msg time:1.0  callback:^{
                 [self closeVC];
             }];
-            
         }];
         
     } else {
