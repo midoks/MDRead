@@ -1,5 +1,6 @@
 {
 	"title": "Github事例",
+	"request_method": "get",
 	"ad": "http://121.42.151.169/ad",
 	"search": "http://121.42.151.169/book/search",
 	"book_info": "https://raw.githubusercontent.com/midoks/MDRead/master/docs/api/bookinfo.json",
