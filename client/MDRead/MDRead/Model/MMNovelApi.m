@@ -34,8 +34,9 @@
 {
     if (self == [super init])
     {
+        
         self->_manager = [[AFHTTPSessionManager alloc] init];
-        _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json",@"text/javascript", @"application/xhtml+xml", @"application/xml", @"text/plain",nil];;
         [_manager.requestSerializer setTimeoutInterval:5.0];
         [_manager.requestSerializer setValue:@"MDREAD IOS Client/1.0(midoks@163.com)" forHTTPHeaderField:@"User-Agent"];
         
@@ -170,7 +171,7 @@
     
     [_manager POST:encoded parameters:_args progress:^(NSProgress * uploadProgress) {
     } success:^(NSURLSessionDataTask * task, id  responseObject) {
-        //MDLog(@"%@", responseObject);
+        MDLog(@"%@:%@", responseObject,book_info_url);
         
         if (validate){
             if ([[responseObject objectForKey:@"data"] count] < 1){
@@ -517,11 +518,12 @@
         NSDictionary *resultJson = [jsonData objectFromJSONData];
         
         
+        MDLog(@"test:%@", resultJson);
         
-        if([resultJson objectForKey:@"ret_code"]){
-            failure(-1, @"入口获取数据失败!");
-            return;
-        }
+//        if(![resultJson objectForKey:@"ret_code"]){
+//            failure(-1, @"入口获取数据失败!");
+//            return;
+//        }
         
         if(![resultJson objectForKey:@"title"]){
             failure(-1, @"缺少标题!");
@@ -606,6 +608,7 @@
         
         success();
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
+        //MDLog(@"test root fail:%@", [error localizedDescription]);
         failure(-1, @"test:入口获取数据失败!");
     }];
 }
