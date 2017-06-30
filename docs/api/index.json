@@ -1,0 +1,25 @@
+{
+	"title": "测试",
+	"feedback": "http://121.42.151.169/user/feedback",
+	"ad": "http://121.42.151.169/ad",
+	"search": "http://121.42.151.169/book/search",
+	"book_info": "http://121.42.151.169/book/info",
+	"book_list": "http://121.42.151.169/book/list",
+	"book_content": "http://121.42.151.169/book/content",
+	"book_source": "http://121.42.151.169/book/source",
+	"book_author": "http://121.42.151.169/book/authorlist",
+	"recommend": "http://121.42.151.169/book/recommend",
+	"rand": "http://121.42.151.169/book/rand",
+	"list": "http://121.42.151.169/book/bang_list",
+	"vaildata": {
+		"search": "凡人",
+		"book_list": {
+			"bid": "1",
+			"sid": "1"
+		},
+		"book_content": {
+		"cid": "1",
+		"sid": "1"
+		}
+	}
+}
