@@ -1,0 +1,15 @@
+{
+	"data": 
+	[
+		{
+			"name": "Github事例",
+			"value": "欢迎使用"
+		},
+		{
+			"name": "如有建议",
+			"value": "在APP中提交"
+		}
+	],
+	"ret_code": "0",
+	"ret_msg": "success"
+}

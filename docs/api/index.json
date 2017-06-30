@@ -1,9 +1,8 @@
 {
 	"title": "Github事例",
-	"feedback": "http://121.42.151.169/user/feedback",
 	"ad": "http://121.42.151.169/ad",
 	"search": "http://121.42.151.169/book/search",
-	"book_info": "http://121.42.151.169/book/info",
+	"book_info": "https://raw.githubusercontent.com/midoks/MDRead/master/docs/api/bookinfo.json",
 	"book_list": "http://121.42.151.169/book/list",
 	"book_content": "http://121.42.151.169/book/content",
 	"book_source": "http://121.42.151.169/book/source",
