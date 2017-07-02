@@ -39,8 +39,8 @@
     self.title = @"扫一扫";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    //MMSourceListModel *source = [MMSourceListModel shareInstance];
-    //[source addSource:@"http://www.baidu.com/" title:@"bb"];
+//    MMSourceListModel *source = [MMSourceListModel shareInstance];
+//    [source addSource:@"https://raw.githubusercontent.com/midoks/MDRead/master/docs/api/index.json" title:@"Github测试"];
     
     [self initUI];
 }
@@ -123,6 +123,8 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
     
     [self palySoundName:@"sound.caf"];
     
+    MDLog(@"url:%@", code);
+    
     BOOL vail = [self vaildURLForString:code];
     if (vail) {
         
@@ -136,6 +138,8 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
             }];
             
         } failure:^(int ret_code, NSString *ret_msg) {
+            
+            MDLog(@"sss:%d:%@", ret_code, ret_msg);
             
             [MMCommon showMessage:ret_msg time:1.0  callback:^{
                 [self closeVC];

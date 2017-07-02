@@ -13,6 +13,8 @@
 #import "MMMakeQrcodeVC.h"
 #import "MMCommon.h"
 
+#import "MMNovelApi.h"
+
 @interface MMSourceVC () <UITableViewDataSource, UITableViewDelegate>
 
 @property(nonatomic, strong) UITableView *tableView;
@@ -157,8 +159,17 @@
 #pragma mark - 切换为当前 -
 -(void)changeSelectedSource
 {
-    [_slist setCurrent:_selectedRow];
-    [_tableView reloadData];
+    MMSourceModel *s = [_slist.list objectAtIndex:_selectedRow];
+    
+    [[MMNovelApi shareInstance] switchWebSite:s.website success:^{
+        [_slist setCurrent:_selectedRow];
+        [_tableView reloadData];
+        [MMCommon showMessage:@"切换成功!"];
+    } failure:^(int ret_code, NSString *ret_msg) {
+        [MMCommon showMessage:@"切换失败!"];
+    }];
+    
+    
 }
 
 

@@ -17,6 +17,9 @@
 #import "MMSettingsVC.h"
 #import "MMBookshelfVC.h"
 
+#import "MMSourceModel.h"
+#import "MMSourceListModel.h"
+
 
 
 @interface RootVC () <UITabBarControllerDelegate>
@@ -66,8 +69,14 @@
     }
     [self setViewControllers:v animated:NO];
     
+    MMSourceListModel *list = [MMSourceListModel shareInstance];
+    MMSourceModel *selected = [list getCurrent];
+    
+    NSString *url = selected.website;
+    
+    
     [[MMNovelApi shareInstance] addArgs:@"sysinfo" dic:[[MMSystemInfo shareInstance] getInfo]];
-    [[MMNovelApi shareInstance] test:@"http://121.42.151.169/api" success:^{
+    [[MMNovelApi shareInstance] test:url success:^{
         
         [MMCommon showMessage:@"验证通过"];
         

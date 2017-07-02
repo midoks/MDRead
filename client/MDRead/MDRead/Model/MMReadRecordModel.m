@@ -40,8 +40,8 @@
 {
     NSString *desc = @"MMReadRecordModel:";
     
-    desc = [NSString stringWithFormat:@"%@\n _chapter_pos:%lud", desc, _chapter_pos];
-    desc = [NSString stringWithFormat:@"%@\n _chapter_page_pos:%lud", desc, _chapter_page_pos];
+    desc = [NSString stringWithFormat:@"%@\n _chapter_pos:%lud", desc, (unsigned long)_chapter_pos];
+    desc = [NSString stringWithFormat:@"%@\n _chapter_page_pos:%lud", desc, (unsigned long)_chapter_page_pos];
     
     return desc;
 }

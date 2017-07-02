@@ -36,9 +36,10 @@
     {
         
         self->_manager = [[AFHTTPSessionManager alloc] init];
-        _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json",@"text/javascript", @"application/xhtml+xml", @"application/xml", @"text/plain",nil];;
+        _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json",@"text/javascript", @"application/xhtml+xml", @"application/xml", @"text/plain", @"*/*", @"",nil];;
         [_manager.requestSerializer setTimeoutInterval:5.0];
         [_manager.requestSerializer setValue:@"MDREAD IOS Client/1.0(midoks@163.com)" forHTTPHeaderField:@"User-Agent"];
+        //[_manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
         
         _args = [[NSMutableDictionary alloc] init];
         
@@ -66,6 +67,26 @@
 -(void)initInjection:(NSDictionary *)callbackUrls
 {
     _callbackUrls = callbackUrls;
+}
+
+#pragma mark - 请求数据 -
+-(void)req:(NSString *)URLString
+parameters:(id)parameters
+  progress:(void (^)(NSProgress * _Nonnull))uploadProgress
+   success:(void (^)(NSURLSessionDataTask * _Nonnull, id _Nullable))success
+   failure:(void (^)(NSURLSessionDataTask * _Nullable, NSError * _Nonnull))failure
+{
+    //MDLog(@"ddd:%@", URLString);
+    //MDLog(@"ddd:%@", _callbackUrls);
+    
+    NSString *req_method = [_callbackUrls objectForKey:@"request_method"];
+    if (req_method && [req_method isEqualToString:@"post"]){
+        [_manager POST:URLString parameters:parameters progress:uploadProgress success:success failure:failure];
+    } else {
+        [_manager GET:URLString parameters:parameters progress:uploadProgress success:success failure:failure];
+    }
+    //[_manager POST:URLString parameters:parameters progress:uploadProgress success:success failure:failure];
+    //[_manager GET:URLString parameters:parameters progress:uploadProgress success:success failure:failure];
 }
 
 #pragma mark - 搜索 -
@@ -159,7 +180,6 @@
     [self setArgs:@"sid" value:source_id];
     
     NSString *book_info_url = [_callbackUrls objectForKey:@"book_info"];
-    
     //MDLog(@"%@", book_info_url);
     
     if (!book_info_url) {
@@ -169,9 +189,9 @@
     
     NSString *encoded = [book_info_url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    [_manager POST:encoded parameters:_args progress:^(NSProgress * uploadProgress) {
+    [self req:encoded parameters:_args progress:^(NSProgress * uploadProgress) {
     } success:^(NSURLSessionDataTask * task, id  responseObject) {
-        MDLog(@"%@:%@", responseObject,book_info_url);
+        //MDLog(@"%@:%@", responseObject,book_info_url);
         
         if (validate){
             if ([[responseObject objectForKey:@"data"] count] < 1){
@@ -183,8 +203,8 @@
         success(responseObject);
         
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        MDLog(@"%@", error);
-        failure(-1, [NSString stringWithFormat:@"%@:%@", book_info_url, @"BookContent:获取数据失败!"]);
+        MDLog(@"%@", [error localizedDescription]);
+        failure(-1, [NSString stringWithFormat:@"%@:%@", book_info_url, @"book_info:获取数据失败!"]);
     }];
     
 }
@@ -279,6 +299,8 @@
     }
     
     NSString *book_content = [_callbackUrls objectForKey:@"book_content"];
+    
+    MDLog(@"book_content:%@", book_content);
     
     
     if (!book_content) {
@@ -504,6 +526,33 @@
     
 }
 
+
+#pragma mark - 切换来源地址 -
+-(void)switchWebSite:(NSString *)url
+             success:(void (^)())success
+             failure:(void (^)(int ret_code, NSString *ret_msg))failure
+{
+
+    NSString *encoded = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [_manager GET:encoded parameters:nil progress:^(NSProgress * downloadProgress) {
+    } success:^(NSURLSessionDataTask * task, id responseObject) {
+        
+        NSString *tmpDa = [responseObject JSONString];
+        NSData *jsonData = [tmpDa dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *resultJson = [jsonData objectFromJSONData];
+        
+        //MDLog(@"test:%@", resultJson);
+        //注入数据
+        [self initInjection:resultJson];
+        
+        success();
+    } failure:^(NSURLSessionDataTask * task, NSError * error) {
+        failure(-1, @"test:入口获取数据失败!");
+    }];
+    
+}
+
+
 -(void)test:(NSString *)url
     success:(void (^)())success
     failure:(void (^)(int ret_code, NSString *ret_msg))failure
@@ -608,7 +657,7 @@
         
         success();
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        //MDLog(@"test root fail:%@", [error localizedDescription]);
+        MDLog(@"test root fail:%@", [error localizedDescription]);
         failure(-1, @"test:入口获取数据失败!");
     }];
 }

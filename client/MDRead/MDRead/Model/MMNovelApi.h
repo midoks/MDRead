@@ -77,6 +77,12 @@
         success:(void (^)(id responseObject))success
         failure:(void (^)(int ret_code, NSString *ret_msg))failure;
 
+
+#pragma mark - 切换来源地址 -
+-(void)switchWebSite:(NSString *)url
+             success:(void (^)())success
+             failure:(void (^)(int ret_code, NSString *ret_msg))failure;
+
 #pragma mark - 接口检测 -
 -(void)test:(NSString *)url
     success:(void (^)())success
