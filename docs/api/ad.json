@@ -1,0 +1,13 @@
+{
+	"ad": {
+		"index": {
+			"type": "image",
+			"addr": "http://121.42.151.169/"
+		},
+		"chapter": {
+			"type": "image",
+			"addr": "addr"
+		}
+	},
+	"test": "oh,you known"
+}
