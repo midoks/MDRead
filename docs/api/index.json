@@ -4,7 +4,7 @@
 	"ad": "http://121.42.151.169/ad",
 	"search": "http://121.42.151.169/book/search",
 	"book_info": "https://raw.githubusercontent.com/midoks/MDRead/master/docs/api/bookinfo.json",
-	"book_list": "http://121.42.151.169/book/list",
+	"book_list": "https://raw.githubusercontent.com/midoks/MDRead/master/docs/api/booklist.json",
 	"book_content": "https://raw.githubusercontent.com/midoks/MDRead/master/docs/api/bookcontent.json",
 	"book_source": "http://121.42.151.169/book/source",
 	"book_author": "http://121.42.151.169/book/authorlist",
