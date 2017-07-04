@@ -9,4 +9,6 @@
 [![测试API二维码](/docs/image/image.png)](/docs/image/image.png)
 
 ## GitHub(test) 二维码 
+- https://raw.githubusercontent.com/midoks/MDRead/master/docs/api/index.json
+
 [![测试API二维码](/docs/image/qrcode.png)](/docs/image/qrcode.png)
