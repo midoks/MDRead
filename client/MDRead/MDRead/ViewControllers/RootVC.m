@@ -72,18 +72,21 @@
     MMSourceListModel *list = [MMSourceListModel shareInstance];
     MMSourceModel *selected = [list getCurrent];
     
-    NSString *url = selected.website;
+    if ( selected ) {
     
+        NSString *url = selected.website;
+        
+        [[MMNovelApi shareInstance] addArgs:@"sysinfo" dic:[[MMSystemInfo shareInstance] getInfo]];
+        [[MMNovelApi shareInstance] test:url success:^{
+            
+            [MMCommon showMessage:@"验证通过"];
+            
+        } failure:^(int ret_code, NSString *ret_msg) {
+            MDLog(@"-- check api %d:%@ -- ", ret_code, ret_msg);
+            [MMCommon showMessage:ret_msg];
+        }];
+    }
     
-    [[MMNovelApi shareInstance] addArgs:@"sysinfo" dic:[[MMSystemInfo shareInstance] getInfo]];
-    [[MMNovelApi shareInstance] test:url success:^{
-        
-        [MMCommon showMessage:@"验证通过"];
-        
-    } failure:^(int ret_code, NSString *ret_msg) {
-        MDLog(@"-- check api %d:%@ -- ", ret_code, ret_msg);
-        [MMCommon showMessage:ret_msg];
-    }];
 }
 
 @end

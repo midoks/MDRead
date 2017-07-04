@@ -237,7 +237,7 @@ parameters:(id)parameters
     }
     
     NSString *encoded = [book_list_url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [_manager POST:encoded parameters:_args progress:^(NSProgress * uploadProgress) {
+    [self req:encoded parameters:_args progress:^(NSProgress * uploadProgress) {
     } success:^(NSURLSessionDataTask * task, id  responseObject) {
         
         int ret_code = [[responseObject objectForKey:@"ret_code"] intValue];
@@ -309,7 +309,7 @@ parameters:(id)parameters
     }
     NSString *encoded = [book_content stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    [_manager POST:encoded parameters:_args progress:^(NSProgress * uploadProgress) {
+    [self req:encoded parameters:_args progress:^(NSProgress * uploadProgress) {
     } success:^(NSURLSessionDataTask * task, id  responseObject) {
         
         if(validate){

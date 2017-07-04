@@ -44,7 +44,7 @@
     } else {
         _window.rootViewController = [[RootVC alloc] init];
     }
-    
+
     [_window makeKeyAndVisible];
     
     [self appStat];
