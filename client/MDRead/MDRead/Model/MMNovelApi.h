@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "AFNetworking.h"
-#import "JSONKit.h"
+//#import "JSONKit.h"
 
 @interface MMNovelApi : NSObject
 {

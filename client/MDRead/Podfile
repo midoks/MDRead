@@ -6,9 +6,9 @@ target "MDRead" do
     pod 'FMDB'
     pod 'SDWebImage', '~>3.7'
     pod 'pop', '~> 1.0'
-    pod 'JSONKit'
     pod 'MJRefresh'
+    pod 'JSONKit'
     pod 'MBProgressHUD'
     
-    pod 'LDNetDiagnoService'
+#    pod 'LDNetDiagnoService'
 end

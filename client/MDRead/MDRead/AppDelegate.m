@@ -28,7 +28,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    [self setNotify];
+    
     
     
     [MMConfig initConf];
@@ -59,6 +59,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [self setNotify];
 
 }
 

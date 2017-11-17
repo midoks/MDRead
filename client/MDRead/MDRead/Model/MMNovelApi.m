@@ -9,6 +9,7 @@
 
 #import "MMNovelApi.h"
 #import "MMCommon.h"
+#import "JSONKit.h"
 
 @interface MMNovelApi()
 
